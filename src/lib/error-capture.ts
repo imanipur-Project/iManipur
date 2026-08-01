@@ -3,7 +3,11 @@
 
 import { AsyncLocalStorage } from "node:async_hooks";
 
-export const errorContext = new AsyncLocalStorage<{ captured: boolean; error?: unknown; at: number }>();
+export const errorContext = new AsyncLocalStorage<{
+  captured: boolean;
+  error?: unknown;
+  at: number;
+}>();
 const TTL_MS = 5_000;
 
 function record(error: unknown) {
@@ -81,13 +85,13 @@ if (typeof globalThis.addEventListener === "function") {
 export function consumeLastCapturedError(): unknown {
   const store = errorContext.getStore();
   if (!store || !store.captured) return undefined;
-  
+
   if (Date.now() - store.at > TTL_MS) {
     store.captured = false;
     store.error = undefined;
     return undefined;
   }
-  
+
   const { error } = store;
   store.captured = false;
   store.error = undefined;
