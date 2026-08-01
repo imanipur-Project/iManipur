@@ -2,13 +2,9 @@
 
 [![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/imanipur-Project/iManipur?utm_source=oss&utm_medium=github&utm_campaign=imanipur-Project%2FiManipur&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
 
-iManipur is a community from Manipur focused on cultural, educational, and innovative projects.
+**iManipur** is a community from Manipur focused on cultural, educational, and innovative projects.
 
 We believe local ideas, local knowledge, and local talent matter. Our work is centered on creating useful projects, supporting learning, and exploring thoughtful ways to connect culture and innovation.
-
-We are a small team working on simple but meaningful initiatives. Some of our work focuses on education. Some focuses on culture. Some explores new ideas that can be useful for people and communities in Manipur.
-
-We are not trying to do everything. We want to do honest work that is relevant to our place, our people, and our future.
 
 ## What We Care About
 
@@ -24,35 +20,45 @@ We support learning through practical, community-focused work that helps people 
 
 We work on new ideas and projects that are useful, grounded, and relevant to Manipur.
 
+## Our Projects
+
+- **Manipur Historical Animation** — Bringing Manipur's rich history to life through visual storytelling *(In Progress)*
+- **Folk Stories of Manipur** — Collecting and retelling folk tales through modern media and illustration *(In Progress)*
+- **Historical Stories Collection** — A growing archive of lesser-known historical narratives *(Coming Soon)*
+
 ## How We Work
 
-We keep things simple. We learn, build, collaborate, and improve as we go.
+We keep things simple. We learn, build, collaborate, and improve as we go. Our approach is steady and practical — we care more about meaningful work than big claims.
 
-Our approach is steady and practical. We care more about meaningful work than big claims.
+## The Team
 
-## Short Homepage Version
+- **Oliver Oinam** — Tech Dept
+- **Basanta Haobijam** — Educator
+- **Rajbobo Khumukcham** — Educator & Content Creator
+- **Harishsor Tourangbam** — Educator
+- **Rimba Thoudam** — Digital Illustrator
+- **Preety Yumnam** — Singer, Writer & Creative Artist
 
-### Heading
+## Tech Stack
 
-Building cultural, educational, and innovative projects for Manipur.
+- [TanStack Start](https://tanstack.com/start) — Full-stack React framework
+- [Motion](https://motion.dev) — Physics-based animations
+- [Tailwind CSS v4](https://tailwindcss.com) — Utility-first styling
+- [Bun](https://bun.sh) — JavaScript runtime & package manager
 
-### Subheading
-
-iManipur is a community from Manipur working on simple, meaningful projects that support learning, culture, and new ideas.
-
-### Intro Text
-
-We are a small team focused on work that is honest, useful, and locally relevant. The goal is not to overpromise, but to create projects that matter to Manipur and the people here.
-
-## Simple Mission Version
-
-iManipur is a community from Manipur working on cultural, educational, and innovative projects. We care about preserving what matters, supporting learning, and building ideas that are useful for our people and our future. We are a small team, and we believe meaningful work does not need to be loud to matter.
 ## Development
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
 git clone https://github.com/imanipur-Project/iManipur.git
 cd iManipur
-npm i
-npm run dev
+bun install
+bun dev
 ```
+
+## License
+
+This project is open source under the [MIT License](LICENSE).
+
+## Contact
+
+📧 [hello@imanipur.org](mailto:hello@imanipur.org)

@@ -76,8 +76,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "iManipur" },
+      { name: "theme-color", content: "#1a1408" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "iManipur" },
+      { property: "og:url", content: "https://imanipur.org" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@iManipur" },
     ],
     links: [
       {
@@ -90,7 +94,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/png" },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "canonical", href: "https://imanipur.org" },
     ],
   }),
 
