@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, type Variants } from "motion/react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -67,7 +67,7 @@ const teamMembers = [
 /* ─── Animation Variants ────────────────────────────────── */
 
 // Stagger orchestrator
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -75,7 +75,7 @@ const containerVariants = {
   },
 };
 
-const gridContainerVariants = {
+const gridContainerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -84,7 +84,7 @@ const gridContainerVariants = {
 };
 
 // Standard spring reveal for items
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
@@ -93,7 +93,7 @@ const itemVariants = {
   },
 };
 
-const sectionVariants = {
+const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
