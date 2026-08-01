@@ -45,6 +45,7 @@ const ChartContainer = React.forwardRef<
   return (
     <ChartContext.Provider value={{ config }}>
       <div
+        id={id}
         data-chart={chartId}
         ref={ref}
         className={cn(

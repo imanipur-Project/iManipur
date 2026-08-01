@@ -71,6 +71,16 @@ const Carousel = React.forwardRef<
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (
+        event.target instanceof HTMLElement &&
+        (event.target.tagName === "INPUT" ||
+          event.target.tagName === "TEXTAREA" ||
+          event.target.tagName === "SELECT" ||
+          event.target.getAttribute("role") === "slider")
+      ) {
+        return;
+      }
+
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         scrollPrev();
@@ -176,12 +186,13 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, variant = "outline", size = "icon", type = "button", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
       <Button
         ref={ref}
+        type={type}
         variant={variant}
         size={size}
         className={cn(
@@ -204,12 +215,13 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, variant = "outline", size = "icon", type = "button", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
       <Button
         ref={ref}
+        type={type}
         variant={variant}
         size={size}
         className={cn(

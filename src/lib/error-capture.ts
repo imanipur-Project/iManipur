@@ -3,17 +3,17 @@
 
 import { AsyncLocalStorage } from "node:async_hooks";
 
-export const errorContext = new AsyncLocalStorage<{ error: unknown; at: number }>();
-let fallbackError: { error: unknown; at: number } | undefined;
+export const errorContext = new AsyncLocalStorage<{ captured: boolean; error?: unknown; at: number }>();
 const TTL_MS = 5_000;
 
 function record(error: unknown) {
   const store = errorContext.getStore();
   if (store) {
+    store.captured = true;
     store.error = error;
     store.at = Date.now();
   } else {
-    fallbackError = { error, at: Date.now() };
+    process.stdout.write(`[Unscoped Error] ${describeError(error)}\n`);
   }
 }
 
@@ -80,17 +80,16 @@ if (typeof globalThis.addEventListener === "function") {
 
 export function consumeLastCapturedError(): unknown {
   const store = errorContext.getStore();
-  const captured = store?.error ? store : fallbackError;
-  if (!captured) return undefined;
+  if (!store || !store.captured) return undefined;
   
-  if (Date.now() - captured.at > TTL_MS) {
-    if (captured === fallbackError) fallbackError = undefined;
-    if (store) store.error = undefined;
+  if (Date.now() - store.at > TTL_MS) {
+    store.captured = false;
+    store.error = undefined;
     return undefined;
   }
   
-  const { error } = captured;
-  if (captured === fallbackError) fallbackError = undefined;
-  if (store) store.error = undefined;
+  const { error } = store;
+  store.captured = false;
+  store.error = undefined;
   return error;
 }

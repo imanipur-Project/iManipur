@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, useRef, useCallback } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "motion/react";
+import { useEffect, useState, useRef, useCallback, useId } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+  useMotionValueEvent,
+  type Variants,
+} from "motion/react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,7 +27,7 @@ export const Route = createFileRoute("/")({
     ],
   }),
   component: Index,
-} as any);
+});
 
 /* ─── Data ──────────────────────────────────────────────── */
 
@@ -97,11 +104,31 @@ const principles = [
 ];
 
 const timeline = [
-  { year: "2024", label: "Idea Formed", desc: "The idea of building a community around Manipur's culture and education took shape." },
-  { year: "2025", label: "iManipur Founded", desc: "The team came together, and iManipur was officially established as a working community." },
-  { year: "2025", label: "Animation Project Begins", desc: "Work started on the Manipur Historical Animation — bringing history to life through visual storytelling." },
-  { year: "2025", label: "Folk Stories Initiative", desc: "Began collecting and retelling Manipuri folk tales through modern media and illustration." },
-  { year: "2026", label: "Growing Forward", desc: "Expanding our projects, welcoming new collaborators, and deepening our cultural archive." },
+  {
+    year: "2024",
+    label: "Idea Formed",
+    desc: "The idea of building a community around Manipur's culture and education took shape.",
+  },
+  {
+    year: "2025",
+    label: "iManipur Founded",
+    desc: "The team came together, and iManipur was officially established as a working community.",
+  },
+  {
+    year: "2025",
+    label: "Animation Project Begins",
+    desc: "Work started on the Manipur Historical Animation — bringing history to life through visual storytelling.",
+  },
+  {
+    year: "2025",
+    label: "Folk Stories Initiative",
+    desc: "Began collecting and retelling Manipuri folk tales through modern media and illustration.",
+  },
+  {
+    year: "2026",
+    label: "Growing Forward",
+    desc: "Expanding our projects, welcoming new collaborators, and deepening our cultural archive.",
+  },
 ];
 
 const faqs = [
@@ -183,6 +210,22 @@ const sectionVariants: Variants = {
   },
 };
 
+const CONTACT_EMAIL = "hello@imanipur.org";
+const GITHUB_URL = "https://github.com/imanipur-Project";
+
+function Logo({ size = "sm" }: { size?: "sm" | "lg" }) {
+  const badge = size === "lg" ? "h-8 w-8 text-[12px]" : "h-6 w-6 text-[10px]";
+  return (
+    <motion.span
+      variants={{ hover: { rotate: 90, scale: 1.1, borderRadius: "50%" } }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      className={`flex items-center justify-center rounded-sm bg-primary font-mono font-semibold text-primary-foreground transition-shadow duration-300 group-hover:shadow-[0_0_10px_-2px_var(--color-primary)] ${badge}`}
+    >
+      <motion.span variants={{ hover: { rotate: -90 } }}>iM</motion.span>
+    </motion.span>
+  );
+}
+
 /* ─── Section Rule Component ─────────────────────────────── */
 
 function SectionRule() {
@@ -201,16 +244,15 @@ function SectionRule() {
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
+  const id = useId();
 
   return (
-    <motion.div
-      variants={itemVariants}
-      className="group border-b border-border last:border-b-0"
-    >
+    <motion.div variants={itemVariants} className="group border-b border-border last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 py-6 text-left transition-colors duration-200 hover:text-primary"
         aria-expanded={open}
+        aria-controls={`faq-answer-${id}`}
       >
         <span className="text-[15px] font-medium text-foreground/90 transition-colors duration-200 group-hover:text-primary">
           {q}
@@ -226,15 +268,14 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={`faq-answer-${id}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
             className="overflow-hidden"
           >
-            <p className="pb-6 text-[14px] leading-relaxed text-muted-foreground">
-              {a}
-            </p>
+            <p className="pb-6 text-[14px] leading-relaxed text-muted-foreground">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -247,12 +288,11 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 20);
+  });
 
   // Close mobile menu on scroll
   useEffect(() => {
@@ -278,13 +318,7 @@ function Navbar() {
     >
       <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-5 md:px-8">
         <motion.a href="#about" className="group flex items-center gap-2.5" whileHover="hover">
-          <motion.span
-            variants={{ hover: { rotate: 90, scale: 1.1, borderRadius: "50%" } }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="flex h-6 w-6 items-center justify-center rounded-sm bg-primary font-mono text-[10px] font-semibold text-primary-foreground transition-shadow duration-300 group-hover:shadow-[0_0_10px_-2px_var(--color-primary)]"
-          >
-            <motion.span variants={{ hover: { rotate: -90 } }}>iM</motion.span>
-          </motion.span>
+          <Logo size="sm" />
           <span className="hidden font-mono text-[11px] tracking-[0.22em] uppercase text-foreground transition-colors duration-200 group-hover:text-primary sm:inline-block">
             iManipur
           </span>
@@ -650,9 +684,7 @@ function Index() {
                     <span
                       className={[
                         "h-1.5 w-1.5 rounded-full",
-                        proj.status === "In Progress"
-                          ? "bg-primary animate-pulse"
-                          : "bg-teal",
+                        proj.status === "In Progress" ? "bg-primary animate-pulse" : "bg-teal",
                       ].join(" ")}
                     />
                     {proj.status}
@@ -755,10 +787,9 @@ function Index() {
               <motion.div
                 key={`${item.year}-${item.label}`}
                 variants={itemVariants}
-                className={[
-                  "relative flex gap-8 pb-12 last:pb-0",
-                  "sm:even:flex-row-reverse",
-                ].join(" ")}
+                className={["relative flex gap-8 pb-12 last:pb-0", "sm:even:flex-row-reverse"].join(
+                  " ",
+                )}
               >
                 {/* Dot */}
                 <div className="absolute left-4 top-1 z-10 flex h-2.5 w-2.5 -translate-x-1/2 items-center justify-center sm:left-1/2">
@@ -766,10 +797,12 @@ function Index() {
                 </div>
 
                 {/* Content */}
-                <div className={[
-                  "ml-10 flex-1 sm:ml-0",
-                  i % 2 === 0 ? "sm:pr-12 sm:text-right" : "sm:pl-12 sm:text-left",
-                ].join(" ")}>
+                <div
+                  className={[
+                    "ml-10 flex-1 sm:ml-0",
+                    i % 2 === 0 ? "sm:pr-12 sm:text-right" : "sm:pl-12 sm:text-left",
+                  ].join(" ")}
+                >
                   <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-primary/60">
                     {item.year}
                   </span>
@@ -926,11 +959,11 @@ function Index() {
                 Reach us at
               </p>
               <a
-                href="mailto:hello@imanipur.org"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="group mt-5 flex flex-col items-center gap-3 transition-opacity duration-200 hover:opacity-80"
               >
                 <span className="text-[1.3rem] font-medium text-foreground transition-colors duration-200 group-hover:text-primary">
-                  hello@imanipur.org
+                  {CONTACT_EMAIL}
                 </span>
                 <span className="font-mono text-primary transition-transform duration-200 group-hover:translate-y-1">
                   ↓
@@ -957,7 +990,7 @@ function Index() {
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
                 <a
-                  href="https://github.com/imanipur-Project"
+                  href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground transition-all duration-200 hover:border-primary/40 hover:text-foreground"
@@ -965,7 +998,7 @@ function Index() {
                   GitHub
                 </a>
                 <a
-                  href="mailto:hello@imanipur.org"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground transition-all duration-200 hover:border-primary/40 hover:text-foreground"
                 >
                   Email
@@ -981,22 +1014,17 @@ function Index() {
         <div className="pointer-events-none absolute inset-x-0 -top-20 h-20 bg-gradient-to-b from-transparent to-background/60" />
 
         <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 px-5 py-14 md:px-8">
-          <motion.div
+          <motion.button
+            type="button"
             whileHover="hover"
-            className="flex flex-col items-center gap-4 cursor-pointer"
+            className="flex flex-col items-center gap-4 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background rounded-sm"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <motion.span
-              variants={{ hover: { rotate: 90, scale: 1.1, borderRadius: "50%" } }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="flex h-8 w-8 items-center justify-center rounded-sm bg-primary font-mono text-[12px] font-semibold text-primary-foreground"
-            >
-              <motion.span variants={{ hover: { rotate: -90 } }}>iM</motion.span>
-            </motion.span>
+            <Logo size="lg" />
             <span className="font-mono text-[12px] tracking-[0.22em] uppercase text-primary transition-colors duration-200 hover:text-primary/80">
               iManipur
             </span>
-          </motion.div>
+          </motion.button>
 
           <p className="max-w-md text-[13px] leading-relaxed text-muted-foreground/60">
             A community from Manipur building honest, useful, and locally relevant projects in
@@ -1017,7 +1045,7 @@ function Index() {
 
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/imanipur-Project"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground/40 transition-colors duration-200 hover:text-primary"
@@ -1026,7 +1054,7 @@ function Index() {
             </a>
             <span className="h-3 w-px bg-border" />
             <a
-              href="mailto:hello@imanipur.org"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground/40 transition-colors duration-200 hover:text-primary"
             >
               Email
@@ -1035,7 +1063,9 @@ function Index() {
 
           <div className="flex flex-col items-center gap-2">
             <div className="h-px w-12 bg-border" />
-            <p className="font-mono text-[11px] text-muted-foreground/40">© {new Date().getFullYear()} iManipur</p>
+            <p className="font-mono text-[11px] text-muted-foreground/40">
+              © {new Date().getFullYear()} iManipur
+            </p>
           </div>
         </div>
       </footer>
