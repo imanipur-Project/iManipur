@@ -101,6 +101,7 @@ const Carousel = React.forwardRef<
 
     return () => {
       api?.off("select", onSelect);
+      api?.off("reInit", onSelect);
     };
   }, [api, onSelect]);
 
@@ -110,7 +111,7 @@ const Carousel = React.forwardRef<
         carouselRef,
         api: api,
         opts,
-        orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+        orientation,
         scrollPrev,
         scrollNext,
         canScrollPrev,

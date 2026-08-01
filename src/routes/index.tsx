@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-export const Route = createFileRoute("/")(({
+export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "iManipur — Cultural, Educational & Innovative Projects" },
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")(({
     ],
   }),
   component: Index,
-} as any));
+} as any);
 
 /* ─── Data ──────────────────────────────────────────────── */
 
@@ -128,12 +128,8 @@ function Navbar() {
       ].join(" ")}
     >
       <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-5 md:px-8">
-        <motion.a 
-          href="#about" 
-          className="group flex items-center gap-2.5"
-          whileHover="hover"
-        >
-          <motion.span 
+        <motion.a href="#about" className="group flex items-center gap-2.5" whileHover="hover">
+          <motion.span
             variants={{ hover: { rotate: 90, scale: 1.1, borderRadius: "50%" } }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             className="flex h-6 w-6 items-center justify-center rounded-sm bg-primary font-mono text-[10px] font-semibold text-primary-foreground transition-shadow duration-300 group-hover:shadow-[0_0_10px_-2px_var(--color-primary)]"
@@ -210,8 +206,8 @@ function Index() {
             variants={itemVariants}
             className="mt-6 max-w-2xl text-[16px] leading-relaxed text-muted-foreground"
           >
-            iManipur is a community from Manipur working on simple, meaningful
-            projects that support learning, culture, and new ideas.
+            iManipur is a community from Manipur working on simple, meaningful projects that support
+            learning, culture, and new ideas.
           </motion.p>
 
           {/* Terminal block */}
@@ -232,14 +228,11 @@ function Index() {
             </div>
             <div className="p-5">
               <p className="font-mono text-[13px] leading-relaxed text-muted-foreground">
-                <span className="text-primary font-medium">$</span> We are a small
-                team focused on work that is honest, useful, and locally relevant.
-                The goal is not to overpromise, but to create projects that matter
-                to Manipur and the people here.
+                <span className="text-primary font-medium">$</span> We are a small team focused on
+                work that is honest, useful, and locally relevant. The goal is not to overpromise,
+                but to create projects that matter to Manipur and the people here.
               </p>
-              <p className="mt-2 font-mono text-[11px] text-primary/50 cursor-blink">
-                ready
-              </p>
+              <p className="mt-2 font-mono text-[11px] text-primary/50 cursor-blink">ready</p>
             </div>
           </motion.div>
 
@@ -293,21 +286,20 @@ function Index() {
             </div>
             <div className="mt-10 space-y-6 text-[16px] leading-relaxed text-muted-foreground">
               <p>
-                iManipur is a community from Manipur focused on cultural,
-                educational, and innovative projects. We believe local ideas, local
-                knowledge, and local talent matter.
+                iManipur is a community from Manipur focused on cultural, educational, and
+                innovative projects. We believe local ideas, local knowledge, and local talent
+                matter.
               </p>
               <p>
-                Our work is centered on creating useful projects, supporting
-                learning, and exploring thoughtful ways to connect culture and
-                innovation. Some of our work focuses on education. Some focuses on
-                culture. Some explores new ideas that can be useful for people and
-                communities in Manipur.
+                Our work is centered on creating useful projects, supporting learning, and exploring
+                thoughtful ways to connect culture and innovation. Some of our work focuses on
+                education. Some focuses on culture. Some explores new ideas that can be useful for
+                people and communities in Manipur.
               </p>
               <div className="flex justify-center pt-2">
                 <p className="max-w-2xl border-b border-t border-primary/20 py-6 text-[15px] italic text-foreground/80">
-                  We are not trying to do everything. We want to do honest work
-                  that is relevant to our place, our people, and our future.
+                  We are not trying to do everything. We want to do honest work that is relevant to
+                  our place, our people, and our future.
                 </p>
               </div>
             </div>
@@ -315,12 +307,12 @@ function Index() {
         </motion.section>
 
         {/* Section rule */}
-        <motion.div 
+        <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="section-rule mx-auto" 
+          className="section-rule mx-auto"
         />
 
         {/* ── Pillars ────────────────────────────────────── */}
@@ -335,12 +327,10 @@ function Index() {
           <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
             <p className="label-mono text-primary/70">What we care about</p>
             <h2 className="mt-4 text-foreground">
-              Three pillars,{" "}
-              <span className="text-primary block sm:inline">one intention.</span>
+              Three pillars, <span className="text-primary block sm:inline">one intention.</span>
             </h2>
             <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
-              Work that is grounded in place — culture, learning, and ideas that
-              serve Manipur.
+              Work that is grounded in place — culture, learning, and ideas that serve Manipur.
             </p>
           </motion.div>
 
@@ -393,12 +383,12 @@ function Index() {
         </motion.section>
 
         {/* Section rule */}
-        <motion.div 
+        <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="section-rule mx-auto" 
+          className="section-rule mx-auto"
         />
 
         {/* ── How we work ────────────────────────────────── */}
@@ -416,8 +406,7 @@ function Index() {
               Steady and <span className="text-primary">practical.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              We keep things simple. We care more about meaningful work than big
-              claims.
+              We keep things simple. We care more about meaningful work than big claims.
             </p>
           </motion.div>
 
@@ -442,12 +431,12 @@ function Index() {
         </motion.section>
 
         {/* Section rule */}
-        <motion.div 
+        <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="section-rule mx-auto" 
+          className="section-rule mx-auto"
         />
 
         {/* ── Team ───────────────────────────────────────── */}
@@ -465,8 +454,8 @@ function Index() {
               Our team <span className="text-primary block sm:inline">members.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              We are a dedicated group of individuals working together to build and
-              support projects that matter to Manipur.
+              We are a dedicated group of individuals working together to build and support projects
+              that matter to Manipur.
             </p>
           </motion.div>
 
@@ -482,7 +471,7 @@ function Index() {
                 <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-sm border border-primary/20 bg-[#000] transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-[var(--shadow-glow)]">
                   <img
                     src="/barcode.png"
-                    alt="sci-fi barcode"
+                    alt=""
                     className="h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"
                   />
                 </div>
@@ -495,12 +484,12 @@ function Index() {
         </motion.section>
 
         {/* Section rule */}
-        <motion.div 
+        <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="section-rule mx-auto" 
+          className="section-rule mx-auto"
         />
 
         {/* ── Mission ────────────────────────────────────── */}
@@ -522,28 +511,26 @@ function Index() {
             </div>
             <p className="relative label-mono text-primary/70">Mission</p>
             <blockquote className="relative mt-8 max-w-2xl text-[1.2rem] leading-relaxed text-foreground/90 md:text-[1.4rem]">
-              iManipur is a community from Manipur working on cultural, educational,
-              and innovative projects. We care about preserving what matters,
-              supporting learning, and building ideas that are useful for our people
-              and our future.
+              iManipur is a community from Manipur working on cultural, educational, and innovative
+              projects. We care about preserving what matters, supporting learning, and building
+              ideas that are useful for our people and our future.
             </blockquote>
             <div className="relative mt-10 flex flex-col items-center gap-5">
               <div className="h-px w-12 bg-primary/60" />
               <p className="font-mono text-[12px] text-muted-foreground">
-                We are a small team — meaningful work does not need to be loud to
-                matter.
+                We are a small team — meaningful work does not need to be loud to matter.
               </p>
             </div>
           </div>
         </motion.section>
 
         {/* Section rule */}
-        <motion.div 
+        <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="section-rule mx-auto" 
+          className="section-rule mx-auto"
         />
 
         {/* ── Contact ────────────────────────────────────── */}
@@ -561,8 +548,8 @@ function Index() {
               Let's work on <span className="text-primary block sm:inline">Manipur</span> together.
             </h2>
             <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
-              If you are working on something for Manipur — in culture, education,
-              or a new idea — we would like to hear about it.
+              If you are working on something for Manipur — in culture, education, or a new idea —
+              we would like to hear about it.
             </p>
 
             <motion.div
@@ -603,12 +590,12 @@ function Index() {
         <div className="pointer-events-none absolute inset-x-0 -top-20 h-20 bg-gradient-to-b from-transparent to-background/60" />
 
         <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 px-5 py-14 md:px-8">
-          <motion.div 
+          <motion.div
             whileHover="hover"
             className="flex flex-col items-center gap-4 cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <motion.span 
+            <motion.span
               variants={{ hover: { rotate: 90, scale: 1.1, borderRadius: "50%" } }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="flex h-8 w-8 items-center justify-center rounded-sm bg-primary font-mono text-[12px] font-semibold text-primary-foreground"
@@ -632,9 +619,7 @@ function Index() {
             ))}
           </nav>
 
-          <p className="font-mono text-[11px] text-muted-foreground/40">
-            © 2025 iManipur
-          </p>
+          <p className="font-mono text-[11px] text-muted-foreground/40">© 2025 iManipur</p>
         </div>
       </footer>
     </div>

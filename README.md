@@ -47,24 +47,12 @@ We are a small team focused on work that is honest, useful, and locally relevant
 ## Simple Mission Version
 
 iManipur is a community from Manipur working on cultural, educational, and innovative projects. We care about preserving what matters, supporting learning, and building ideas that are useful for our people and our future. We are a small team, and we believe meaningful work does not need to be loud to matter.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/20fdbfbe-32ca-4497-86f5-9fb29b8127b0).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
 ## Development
-
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone https://github.com/imanipur-Project/iManipur.git
+cd iManipur
 npm i
 npm run dev
 ```
