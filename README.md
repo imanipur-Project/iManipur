@@ -1,7 +1,4 @@
 # iManipur
-
-[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/imanipur-Project/iManipur?utm_source=oss&utm_medium=github&utm_campaign=imanipur-Project%2FiManipur&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
-
 **iManipur** is a community from Manipur focused on cultural, educational, and innovative projects.
 
 We believe local ideas, local knowledge, and local talent matter. Our work is centered on creating useful projects, supporting learning, and exploring thoughtful ways to connect culture and innovation.
