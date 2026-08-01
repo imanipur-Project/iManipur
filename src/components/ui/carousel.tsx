@@ -81,15 +81,21 @@ const Carousel = React.forwardRef<
         return;
       }
 
-      if (event.key === "ArrowLeft") {
+      if (
+        event.key === "ArrowLeft" ||
+        (orientation === "vertical" && event.key === "ArrowUp")
+      ) {
         event.preventDefault();
         scrollPrev();
-      } else if (event.key === "ArrowRight") {
+      } else if (
+        event.key === "ArrowRight" ||
+        (orientation === "vertical" && event.key === "ArrowDown")
+      ) {
         event.preventDefault();
         scrollNext();
       }
     },
-    [scrollPrev, scrollNext],
+    [scrollPrev, scrollNext, orientation],
   );
 
   React.useEffect(() => {
