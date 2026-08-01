@@ -49,7 +49,9 @@ export default {
     const url = new URL(request.url);
     if (url.pathname !== "/") {
       // Serve static assets from dist/client when running via Bun
+      // @ts-expect-error Bun is injected globally in production
       if (typeof Bun !== "undefined") {
+        // @ts-expect-error Bun is injected globally in production
         const file = Bun.file(`dist/client${url.pathname}`);
         if (await file.exists()) {
           // Serve the file directly
