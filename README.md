@@ -45,7 +45,7 @@ bun dev
 
 ## License
 
-This project is open source under the [MIT License](LICENSE).
+This is a proprietary project. All rights reserved. No license is granted to use, modify, or distribute this software without explicit permission.
 
 ## Contact
 
