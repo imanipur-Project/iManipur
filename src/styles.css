@@ -83,8 +83,8 @@
   --secondary: oklch(0.22 0.012 65);
   --secondary-foreground: oklch(0.94 0.01 80);
 
-  --muted: oklch(0.20 0.01 65);
-  --muted-foreground: oklch(0.60 0.018 78);
+  --muted: oklch(0.2 0.01 65);
+  --muted-foreground: oklch(0.6 0.018 78);
 
   --accent: oklch(0.24 0.018 70);
   --accent-foreground: oklch(0.92 0.05 80);
@@ -98,11 +98,11 @@
   --ring: oklch(0.78 0.19 78);
 
   /* Teal accent */
-  --teal: oklch(0.70 0.12 175);
+  --teal: oklch(0.7 0.12 175);
 
   --chart-1: oklch(0.78 0.19 78);
-  --chart-2: oklch(0.70 0.12 175);
-  --chart-3: oklch(0.60 0.12 60);
+  --chart-2: oklch(0.7 0.12 175);
+  --chart-3: oklch(0.6 0.12 60);
   --chart-4: oklch(0.5 0.08 90);
   --chart-5: oklch(0.4 0.05 70);
 
@@ -120,7 +120,8 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --shadow-panel: 0 1px 0 0 color-mix(in oklab, var(--foreground) 6%, transparent);
-  --shadow-glow: 0 0 20px -4px color-mix(in oklab, var(--primary) 35%, transparent),
+  --shadow-glow:
+    0 0 20px -4px color-mix(in oklab, var(--primary) 35%, transparent),
     0 0 40px -8px color-mix(in oklab, var(--primary) 15%, transparent);
   --shadow-card: 0 2px 8px -2px oklch(0 0 0 / 0.4), 0 1px 2px -1px oklch(0 0 0 / 0.3);
 }
@@ -153,9 +154,15 @@
   }
 
   /* Consistent type scale */
-  h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-  h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); }
-  h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+  }
+  h3 {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+  }
 }
 
 /* ─── Utility Classes ─────────────────────────────────────── */
@@ -179,29 +186,43 @@
 
 /* ─── Keyframe Animations ─────────────────────────────────── */
 
-
-
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes draw-line {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
-
-
 
 /* ─── Grid texture overlay ────────────────────────────────── */
 
@@ -215,11 +236,7 @@
 /* ─── Dot pattern ─────────────────────────────────────────── */
 
 .dot-bg {
-  background-image: radial-gradient(
-    circle,
-    oklch(0.35 0.015 70 / 0.45) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle, oklch(0.35 0.015 70 / 0.45) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -234,7 +251,10 @@
     oklch(0.72 0.16 72) 100%
   );
   background-size: 200% auto;
-  transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition:
+    background-position 0.5s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btn-shimmer:hover {
@@ -242,8 +262,6 @@
   box-shadow: var(--shadow-glow);
   transform: translateY(-1px);
 }
-
-
 
 /* ─── Cursor blink ────────────────────────────────────────── */
 
@@ -285,7 +303,11 @@
     color: black !important;
   }
 
-  header, footer, .btn-shimmer, .dot-bg, .section-rule {
+  header,
+  footer,
+  .btn-shimmer,
+  .dot-bg,
+  .section-rule {
     display: none !important;
   }
 

@@ -1,4 +1,5 @@
 # iManipur
+
 **iManipur** is a community from Manipur focused on cultural, educational, and innovative projects.
 
 We believe local ideas, local knowledge, and local talent matter. Our work is centered on creating useful projects, supporting learning, and exploring thoughtful ways to connect culture and innovation.
@@ -19,9 +20,9 @@ We work on new ideas and projects that are useful, grounded, and relevant to Man
 
 ## Our Projects
 
-- **Manipur Historical Animation** — Bringing Manipur's rich history to life through visual storytelling *(In Progress)*
-- **Folk Stories of Manipur** — Collecting and retelling folk tales through modern media and illustration *(In Progress)*
-- **Historical Stories Collection** — A growing archive of lesser-known historical narratives *(Coming Soon)*
+- **Manipur Historical Animation** — Bringing Manipur's rich history to life through visual storytelling _(In Progress)_
+- **Folk Stories of Manipur** — Collecting and retelling folk tales through modern media and illustration _(In Progress)_
+- **Historical Stories Collection** — A growing archive of lesser-known historical narratives _(Coming Soon)_
 
 ## How We Work
 

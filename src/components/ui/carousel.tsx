@@ -81,10 +81,7 @@ const Carousel = React.forwardRef<
         return;
       }
 
-      if (
-        event.key === "ArrowLeft" ||
-        (orientation === "vertical" && event.key === "ArrowUp")
-      ) {
+      if (event.key === "ArrowLeft" || (orientation === "vertical" && event.key === "ArrowUp")) {
         event.preventDefault();
         scrollPrev();
       } else if (
