@@ -46,20 +46,6 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    const url = new URL(request.url);
-    if (url.pathname !== "/") {
-      // Serve static assets from dist/client when running via Bun
-      // @ts-expect-error Bun is injected globally in production
-      if (typeof Bun !== "undefined") {
-        // @ts-expect-error Bun is injected globally in production
-        const file = Bun.file(`dist/client${url.pathname}`);
-        if (await file.exists()) {
-          // Serve the file directly
-          return new Response(file);
-        }
-      }
-    }
-
     return errorContext.run({ captured: false, error: undefined, at: 0 }, async () => {
       try {
         const handler = await getServerEntry();
