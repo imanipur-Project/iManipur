@@ -27,15 +27,6 @@ We work on new ideas and projects that are useful, grounded, and relevant to Man
 
 We keep things simple. We learn, build, collaborate, and improve as we go. Our approach is steady and practical — we care more about meaningful work than big claims.
 
-## The Team
-
-- **Oliver Oinam** — Tech Dept
-- **Basanta Haobijam** — Educator
-- **Rajbobo Khumukcham** — Educator & Content Creator
-- **Harishsor Tourangbam** — Educator
-- **Rimba Thoudam** — Digital Illustrator
-- **Preety Yumnam** — Singer, Writer & Creative Artist
-
 ## Tech Stack
 
 - [TanStack Start](https://tanstack.com/start) — Full-stack React framework
