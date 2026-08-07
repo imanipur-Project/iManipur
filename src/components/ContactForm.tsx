@@ -56,7 +56,11 @@ export function ContactForm() {
             placeholder="John"
           />
           {errors.firstName && (
-            <span id="firstName-error" role="alert" className="text-[11px] text-red-500">
+            <span
+              id="firstName-error"
+              role="alert"
+              className="text-[11px] text-foreground font-medium"
+            >
               {errors.firstName.message}
             </span>
           )}
@@ -77,7 +81,11 @@ export function ContactForm() {
             placeholder="Doe"
           />
           {errors.lastName && (
-            <span id="lastName-error" role="alert" className="text-[11px] text-red-500">
+            <span
+              id="lastName-error"
+              role="alert"
+              className="text-[11px] text-foreground font-medium"
+            >
               {errors.lastName.message}
             </span>
           )}
@@ -101,7 +109,7 @@ export function ContactForm() {
           placeholder="john@example.com"
         />
         {errors.email && (
-          <span id="email-error" role="alert" className="text-[11px] text-red-500">
+          <span id="email-error" role="alert" className="text-[11px] text-foreground font-medium">
             {errors.email.message}
           </span>
         )}
@@ -124,7 +132,7 @@ export function ContactForm() {
           placeholder="+91 98765 43210"
         />
         {errors.mobile && (
-          <span id="mobile-error" role="alert" className="text-[11px] text-red-500">
+          <span id="mobile-error" role="alert" className="text-[11px] text-foreground font-medium">
             {errors.mobile.message}
           </span>
         )}
@@ -147,7 +155,7 @@ export function ContactForm() {
           placeholder="How can we work together?"
         />
         {errors.message && (
-          <span id="message-error" role="alert" className="text-[11px] text-red-500">
+          <span id="message-error" role="alert" className="text-[11px] text-foreground font-medium">
             {errors.message.message}
           </span>
         )}

@@ -22,17 +22,16 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "iManipur — Cultural, Educational & Innovative Projects" },
+      { title: "iManipur — Independent Initiative for Manipur" },
       {
         name: "description",
         content:
-          "iManipur is a community from Manipur working on simple, meaningful projects that support learning, culture, and new ideas.",
+          "iManipur is an independent initiative advancing culture, education, and innovation for Manipur.",
       },
-      { property: "og:title", content: "iManipur — Cultural, Educational & Innovative Projects" },
+      { property: "og:title", content: "iManipur — Independent Initiative for Manipur" },
       {
         property: "og:description",
-        content:
-          "A small team from Manipur doing honest work: culture, education, and grounded innovation.",
+        content: "Preserving knowledge. Inspiring learning. Building the future.",
       },
     ],
   }),
@@ -46,8 +45,8 @@ const pillars = [
     no: "01",
     tag: "Culture",
     symbol: "◈",
-    title: "Preserve what matters",
-    body: "We care about preserving and presenting the stories, identity, and heritage of Manipur in ways that remain accessible to future generations.",
+    title: "Knowledge begins with identity",
+    body: "We preserve the stories, traditions, languages, art, and historical narratives that define Manipur. By documenting and sharing cultural knowledge, we help ensure that future generations inherit more than memories—they inherit understanding.",
     points: [
       "Document oral traditions & folk tales",
       "Archive historical narratives",
@@ -58,8 +57,8 @@ const pillars = [
     no: "02",
     tag: "Education",
     symbol: "◎",
-    title: "Support learning",
-    body: "We support learning through practical, community-focused work that helps people grow their skills, confidence, and curiosity.",
+    title: "Knowledge grows when it is shared",
+    body: "We create opportunities for learning through educational resources, mentorship, research, workshops, and collaborative initiatives that encourage curiosity and lifelong learning. Education is a continuous process of discovering, questioning, and contributing.",
     points: [
       "Mentorship & knowledge sharing",
       "Open learning resources",
@@ -70,8 +69,8 @@ const pillars = [
     no: "03",
     tag: "Innovation",
     symbol: "◇",
-    title: "Build useful ideas",
-    body: "We work on new ideas and projects that are useful, grounded, and relevant to Manipur.",
+    title: "Knowledge creates progress",
+    body: "Innovation is most meaningful when it responds to real needs and reflects local context. We explore technology, design, creative media, and interdisciplinary collaboration to build practical solutions that contribute to the future of Manipur.",
     points: [
       "Community-first digital tools",
       "Creative storytelling media",
@@ -108,18 +107,42 @@ const projects = [
 ];
 
 const principles = [
-  { k: "Scope", v: "We are not trying to do everything.", symbol: "◬" },
-  { k: "Method", v: "We learn, build, collaborate, and improve as we go.", symbol: "⟁" },
-  { k: "Pace", v: "Steady and practical, never rushed for show.", symbol: "◫" },
-  { k: "Voice", v: "Meaningful work does not need to be loud to matter.", symbol: "◌" },
-  { k: "Roots", v: "Everything we build starts from understanding this place.", symbol: "◈" },
-  { k: "People", v: "We put community before metrics, connection before reach.", symbol: "◎" },
+  {
+    k: "Research",
+    v: "Thoughtful work begins with understanding. We take time to learn, document, verify, and listen before creating solutions.",
+    symbol: "◬",
+  },
+  {
+    k: "Integrity",
+    v: "Accuracy matters more than attention. We value careful research, honest representation, and responsible storytelling over popularity.",
+    symbol: "⟁",
+  },
+  {
+    k: "Stewardship",
+    v: "We are not interested in short-lived projects. Every initiative is designed to remain useful and valuable for years to come.",
+    symbol: "◫",
+  },
+  {
+    k: "Collaboration",
+    v: "Great work rarely happens in isolation. We bring together diverse perspectives because they produce stronger outcomes.",
+    symbol: "◌",
+  },
+  {
+    k: "Accessibility",
+    v: "Knowledge should not be hidden behind barriers. We strive to present ideas in ways that are understandable and open to everyone.",
+    symbol: "◈",
+  },
+  {
+    k: "Rootedness",
+    v: "Our work begins with Manipur. Being locally grounded enables us to contribute meaningfully while remaining open to global ideas.",
+    symbol: "◎",
+  },
 ];
 
 const faqs = [
   {
     q: "What is iManipur?",
-    a: "iManipur is a community-driven initiative from Manipur focused on cultural preservation, education, and innovation. We work on projects that are honest, useful, and locally relevant.",
+    a: "iManipur is an independent initiative from Manipur focused on cultural preservation, education, and innovation. We work on projects that preserve knowledge and build for the future.",
   },
   {
     q: "How can I contribute?",
@@ -127,14 +150,14 @@ const faqs = [
   },
   {
     q: "Who funds iManipur?",
-    a: "iManipur is currently self-funded by its members. We are a volunteer-driven community. We are open to partnerships and support that align with our values.",
+    a: "iManipur is currently self-funded by its contributors. We are open to partnerships and support that align with our values and long-term vision.",
   },
   {
     q: "Where is iManipur based?",
-    a: "The iManipur team is from Manipur, but our members are spread out in different parts of the world, collaborating remotely.",
+    a: "The iManipur team is rooted in Manipur, but our contributors are spread out in different parts of the world, collaborating remotely.",
   },
   {
-    q: "Can I join the team?",
+    q: "Can I join the initiative?",
     a: "Yes. We're always looking for people who share our values — people who care about Manipur and want to contribute through culture, education, or creative work. Get in touch.",
   },
   {
@@ -144,12 +167,27 @@ const faqs = [
 ];
 
 const teamMembers = [
-  { name: "Oliver Oinam", desc: "Tech Dept", image: "/team/oliver-oinam.png" },
-  { name: "Basanta Haobijam", desc: "Educator" },
-  { name: "Rajbobo Khumukcham", desc: "Educator & Content Creator" },
-  { name: "Harishsor Tourangbam", desc: "Educator" },
-  { name: "Rimba Thoudam", desc: "Digital Illustrator" },
-  { name: "Preety Yumnam", desc: "Singer, Writer & Creative Artist" },
+  { name: "Oliver Oinam", desc: "Founder & Tech Dept", image: "/team/oliver-oinam.png" },
+  { name: "Basanta Haobijam", desc: "Founder & Academician", image: "/team/basanta.png" },
+  {
+    name: "Rajbobo Khumukcham",
+    desc: "Founder, Educator & Content Creator",
+    image: "/team/rajbobo.png",
+    imgClass: "object-[50%_15%]",
+  },
+  {
+    name: "Harishore Tourangbam",
+    desc: "Founder & Academician",
+    image: "/team/Harishore.png",
+    imgClass: "object-[50%_15%]",
+  },
+  {
+    name: "Rimba Thoudam",
+    desc: "Digital Illustrator",
+    image: "/team/rimba.png",
+    imgClass: "object-[50%_15%]",
+  },
+  { name: "Preeti Yumnam", desc: "Singer, Writer & Creative Artist", image: "/team/preeti.png" },
 ];
 
 const stats = [
@@ -297,16 +335,16 @@ function Index() {
           className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-24 pt-[160px] text-center md:px-8 md:pb-36 md:pt-[200px]"
         >
           <motion.p variants={itemVariants} className="label-mono text-primary/70">
-            Community · Manipur
+            Independent Initiative · Manipur
           </motion.p>
 
           <motion.h1
             variants={itemVariants}
             className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
           >
-            Creating culture, education, and innovation{" "}
+            Preserving knowledge. Inspiring learning.{" "}
             <span className="inline-block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              for Manipur.
+              Building the future.
             </span>
           </motion.h1>
 
@@ -314,8 +352,8 @@ function Index() {
             variants={itemVariants}
             className="mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground/80"
           >
-            iManipur is a community from Manipur working on simple, meaningful projects that support
-            learning, culture, and new ideas.
+            iManipur is an independent initiative advancing culture, education, and innovation for
+            Manipur through research, storytelling, and technology.
           </motion.p>
 
           {/* Animated Terminal */}
@@ -337,13 +375,13 @@ function Index() {
               <AnimatedSpan className="font-mono text-sm text-muted-foreground">
                 <span>&gt; imanipur.initialize()</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-green-400">
+              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
                 <span>[OK] Core modules loaded...</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-green-400">
+              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
                 <span>[OK] Education framework ready.</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-green-400">
+              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
                 <span>[OK] Innovation engine online.</span>
               </AnimatedSpan>
               <TypingAnimation className="mt-2 font-mono text-sm font-semibold text-primary">
@@ -397,25 +435,35 @@ function Index() {
         >
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <div className="flex flex-col items-center">
-              <p className="label-mono text-primary/70">About</p>
+              <p className="label-mono text-primary/70">Built for Manipur.</p>
               <div className="mt-4 h-px w-12 bg-primary/40" />
             </div>
             <div className="mt-10 space-y-6 text-[16px] leading-relaxed text-muted-foreground">
               <p>
-                iManipur is a community from Manipur focused on cultural, educational, and
-                innovative projects. We believe local ideas, local knowledge, and local talent
-                matter.
+                Every generation inherits knowledge. Some of it is written. Some of it is
+                remembered. Some exists only in stories, traditions, languages, and the people who
+                carry them forward.
               </p>
               <p>
-                Our work is centered on creating useful projects, supporting learning, and exploring
-                thoughtful ways to connect culture and innovation. Some of our work focuses on
-                education. Some focuses on culture. Some explores new ideas that can be useful for
-                people and communities in Manipur.
+                When knowledge is preserved, a society grows stronger. When it is forgotten,
+                something irreplaceable disappears.
+              </p>
+              <p>
+                iManipur exists to help ensure that knowledge continues. We are an independent
+                initiative bringing together educators, researchers, artists, technologists,
+                designers, historians, and creators to build projects that contribute to the
+                cultural, educational, and creative development of Manipur.
+              </p>
+              <p>
+                Rather than operating within a single discipline, we work across culture, education,
+                research, design, and technology. This interdisciplinary approach allows us to build
+                initiatives that are locally relevant, thoughtfully designed, and valuable over the
+                long term.
               </p>
               <div className="flex justify-center pt-2">
                 <p className="max-w-2xl border-b border-t border-primary/20 py-6 text-[15px] italic text-foreground/80">
-                  We are not trying to do everything. We want to do honest work that is relevant to
-                  our place, our people, and our future.
+                  Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move
+                  from one generation to the next.
                 </p>
               </div>
             </div>
@@ -619,12 +667,12 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">How we work</p>
+            <p className="label-mono text-primary/70">Our Principles</p>
             <h2 className="mt-4 text-foreground">
-              Steady and <span className="text-primary">practical.</span>
+              Building for the <span className="text-primary block sm:inline">long term.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              We keep things simple. We care more about meaningful work than big claims.
+              We focus on creating work that is accurate, accessible, and built to endure.
             </p>
           </motion.div>
 
@@ -668,13 +716,13 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">The Team</p>
+            <p className="label-mono text-primary/70">The Initiative</p>
             <h2 className="mt-4 text-foreground">
-              Our team <span className="text-primary block sm:inline">members.</span>
+              Our <span className="text-primary block sm:inline">contributors.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              We are a dedicated group of individuals working together to build and support projects
-              that matter to Manipur.
+              We are an independent group of individuals working together to build and support
+              projects that matter to Manipur.
             </p>
           </motion.div>
 
@@ -693,7 +741,8 @@ function Index() {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110"
+                      loading="lazy"
+                      className={`h-full w-full object-cover grayscale transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:grayscale-0 ${member.imgClass || ""}`}
                     />
                   </div>
                 ) : (
@@ -741,14 +790,14 @@ function Index() {
             </div>
             <p className="relative label-mono text-primary/70">Mission</p>
             <blockquote className="relative mt-8 max-w-2xl text-[1.2rem] leading-relaxed text-foreground/90 md:text-[1.4rem]">
-              iManipur is a community from Manipur working on cultural, educational, and innovative
-              projects. We care about preserving what matters, supporting learning, and building
-              ideas that are useful for our people and our future.
+              Our mission is to preserve knowledge, strengthen education, and encourage innovation
+              through projects that remain useful across generations.
             </blockquote>
             <div className="relative mt-10 flex flex-col items-center gap-5">
               <div className="h-px w-12 bg-primary/60" />
               <p className="font-semibold text-[12px] text-muted-foreground">
-                We are a small team — meaningful work does not need to be loud to matter.
+                We believe lasting impact comes from consistent effort, open collaboration, and a
+                deep understanding of the place we serve.
               </p>
             </div>
           </div>
@@ -777,33 +826,38 @@ function Index() {
               className="text-[16px] leading-relaxed text-muted-foreground"
             >
               We would like to express our deepest and most sincere gratitude to{" "}
-              <span className="font-medium text-foreground">Eche Indira Laishram</span> and{" "}
-              <span className="font-medium text-foreground">Indira Kangjam</span> for their
-              invaluable support, guidance, and encouragement throughout this journey. Their belief
-              in this project, along with their constant willingness to help, has played a
-              meaningful role in bringing this book to life and to publication.
+              <span className="font-medium text-foreground">Eche Indira Laishram</span> for her
+              invaluable support, guidance, and encouragement throughout this journey. Her belief in
+              this project, along with her constant willingness to help, has played a meaningful
+              role in bringing this book to life and to publication.
             </motion.p>
             <motion.p
               variants={itemVariants}
               className="mt-4 text-[16px] leading-relaxed text-muted-foreground"
             >
-              This book would not have reached its launch in the same way without their generous
-              presence, thoughtful advice, and unwavering support. We are truly humbled by their
-              contribution, and we carry forward their encouragement with great appreciation and
+              This book would not have reached its launch in the same way without her generous
+              presence, thoughtful advice, and unwavering support. We are truly humbled by her
+              contribution, and we carry forward her encouragement with great appreciation and
               respect.
             </motion.p>
             <motion.p
               variants={itemVariants}
               className="mt-4 text-[16px] leading-relaxed text-muted-foreground"
             >
-              Their support reminded us that every meaningful story is also shaped by the people who
+              Her support reminded us that every meaningful story is also shaped by the people who
               stand beside it with patience, trust, and care. With heartfelt thanks, we dedicate
-              this achievement to their kindness and to the spirit of encouragement they shared with
+              this achievement to her kindness and to the spirit of encouragement she shared with
               us.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-12 flex items-center justify-center">
-              <Lottie animationData={ninjaLottie} loop={true} className="w-32 h-32 opacity-90" />
+              <div className="group relative flex h-32 w-32 items-center justify-center overflow-hidden rounded-sm border border-primary/20 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-primary/50 hover:shadow-[var(--shadow-glow)]">
+                <img
+                  src="/team/indira.png"
+                  alt="Eche Indira Laishram"
+                  className="h-full w-full object-cover object-[50%_15%] grayscale transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:grayscale-0"
+                />
+              </div>
             </motion.div>
           </div>
         </motion.section>

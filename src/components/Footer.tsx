@@ -66,8 +66,9 @@ export function Footer() {
           variants={itemVariants}
           className="mt-8 max-w-md text-[14px] leading-relaxed text-muted-foreground/70"
         >
-          A community from Manipur building honest, useful, and locally relevant projects in
-          culture, education, and innovation.
+          An independent initiative advancing culture, education, and innovation for Manipur.
+          <br />
+          Building knowledge. Preserving heritage. Creating the future.
         </motion.p>
 
         <motion.nav
