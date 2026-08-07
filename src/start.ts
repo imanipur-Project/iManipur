@@ -7,7 +7,7 @@ const errorMiddleware = createMiddleware().server(async ({ next, context }) => {
     return await next();
   } catch (error) {
     if (
-      context.handlerType === "serverFn" ||
+      (context as any)?.handlerType === "serverFn" ||
       (error != null && typeof error === "object" && "statusCode" in error)
     ) {
       throw error;
