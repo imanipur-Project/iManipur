@@ -1,5 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useRef, useCallback, useId } from "react";
+import { ContactForm } from "../components/ContactForm";
+import { Journey } from "../components/Journey";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { Terminal, TypingAnimation, AnimatedSpan } from "../components/Terminal";
+import { ArrowUp, Instagram, Facebook } from "lucide-react";
+import Lottie from "lottie-react";
+import aboutLottie from "../assets/about.json";
+import ninjaLottie from "../assets/ninja.json";
 import {
   motion,
   useScroll,
@@ -74,14 +83,16 @@ const projects = [
   {
     title: "Manipur Historical Animation",
     status: "In Progress" as const,
-    pillar: "Culture",
+    pillar: "History",
+    image: "/assets/Historical-Animation.png",
     description:
-      "An animation project bringing Manipur's rich history to life through visual storytelling — documenting key historical events, rulers, and moments that shaped the land.",
+      "An animation project honoring the 13th August Patriots' Day and our Fallen Heroes. Bringing Manipur's rich history to life through visual storytelling.",
   },
   {
     title: "Folk Stories of Manipur",
     status: "In Progress" as const,
-    pillar: "Culture",
+    pillar: "Story",
+    image: "/assets/project-image.png",
     description:
       "Collecting and retelling the folk tales passed down through generations in Manipur — preserving oral traditions through modern media and illustration.",
   },
@@ -89,6 +100,7 @@ const projects = [
     title: "Historical Stories Collection",
     status: "Coming Soon" as const,
     pillar: "Culture",
+    image: "/assets/Stories-Collection.jpeg",
     description:
       "A growing archive of lesser-known historical narratives from Manipur — stories of communities, places, and events that deserve to be remembered.",
   },
@@ -101,34 +113,6 @@ const principles = [
   { k: "Voice", v: "Meaningful work does not need to be loud to matter.", symbol: "◌" },
   { k: "Roots", v: "Everything we build starts from understanding this place.", symbol: "◈" },
   { k: "People", v: "We put community before metrics, connection before reach.", symbol: "◎" },
-];
-
-const timeline = [
-  {
-    year: "2024",
-    label: "Idea Formed",
-    desc: "The idea of building a community around Manipur's culture and education took shape.",
-  },
-  {
-    year: "2025",
-    label: "iManipur Founded",
-    desc: "The team came together, and iManipur was officially established as a working community.",
-  },
-  {
-    year: "2025",
-    label: "Animation Project Begins",
-    desc: "Work started on the Manipur Historical Animation — bringing history to life through visual storytelling.",
-  },
-  {
-    year: "2025",
-    label: "Folk Stories Initiative",
-    desc: "Began collecting and retelling Manipuri folk tales through modern media and illustration.",
-  },
-  {
-    year: "2026",
-    label: "Growing Forward",
-    desc: "Expanding our projects, welcoming new collaborators, and deepening our cultural archive.",
-  },
 ];
 
 const faqs = [
@@ -146,7 +130,7 @@ const faqs = [
   },
   {
     q: "Where is iManipur based?",
-    a: "We are based in Manipur, India. Our team members work from different parts of the state, collaborating remotely and in person.",
+    a: "The iManipur team is from Manipur, but our members are spread out in different parts of the world, collaborating remotely.",
   },
   {
     q: "Can I join the team?",
@@ -159,7 +143,7 @@ const faqs = [
 ];
 
 const teamMembers = [
-  { name: "Oliver Oinam", desc: "Tech Dept" },
+  { name: "Oliver Oinam", desc: "Tech Dept", image: "/team/oliver-oinam.png" },
   { name: "Basanta Haobijam", desc: "Educator" },
   { name: "Rajbobo Khumukcham", desc: "Educator & Content Creator" },
   { name: "Harishsor Tourangbam", desc: "Educator" },
@@ -209,22 +193,6 @@ const sectionVariants: Variants = {
     transition: { type: "spring", stiffness: 60, damping: 24 },
   },
 };
-
-const CONTACT_EMAIL = "hello@imanipur.org";
-const GITHUB_URL = "https://github.com/imanipur-Project";
-
-function Logo({ size = "sm" }: { size?: "sm" | "lg" }) {
-  const badge = size === "lg" ? "h-8 w-8 text-[12px]" : "h-6 w-6 text-[10px]";
-  return (
-    <motion.span
-      variants={{ hover: { rotate: 90, scale: 1.1, borderRadius: "50%" } }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-      className={`flex items-center justify-center rounded-sm bg-primary font-mono font-semibold text-primary-foreground transition-shadow duration-300 group-hover:shadow-[0_0_10px_-2px_var(--color-primary)] ${badge}`}
-    >
-      <motion.span variants={{ hover: { rotate: -90 } }}>iM</motion.span>
-    </motion.span>
-  );
-}
 
 /* ─── Section Rule Component ─────────────────────────────── */
 
@@ -285,123 +253,24 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 /* ─── Navbar ─────────────────────────────────────────────── */
 
-function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 20);
-  });
-
-  // Close mobile menu on scroll
-  useEffect(() => {
-    if (!mobileOpen) return;
-    const close = () => setMobileOpen(false);
-    window.addEventListener("scroll", close, { passive: true });
-    return () => window.removeEventListener("scroll", close);
-  }, [mobileOpen]);
-
-  const navLinks = ["About", "Culture", "Projects", "How we work", "Team", "FAQ"];
-
-  return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className={[
-        "sticky top-0 z-30 transition-all duration-300",
-        scrolled
-          ? "border-b border-border bg-background/90 backdrop-blur-md shadow-[0_1px_0_0_var(--color-border)]"
-          : "border-b border-transparent bg-transparent backdrop-blur-sm",
-      ].join(" ")}
-    >
-      <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-5 md:px-8">
-        <motion.a href="#about" className="group flex items-center gap-2.5" whileHover="hover">
-          <Logo size="sm" />
-          <span className="hidden font-mono text-[11px] tracking-[0.22em] uppercase text-foreground transition-colors duration-200 group-hover:text-primary sm:inline-block">
-            iManipur
-          </span>
-        </motion.a>
-
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((n) => (
-            <a
-              key={n}
-              href={`#${n.toLowerCase().replace(/ /g, "-")}`}
-              className="group relative font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground transition-colors duration-200 hover:text-foreground"
-            >
-              {n}
-              <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <a
-            href="#contact"
-            className="group relative overflow-hidden rounded-sm border border-primary/40 px-3 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase text-primary transition-all duration-300 hover:border-primary/70 hover:bg-primary/10"
-          >
-            Contact →
-          </a>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-8 w-8 flex-col items-center justify-center gap-1 md:hidden"
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
-              className="block h-px w-5 bg-foreground"
-            />
-            <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block h-px w-5 bg-foreground"
-            />
-            <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
-              className="block h-px w-5 bg-foreground"
-            />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-md md:hidden"
-          >
-            <div className="flex flex-col items-center gap-4 px-5 py-6">
-              {navLinks.map((n) => (
-                <a
-                  key={n}
-                  href={`#${n.toLowerCase().replace(/ /g, "-")}`}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-mono text-[12px] tracking-[0.14em] uppercase text-muted-foreground transition-colors duration-200 hover:text-foreground"
-                >
-                  {n}
-                </a>
-              ))}
-            </div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </motion.header>
-  );
-}
-
 /* ─── Main Page ─────────────────────────────────────────── */
 
 function Index() {
+  const [terminalKey, setTerminalKey] = useState(0);
+  const [showTopBtn, setShowTopBtn] = useState(false);
   const { scrollY } = useScroll();
+  const replayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (replayTimerRef.current) clearTimeout(replayTimerRef.current);
+    };
+  }, []);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setShowTopBtn(latest > 500);
+  });
+
   const heroY = useTransform(scrollY, [0, 800], [0, 200]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
@@ -418,55 +287,68 @@ function Index() {
         />
 
         {/* Radial amber glow at center */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[80px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[100px] animate-pulse" />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 py-28 text-center md:px-8 md:py-36"
+          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-24 pt-[160px] text-center md:px-8 md:pb-36 md:pt-[200px]"
         >
           <motion.p variants={itemVariants} className="label-mono text-primary/70">
             Community · Manipur
           </motion.p>
 
-          <motion.h1 variants={itemVariants} className="mt-6 max-w-4xl text-foreground">
-            Building cultural, educational, and innovative projects{" "}
-            <span className="text-primary block sm:inline">for Manipur.</span>
+          <motion.h1
+            variants={itemVariants}
+            className="mt-6 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
+          >
+            Creating culture, education, and innovation{" "}
+            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent block sm:inline">
+              for Manipur.
+            </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="mt-6 max-w-2xl text-[16px] leading-relaxed text-muted-foreground"
+            className="mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground/80"
           >
             iManipur is a community from Manipur working on simple, meaningful projects that support
             learning, culture, and new ideas.
           </motion.p>
 
-          {/* Terminal block */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 w-full max-w-xl overflow-hidden rounded-sm border border-border bg-card text-left shadow-[var(--shadow-card)]"
-          >
-            <div className="flex items-center gap-1.5 border-b border-border bg-muted/40 px-4 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.65_0.18_25)]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.75_0.18_78)]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.65_0.15_140)]" />
-              <div className="flex-1 text-center">
-                <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-muted-foreground/60">
-                  imanipur.sh
-                </span>
-              </div>
-              <div className="w-[30px]" />
-            </div>
-            <div className="p-5">
-              <p className="font-mono text-[13px] leading-relaxed text-muted-foreground">
-                <span className="text-primary font-medium">$</span> We are a small team focused on
-                work that is honest, useful, and locally relevant. The goal is not to overpromise,
-                but to create projects that matter to Manipur and the people here.
-              </p>
-              <p className="mt-2 font-mono text-[11px] text-primary/50 cursor-blink">ready</p>
-            </div>
+          {/* Animated Terminal */}
+          <motion.div variants={itemVariants} className="mt-10 w-full max-w-xl">
+            <Terminal
+              key={terminalKey}
+              title="imanipur.sh"
+              onComplete={() => {
+                if (replayTimerRef.current) clearTimeout(replayTimerRef.current);
+                replayTimerRef.current = setTimeout(() => setTerminalKey((prev) => prev + 1), 3000);
+              }}
+            >
+              <TypingAnimation className="font-mono text-sm text-muted-foreground">
+                {"$ python3 init.py"}
+              </TypingAnimation>
+              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+                <span>&gt; import imanipur</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+                <span>&gt; imanipur.initialize()</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="font-mono text-sm text-green-400">
+                <span>[OK] Core modules loaded...</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="font-mono text-sm text-green-400">
+                <span>[OK] Education framework ready.</span>
+              </AnimatedSpan>
+              <AnimatedSpan className="font-mono text-sm text-green-400">
+                <span>[OK] Innovation engine online.</span>
+              </AnimatedSpan>
+              <TypingAnimation className="mt-2 font-mono text-sm font-semibold text-primary">
+                {"Building for Manipur."}
+              </TypingAnimation>
+            </Terminal>
           </motion.div>
 
           {/* CTAs */}
@@ -478,7 +360,7 @@ function Index() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#culture"
-              className="btn-shimmer inline-flex items-center gap-2 rounded-sm px-5 py-2.5 font-mono text-[11px] tracking-[0.14em] uppercase text-primary-foreground"
+              className="btn-shimmer inline-flex items-center gap-2 rounded-sm px-5 py-2.5 font-semibold text-[11px] tracking-[0.14em] uppercase text-primary-foreground"
             >
               What we care about
             </motion.a>
@@ -486,7 +368,7 @@ function Index() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-2.5 font-mono text-[11px] tracking-[0.14em] uppercase text-foreground/80 transition-all duration-200 hover:border-primary/40 hover:bg-accent hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-2.5 font-semibold text-[11px] tracking-[0.14em] uppercase text-foreground/80 transition-all duration-200 hover:border-primary/40 hover:bg-accent hover:text-foreground"
             >
               Our projects
             </motion.a>
@@ -495,7 +377,7 @@ function Index() {
           {/* Scroll indicator */}
           <motion.div variants={itemVariants} className="mt-16 flex flex-col items-center gap-3">
             <div className="h-12 w-px bg-gradient-to-b from-primary/40 to-transparent" />
-            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-muted-foreground/50">
+            <span className="font-semibold text-[10px] tracking-[0.18em] uppercase text-muted-foreground/50">
               Scroll to explore
             </span>
           </motion.div>
@@ -508,7 +390,7 @@ function Index() {
         <motion.section
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={sectionVariants}
           className="py-20"
         >
@@ -537,6 +419,19 @@ function Index() {
               </div>
             </div>
 
+            <motion.div
+              variants={itemVariants}
+              className="mt-10 overflow-hidden rounded-sm border border-border"
+            >
+              <div className="aspect-[4/3] w-full bg-muted/20 flex items-center justify-center p-8">
+                <Lottie
+                  animationData={aboutLottie}
+                  loop={true}
+                  className="w-full max-w-xs opacity-80 mix-blend-screen"
+                />
+              </div>
+            </motion.div>
+
             {/* Stats row */}
             <div className="mt-14 grid w-full grid-cols-2 gap-4 sm:grid-cols-4">
               {stats.map((s) => (
@@ -549,7 +444,7 @@ function Index() {
                   <span className="font-display text-3xl font-bold text-primary transition-transform duration-200 group-hover:scale-110">
                     {s.value}
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-muted-foreground/70">
+                  <span className="font-semibold text-[10px] tracking-[0.16em] uppercase text-muted-foreground/70">
                     {s.label}
                   </span>
                 </motion.div>
@@ -565,7 +460,7 @@ function Index() {
           id="culture"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
@@ -598,10 +493,10 @@ function Index() {
 
                 {/* Symbol + Tag */}
                 <div className="relative flex flex-col items-center gap-3">
-                  <span className="font-mono text-2xl text-primary/60 transition-colors duration-200 group-hover:text-primary">
+                  <span className="font-semibold text-2xl text-primary/60 transition-colors duration-200 group-hover:text-primary">
                     {p.symbol}
                   </span>
-                  <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-primary/70">
+                  <p className="font-semibold text-[10px] tracking-[0.2em] uppercase text-primary/70">
                     {p.no} · {p.tag}
                   </p>
                 </div>
@@ -630,7 +525,7 @@ function Index() {
                 </ul>
 
                 {/* Bottom arrow */}
-                <div className="relative mt-8 flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-primary/0 transition-all duration-300 group-hover:text-primary/60">
+                <div className="relative mt-8 flex items-center justify-center gap-2 font-semibold text-[10px] tracking-[0.14em] uppercase text-primary/0 transition-all duration-300 group-hover:text-primary/60">
                   <div className="h-px w-4 bg-primary/0 transition-all duration-300 group-hover:w-6 group-hover:bg-primary/50" />
                   Learn more
                   <div className="h-px w-4 bg-primary/0 transition-all duration-300 group-hover:w-6 group-hover:bg-primary/50" />
@@ -647,7 +542,7 @@ function Index() {
           id="projects"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
@@ -662,52 +557,49 @@ function Index() {
             </p>
           </motion.div>
 
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {projects.map((proj) => (
               <motion.div
                 key={proj.title}
                 variants={itemVariants}
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="group flex flex-col rounded-sm border border-border bg-card p-8 transition-colors duration-200 hover:border-primary/30 hover:bg-accent/20 hover:shadow-[var(--shadow-glow)]"
+                className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
               >
-                {/* Status + Pillar */}
-                <div className="flex items-center gap-2">
-                  <span
-                    className={[
-                      "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 font-mono text-[10px] tracking-[0.1em] uppercase",
-                      proj.status === "In Progress"
-                        ? "bg-primary/15 text-primary"
-                        : "bg-teal/15 text-teal",
-                    ].join(" ")}
-                  >
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-muted/20">
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-5">
+                    <span className="font-semibold text-[10px] tracking-[0.16em] uppercase text-primary">
+                      {proj.pillar}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col flex-1 p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="text-[16px] font-medium text-foreground group-hover:text-primary transition-colors">
+                      {proj.title}
+                    </h3>
                     <span
                       className={[
-                        "h-1.5 w-1.5 rounded-full",
-                        proj.status === "In Progress" ? "bg-primary animate-pulse" : "bg-teal",
+                        "px-2 py-0.5 rounded-sm text-[9px] font-semibold tracking-[0.1em] uppercase border",
+                        proj.status === "In Progress"
+                          ? "border-primary/20 bg-primary/5 text-primary"
+                          : "border-teal/20 bg-teal/5 text-teal",
                       ].join(" ")}
-                    />
-                    {proj.status}
-                  </span>
-                  <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-muted-foreground/50">
-                    {proj.pillar}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="mt-5 text-foreground transition-colors duration-200 group-hover:text-primary">
-                  {proj.title}
-                </h3>
-
-                {/* Description */}
-                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-muted-foreground">
-                  {proj.description}
-                </p>
-
-                {/* Arrow indicator */}
-                <div className="mt-6 flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-primary/0 transition-all duration-300 group-hover:text-primary/60">
-                  <div className="h-px w-0 bg-primary/50 transition-all duration-300 group-hover:w-6" />
-                  Details coming soon
+                    >
+                      {proj.status}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground flex-1">
+                    {proj.description}
+                  </p>
+                  <div className="mt-6 flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-foreground/50 group-hover:text-primary transition-colors">
+                    Explore project →
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -721,7 +613,7 @@ function Index() {
           id="how-we-work"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
@@ -744,10 +636,10 @@ function Index() {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className="group flex flex-col items-center gap-4 rounded-sm border border-border bg-card px-6 py-10 text-center transition-colors duration-200 hover:border-primary/30 hover:bg-accent/30"
               >
-                <span className="font-mono text-xl text-primary/40 transition-colors duration-200 group-hover:text-primary/70">
+                <span className="font-semibold text-xl text-primary/40 transition-colors duration-200 group-hover:text-primary/70">
                   {row.symbol}
                 </span>
-                <span className="font-mono text-[12px] tracking-[0.18em] uppercase text-primary/70 transition-colors duration-200 group-hover:text-primary">
+                <span className="font-semibold text-[12px] tracking-[0.18em] uppercase text-primary/70 transition-colors duration-200 group-hover:text-primary">
                   {row.k}
                 </span>
                 <p className="text-[14px] leading-relaxed text-foreground/80 transition-colors duration-200 group-hover:text-foreground">
@@ -761,60 +653,7 @@ function Index() {
         <SectionRule />
 
         {/* ── Timeline ───────────────────────────────────── */}
-        <motion.section
-          id="journey"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={gridContainerVariants}
-          className="scroll-mt-20 py-20"
-        >
-          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">Our journey</p>
-            <h2 className="mt-4 text-foreground">
-              How we <span className="text-primary">got here.</span>
-            </h2>
-            <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              From an idea to a working community — each step grounded in purpose.
-            </p>
-          </motion.div>
-
-          <div className="relative mt-14 mx-auto max-w-2xl">
-            {/* Vertical line */}
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-border to-transparent sm:left-1/2 sm:-translate-x-px" />
-
-            {timeline.map((item, i) => (
-              <motion.div
-                key={`${item.year}-${item.label}`}
-                variants={itemVariants}
-                className={["relative flex gap-8 pb-12 last:pb-0", "sm:even:flex-row-reverse"].join(
-                  " ",
-                )}
-              >
-                {/* Dot */}
-                <div className="absolute left-4 top-1 z-10 flex h-2.5 w-2.5 -translate-x-1/2 items-center justify-center sm:left-1/2">
-                  <span className="h-2.5 w-2.5 rounded-full border-2 border-primary bg-background" />
-                </div>
-
-                {/* Content */}
-                <div
-                  className={[
-                    "ml-10 flex-1 sm:ml-0",
-                    i % 2 === 0 ? "sm:pr-12 sm:text-right" : "sm:pl-12 sm:text-left",
-                  ].join(" ")}
-                >
-                  <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-primary/60">
-                    {item.year}
-                  </span>
-                  <h3 className="mt-1 text-foreground">{item.label}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+        <Journey />
 
         <SectionRule />
 
@@ -823,7 +662,7 @@ function Index() {
           id="team"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
@@ -845,16 +684,29 @@ function Index() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="group flex flex-col items-center justify-center gap-4 rounded-sm border border-border bg-card px-6 py-8 text-center transition-colors duration-200 hover:border-primary/30 hover:bg-accent/30 hover:shadow-[var(--shadow-glow)]"
+                className="group flex h-[220px] flex-col items-center justify-center gap-4 rounded-sm border border-border bg-card px-6 py-8 text-center transition-colors duration-200 hover:border-primary/30 hover:bg-accent/30 hover:shadow-[var(--shadow-glow)]"
               >
-                <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-sm border border-primary/20 bg-[#000] transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-[var(--shadow-glow)]">
-                  <img
-                    src="/barcode.png"
-                    alt=""
-                    className="h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"
-                  />
-                </div>
-                <div className="flex flex-col items-center gap-1">
+                {member.image ? (
+                  // Real Photo Portrait
+                  <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-sm border border-primary/20 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-hover:shadow-[var(--shadow-glow)]">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110"
+                    />
+                  </div>
+                ) : (
+                  // Barcode Graphic
+                  <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-sm border border-primary/20 bg-[#000] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-hover:shadow-[var(--shadow-glow)]">
+                    <img
+                      src="/barcode.png"
+                      alt=""
+                      className="h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"
+                    />
+                  </div>
+                )}
+
+                <div className="flex flex-col items-center gap-1 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
                   <h3 className="text-[15px] font-medium text-foreground/90 transition-colors duration-200 group-hover:text-primary">
                     {member.name}
                   </h3>
@@ -874,7 +726,7 @@ function Index() {
           id="mission"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={sectionVariants}
           className="scroll-mt-20 py-20"
         >
@@ -894,10 +746,64 @@ function Index() {
             </blockquote>
             <div className="relative mt-10 flex flex-col items-center gap-5">
               <div className="h-px w-12 bg-primary/60" />
-              <p className="font-mono text-[12px] text-muted-foreground">
+              <p className="font-semibold text-[12px] text-muted-foreground">
                 We are a small team — meaningful work does not need to be loud to matter.
               </p>
             </div>
+          </div>
+        </motion.section>
+
+        <SectionRule />
+
+        {/* ── Acknowledgement ────────────────────────────── */}
+        <motion.section
+          id="acknowledgement"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={sectionVariants}
+          className="scroll-mt-20 py-20"
+        >
+          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
+            <p className="label-mono text-primary/70">Acknowledgement</p>
+            <h2 className="mt-4 text-foreground">
+              With deepest <span className="text-primary">gratitude.</span>
+            </h2>
+          </motion.div>
+          <div className="mx-auto mt-14 flex max-w-2xl flex-col items-center text-center">
+            <motion.p
+              variants={itemVariants}
+              className="text-[16px] leading-relaxed text-muted-foreground"
+            >
+              We would like to express our deepest and most sincere gratitude to{" "}
+              <span className="font-medium text-foreground">Eche Indira Laishram</span> and{" "}
+              <span className="font-medium text-foreground">Indira Kangjam</span> for their
+              invaluable support, guidance, and encouragement throughout this journey. Their belief
+              in this project, along with their constant willingness to help, has played a
+              meaningful role in bringing this book to life and to publication.
+            </motion.p>
+            <motion.p
+              variants={itemVariants}
+              className="mt-4 text-[16px] leading-relaxed text-muted-foreground"
+            >
+              This book would not have reached its launch in the same way without their generous
+              presence, thoughtful advice, and unwavering support. We are truly humbled by their
+              contribution, and we carry forward their encouragement with great appreciation and
+              respect.
+            </motion.p>
+            <motion.p
+              variants={itemVariants}
+              className="mt-4 text-[16px] leading-relaxed text-muted-foreground"
+            >
+              Their support reminded us that every meaningful story is also shaped by the people who
+              stand beside it with patience, trust, and care. With heartfelt thanks, we dedicate
+              this achievement to their kindness and to the spirit of encouragement they shared with
+              us.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="mt-12 flex items-center justify-center">
+              <Lottie animationData={ninjaLottie} loop={true} className="w-32 h-32 opacity-90" />
+            </motion.div>
           </div>
         </motion.section>
 
@@ -908,7 +814,7 @@ function Index() {
           id="faq"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
@@ -936,7 +842,7 @@ function Index() {
           id="contact"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={sectionVariants}
           className="scroll-mt-20 py-20"
         >
@@ -950,25 +856,49 @@ function Index() {
               we would like to hear about it.
             </p>
 
+            {/* Main Interactive Panel */}
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="panel mt-12 flex w-full flex-col items-center rounded-sm p-10 hover:border-primary/40 hover:bg-accent/20 transition-colors duration-300"
             >
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60">
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60 mb-6">
                 Reach us at
               </p>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="group mt-5 flex flex-col items-center gap-3 transition-opacity duration-200 hover:opacity-80"
-              >
-                <span className="text-[1.3rem] font-medium text-foreground transition-colors duration-200 group-hover:text-primary">
-                  {CONTACT_EMAIL}
-                </span>
-                <span className="font-mono text-primary transition-transform duration-200 group-hover:translate-y-1">
-                  ↓
-                </span>
-              </a>
+
+              <div className="flex w-full flex-col sm:flex-row justify-center gap-12 sm:gap-20">
+                <div className="flex flex-col items-center gap-3">
+                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50">
+                    Email
+                  </span>
+                  <a
+                    href="mailto:heyimanipur@gmail.com"
+                    className="text-[1.2rem] font-medium text-foreground transition-colors duration-200 hover:text-primary"
+                  >
+                    heyimanipur@gmail.com
+                  </a>
+                </div>
+
+                <div className="flex flex-col items-center gap-3">
+                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50">
+                    Phone
+                  </span>
+                  <div className="flex flex-col items-center gap-1">
+                    <a
+                      href="tel:+919612055277"
+                      className="text-[1.1rem] font-medium text-foreground transition-colors duration-200 hover:text-primary"
+                    >
+                      +91 96120 55277
+                    </a>
+                    <a
+                      href="tel:+917982284458"
+                      className="text-[1.1rem] font-medium text-foreground transition-colors duration-200 hover:text-primary"
+                    >
+                      +91 79822 84458
+                    </a>
+                  </div>
+                </div>
+              </div>
 
               <div className="mt-10 flex w-full max-w-[240px] flex-col items-center border-t border-border pt-8">
                 <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-muted-foreground/50">
@@ -978,6 +908,17 @@ function Index() {
                   A few days, usually sooner.
                 </p>
               </div>
+            </motion.div>
+
+            {/* Contact Form Panel */}
+            <motion.div
+              variants={itemVariants}
+              className="panel mt-6 flex w-full flex-col rounded-sm p-8 sm:p-10 text-left"
+            >
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60 mb-6 text-center">
+                Send a message
+              </p>
+              <ContactForm />
             </motion.div>
 
             {/* Stay connected */}
@@ -990,18 +931,20 @@ function Index() {
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
                 <a
-                  href={GITHUB_URL}
+                  href="https://instagram.com/imanipur"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground transition-all duration-200 hover:border-primary/40 hover:text-foreground"
                 >
-                  GitHub
+                  <Instagram size={14} strokeWidth={1.5} /> Instagram
                 </a>
                 <a
-                  href={`mailto:${CONTACT_EMAIL}`}
+                  href="https://facebook.com/imanipur"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground transition-all duration-200 hover:border-primary/40 hover:text-foreground"
                 >
-                  Email
+                  <Facebook size={14} strokeWidth={1.5} /> Facebook
                 </a>
               </div>
             </div>
@@ -1009,66 +952,24 @@ function Index() {
         </motion.section>
       </div>
 
-      {/* ── Footer ───────────────────────────────────────── */}
-      <footer className="relative border-t border-border text-center">
-        <div className="pointer-events-none absolute inset-x-0 -top-20 h-20 bg-gradient-to-b from-transparent to-background/60" />
-
-        <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 px-5 py-14 md:px-8">
+      <AnimatePresence>
+        {showTopBtn && (
           <motion.button
             type="button"
-            whileHover="hover"
-            className="flex flex-col items-center gap-4 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background rounded-sm"
+            aria-label="Scroll to top"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            <Logo size="lg" />
-            <span className="font-mono text-[12px] tracking-[0.22em] uppercase text-primary transition-colors duration-200 hover:text-primary/80">
-              iManipur
-            </span>
+            <ArrowUp className="h-5 w-5" />
           </motion.button>
+        )}
+      </AnimatePresence>
 
-          <p className="max-w-md text-[13px] leading-relaxed text-muted-foreground/60">
-            A community from Manipur building honest, useful, and locally relevant projects in
-            culture, education, and innovation.
-          </p>
-
-          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-            {["Culture", "Projects", "Team", "FAQ", "Contact"].map((n) => (
-              <a
-                key={n}
-                href={`#${n.toLowerCase()}`}
-                className="font-mono text-[11px] tracking-[0.16em] uppercase text-muted-foreground/60 transition-colors duration-200 hover:text-muted-foreground"
-              >
-                {n}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-6">
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground/40 transition-colors duration-200 hover:text-primary"
-            >
-              GitHub
-            </a>
-            <span className="h-3 w-px bg-border" />
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="font-mono text-[11px] tracking-[0.12em] uppercase text-muted-foreground/40 transition-colors duration-200 hover:text-primary"
-            >
-              Email
-            </a>
-          </div>
-
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-px w-12 bg-border" />
-            <p className="font-mono text-[11px] text-muted-foreground/40">
-              © {new Date().getFullYear()} iManipur
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* ── Footer ───────────────────────────────────────── */}
+      <Footer />
     </div>
   );
 }
