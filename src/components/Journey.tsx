@@ -9,12 +9,12 @@ const timeline = [
   {
     year: "2024",
     label: "Idea Formed",
-    desc: "The idea of building a community around Manipur's culture and education took shape.",
+    desc: "The idea of building an initiative around Manipur's culture and education took shape.",
   },
   {
     year: "2025",
     label: "iManipur Founded",
-    desc: "The team came together, and iManipur was officially established as a working community.",
+    desc: "The contributors came together, and iManipur was officially established as an independent initiative.",
   },
   {
     year: "2025",
@@ -114,7 +114,7 @@ export function Journey() {
           How we <span className="text-primary">got here.</span>
         </h2>
         <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-          From an idea to a working community — each step grounded in purpose.
+          From an idea to a working initiative — each step grounded in purpose.
         </p>
       </div>
 
