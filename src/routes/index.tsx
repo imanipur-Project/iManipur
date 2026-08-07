@@ -318,15 +318,12 @@ function Index() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section id="about" className="relative overflow-hidden border-b border-border">
+      <section id="about" className="relative overflow-hidden border-b border-border bg-hero-gradient">
         {/* Parallax Dot-grid background */}
         <motion.div
           style={{ y: heroY, opacity }}
-          className="pointer-events-none absolute inset-0 dot-bg"
+          className="pointer-events-none absolute inset-0 dot-bg mix-blend-overlay opacity-30"
         />
-
-        {/* Radial amber glow at center */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[100px] animate-pulse" />
 
         <motion.div
           variants={containerVariants}
@@ -343,7 +340,7 @@ function Index() {
             className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
           >
             Preserving knowledge. Inspiring learning.{" "}
-            <span className="inline-block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            <span className="inline-block text-gradient-primary pb-1">
               Building the future.
             </span>
           </motion.h1>
@@ -407,7 +404,7 @@ function Index() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-2.5 font-semibold text-[11px] tracking-[0.14em] uppercase text-foreground/80 transition-all duration-200 hover:border-primary/40 hover:bg-accent hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-sm border border-border px-5 py-2.5 font-semibold text-[11px] tracking-[0.14em] uppercase text-foreground/80 transition-all duration-200 hover:border-primary/60 hover:text-foreground"
             >
               Our projects
             </motion.a>

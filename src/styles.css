@@ -62,58 +62,62 @@
 }
 
 :root {
-  --radius: 0.25rem;
+  /* Backgrounds */
+  --background: 0.141 0.004 285.8;    /* #09090B */
+  --surface: 0.187 0.011 268.1;       /* #111318 */
+  --card: 0.210 0.006 285.9;          /* #18181B */
+  --elevated: 0.256 0.014 267.0;      /* #20232A */
 
-  /* Background — pure deep black */
-  --background: oklch(0.08 0 0);
-  /* Foreground — crisp white */
-  --foreground: oklch(0.98 0 0);
+  /* Text */
+  --foreground: 0.985 0.000 89.9;     /* #FAFAFA */
+  --body: 0.871 0.005 286.3;          /* #D4D4D8 */
+  --muted-foreground: 0.552 0.014 285.9; /* #71717A */
 
-  /* Card — slightly lighter gray */
-  --card: oklch(0.12 0 0);
-  --card-foreground: oklch(0.98 0 0);
+  /* Branding */
+  --primary: 0.657 0.182 261.7;       /* #4F8CFF */
+  --primary-hover: 0.721 0.145 258.9; /* #6BA5FF */
+  --accent: 0.816 0.145 216.5;        /* #00D9FF */
+  --secondary: 0.606 0.219 292.7;     /* #8B5CF6 */
 
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(0.98 0 0);
+  /* Status */
+  --success: 0.723 0.192 149.6;       /* #22C55E */
+  --warning: 0.769 0.165 70.1;        /* #F59E0B */
+  --destructive: 0.637 0.208 25.3;    /* #EF4444 */
+  --info: 0.729 0.128 240.2;          /* #38BDF8 */
 
-  /* Primary — stark white */
-  --primary: oklch(1 0 0);
+  /* Components based on palette */
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
   --primary-foreground: oklch(0 0 0);
-
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
-
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-
-  --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(1 0 0);
-
-  --destructive: oklch(0.3 0 0);
+  --secondary-foreground: var(--foreground);
+  --accent-foreground: oklch(0 0 0);
   --destructive-foreground: oklch(1 0 0);
+  --muted: var(--surface);
 
-  /* Borders — neutral grays */
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(1 0 0);
+  /* Borders & Overlays */
+  --border: 0.985 0.000 89.9 / 0.08;  /* rgba(255,255,255,0.08) */
+  --input: var(--border);
+  --ring: var(--primary);
+  
+  --radius: 1rem; /* 16px border-radius */
 
-  /* Teal accent -> grayscale */
-  --teal: oklch(0.5 0 0);
+  /* Chart Colors (retaining for UI) */
+  --chart-1: 0.657 0.182 261.7; /* Primary */
+  --chart-2: 0.816 0.145 216.5; /* Accent */
+  --chart-3: 0.606 0.219 292.7; /* Secondary */
+  --chart-4: 0.723 0.192 149.6; /* Success */
+  --chart-5: 0.769 0.165 70.1;  /* Warning */
 
-  --chart-1: oklch(0.8 0 0);
-  --chart-2: oklch(0.6 0 0);
-  --chart-3: oklch(0.4 0 0);
-  --chart-4: oklch(0.3 0 0);
-  --chart-5: oklch(0.2 0 0);
-
-  --sidebar: oklch(0.1 0 0);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(1 0 0);
-  --sidebar-primary-foreground: oklch(0 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(1 0 0);
+  /* Sidebar */
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--elevated);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary);
 
   --font-display: "DM Serif Display", georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
@@ -142,6 +146,23 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
+
+@layer utilities {
+  .bg-hero-gradient {
+    background: radial-gradient(circle at top, rgba(79,140,255,0.15), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(0,217,255,0.08), transparent 35%),
+                var(--background);
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #4F8CFF 0%, #00D9FF 45%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
 
   h1,
   h2,
@@ -244,23 +265,15 @@
 /* ─── Amber shimmer button ────────────────────────────────── */
 
 .btn-shimmer {
-  background: linear-gradient(
-    105deg,
-    var(--color-primary) 0%,
-    oklch(0.8 0 0) 40%,
-    var(--color-primary) 60%,
-    oklch(0.5 0 0) 100%
-  );
-  background-size: 200% auto;
+  background-color: var(--color-primary);
   transition:
-    background-position 0.5s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
+    background-color 0.2s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
 }
 
 .btn-shimmer:hover {
-  background-position: right center;
-  box-shadow: var(--shadow-glow);
+  background-color: oklch(var(--primary-hover));
   transform: translateY(-1px);
 }
 
