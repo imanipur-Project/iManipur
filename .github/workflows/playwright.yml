@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -37,6 +37,7 @@ jobs:
         run: pnpm exec playwright test
 
       - name: Publish Chromatic Playwright
+        if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
         run: pnpm exec chromatic --playwright
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

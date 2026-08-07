@@ -741,6 +741,7 @@ function Index() {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
                       className={`h-full w-full object-cover grayscale transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:grayscale-0 ${member.imgClass || ""}`}
                     />
                   </div>
