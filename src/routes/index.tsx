@@ -319,10 +319,10 @@ function Index() {
 
       {/* ── Hero ─────────────────────────────────────────── */}
       <section id="about" className="relative overflow-hidden border-b border-border bg-hero-gradient">
-        {/* Parallax Dot-grid background */}
+        {/* Parallax Dot-grid background with minimal opacity */}
         <motion.div
           style={{ y: heroY, opacity }}
-          className="pointer-events-none absolute inset-0 dot-bg mix-blend-overlay opacity-30"
+          className="pointer-events-none absolute inset-0 dot-bg mix-blend-overlay opacity-10"
         />
 
         <motion.div

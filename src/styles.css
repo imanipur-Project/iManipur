@@ -61,53 +61,63 @@
   --font-mono: var(--font-mono);
 }
 
-:root {
   /* Backgrounds */
-  --background: 0.141 0.004 285.8;    /* #09090B */
-  --surface: 0.187 0.011 268.1;       /* #111318 */
-  --card: 0.210 0.006 285.9;          /* #18181B */
-  --elevated: 0.256 0.014 267.0;      /* #20232A */
+  --background: 0.182 0.000 89.9;     /* #121212 */
+  --surface: 0.134 0.000 89.9;        /* #080808 */
+  --surface-2: 0.173 0.000 89.9;      /* #101010 */
+  --surface-3: 0.205 0.000 89.9;      /* #171717 */
 
-  /* Text */
-  --foreground: 0.985 0.000 89.9;     /* #FAFAFA */
-  --body: 0.871 0.005 286.3;          /* #D4D4D8 */
-  --muted-foreground: 0.552 0.014 285.9; /* #71717A */
+  /* Text - Warm Ivory */
+  --text-primary: 0.940 0.018 78.2;   /* #F2EADE */
+  --text-secondary: 0.861 0.019 78.2; /* #D8D0C4 */
+  --text-muted: 0.616 0.015 78.2;     /* #8A847B */
 
-  /* Branding */
-  --primary: 0.657 0.182 261.7;       /* #4F8CFF */
-  --primary-hover: 0.721 0.145 258.9; /* #6BA5FF */
-  --accent: 0.816 0.145 216.5;        /* #00D9FF */
-  --secondary: 0.606 0.219 292.7;     /* #8B5CF6 */
+  /* Legacy Mapping (for compatibility with existing tailwind classes) */
+  --foreground: var(--text-primary);
+  --body: var(--text-secondary);
+  --muted-foreground: var(--text-muted);
 
-  /* Status */
-  --success: 0.723 0.192 149.6;       /* #22C55E */
-  --warning: 0.769 0.165 70.1;        /* #F59E0B */
-  --destructive: 0.637 0.208 25.3;    /* #EF4444 */
-  --info: 0.729 0.128 240.2;          /* #38BDF8 */
+  /* Brand Gold */
+  --gold-primary: 0.697 0.137 79.5;   /* #CA921D */
+  --gold-hover: 0.753 0.142 84.1;     /* #D9A62B */
+  --gold-dark: 0.474 0.093 71.7;      /* #7C5213 */
+  --gold-light: 0.853 0.130 90.5;     /* #EFCB62 */
+
+  /* Primary Map to Gold */
+  --primary: var(--gold-primary);
+  --primary-hover: var(--gold-hover);
+  --accent: var(--gold-light);
+  --secondary: var(--gold-dark);
+
+  /* Supporting Teal */
+  --teal-primary: 0.333 0.049 209.7;  /* #103D44 */
+  --teal-dark: 0.259 0.037 219.1;     /* #0B2830 */
+
+  /* Status Colors */
+  --success: 0.723 0.192 149.6;
+  --warning: 0.769 0.165 70.1;
+  --destructive: 0.637 0.208 25.3;
+  --info: 0.729 0.128 240.2;
 
   /* Components based on palette */
+  --card: var(--surface-2);
   --card-foreground: var(--foreground);
+  --elevated: var(--surface-3);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
-  --primary-foreground: oklch(0 0 0);
+  --primary-foreground: oklch(0.067 0 89.9); /* Almost black */
   --secondary-foreground: var(--foreground);
-  --accent-foreground: oklch(0 0 0);
+  --accent-foreground: oklch(0.067 0 89.9);
   --destructive-foreground: oklch(1 0 0);
   --muted: var(--surface);
 
-  /* Borders & Overlays */
-  --border: 0.985 0.000 89.9 / 0.08;  /* rgba(255,255,255,0.08) */
+  /* Borders & Overlays - Gold driven */
+  --border: 0.697 0.137 79.5 / 0.25;  /* rgba(202,146,29,0.25) */
+  --border-strong: 0.697 0.137 79.5 / 0.45; /* rgba(202,146,29,0.45) */
   --input: var(--border);
   --ring: var(--primary);
   
   --radius: 1rem; /* 16px border-radius */
-
-  /* Chart Colors (retaining for UI) */
-  --chart-1: 0.657 0.182 261.7; /* Primary */
-  --chart-2: 0.816 0.145 216.5; /* Accent */
-  --chart-3: 0.606 0.219 292.7; /* Secondary */
-  --chart-4: 0.723 0.192 149.6; /* Success */
-  --chart-5: 0.769 0.165 70.1;  /* Warning */
 
   /* Sidebar */
   --sidebar: var(--surface);
@@ -150,17 +160,14 @@
 
 @layer utilities {
   .bg-hero-gradient {
-    background: radial-gradient(circle at top, rgba(79,140,255,0.15), transparent 40%),
-                radial-gradient(circle at bottom right, rgba(0,217,255,0.08), transparent 35%),
-                var(--background);
+    /* Removed cyan/blue gradients for Luxury Military Cartography */
+    background: transparent;
   }
 
   .text-gradient-primary {
-    background: linear-gradient(135deg, #4F8CFF 0%, #00D9FF 45%, #8B5CF6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    /* Solid warm ivory text with subtle gold glow */
+    color: oklch(var(--text-primary));
+    text-shadow: 0 0 40px oklch(var(--gold-primary) / 0.15);
   }
 
 
