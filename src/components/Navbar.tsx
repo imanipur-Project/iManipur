@@ -95,7 +95,7 @@ export function Navbar() {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="group relative overflow-hidden rounded-sm border border-primary/40 px-3 py-1.5 font-semibold text-[10px] tracking-[0.16em] uppercase text-primary transition-all duration-300 hover:border-primary/70 hover:bg-primary/10"
+            className="hidden md:block group relative overflow-hidden rounded-sm border border-primary/40 px-3 py-1.5 font-semibold text-[10px] tracking-[0.16em] uppercase text-primary transition-all duration-300 hover:border-primary/70 hover:bg-primary/10"
           >
             Contact →
           </a>
@@ -148,6 +148,22 @@ export function Navbar() {
                   {n}
                 </motion.a>
               ))}
+              <motion.a
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{
+                  delay: navLinks.length * 0.1,
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25,
+                }}
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="mt-4 inline-block rounded-sm border border-primary/40 bg-primary/10 px-6 py-3 font-semibold text-[12px] tracking-[0.16em] uppercase text-primary transition-all hover:bg-primary/20"
+              >
+                Contact →
+              </motion.a>
             </div>
 
             <motion.div

@@ -302,10 +302,10 @@ function Index() {
 
           <motion.h1
             variants={itemVariants}
-            className="mt-6 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
+            className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
           >
             Creating culture, education, and innovation{" "}
-            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent block sm:inline">
+            <span className="inline-block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               for Manipur.
             </span>
           </motion.h1>
