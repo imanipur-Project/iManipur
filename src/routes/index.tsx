@@ -6,7 +6,8 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Terminal, TypingAnimation, AnimatedSpan } from "../components/Terminal";
 import { ArrowUp, Instagram, Facebook } from "lucide-react";
-import Lottie from "lottie-react";
+import LottieReact from "lottie-react";
+const Lottie = (LottieReact as any).default || LottieReact;
 import aboutLottie from "../assets/about.json";
 import ninjaLottie from "../assets/ninja.json";
 import {
