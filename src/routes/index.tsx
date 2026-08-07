@@ -31,8 +31,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "iManipur — Independent Initiative for Manipur" },
       {
         property: "og:description",
-        content:
-          "Preserving knowledge. Inspiring learning. Building the future.",
+        content: "Preserving knowledge. Inspiring learning. Building the future.",
       },
     ],
   }),
@@ -108,12 +107,36 @@ const projects = [
 ];
 
 const principles = [
-  { k: "Research", v: "Thoughtful work begins with understanding. We take time to learn, document, verify, and listen before creating solutions.", symbol: "◬" },
-  { k: "Integrity", v: "Accuracy matters more than attention. We value careful research, honest representation, and responsible storytelling over popularity.", symbol: "⟁" },
-  { k: "Stewardship", v: "We are not interested in short-lived projects. Every initiative is designed to remain useful and valuable for years to come.", symbol: "◫" },
-  { k: "Collaboration", v: "Great work rarely happens in isolation. We bring together diverse perspectives because they produce stronger outcomes.", symbol: "◌" },
-  { k: "Accessibility", v: "Knowledge should not be hidden behind barriers. We strive to present ideas in ways that are understandable and open to everyone.", symbol: "◈" },
-  { k: "Rootedness", v: "Our work begins with Manipur. Being locally grounded enables us to contribute meaningfully while remaining open to global ideas.", symbol: "◎" },
+  {
+    k: "Research",
+    v: "Thoughtful work begins with understanding. We take time to learn, document, verify, and listen before creating solutions.",
+    symbol: "◬",
+  },
+  {
+    k: "Integrity",
+    v: "Accuracy matters more than attention. We value careful research, honest representation, and responsible storytelling over popularity.",
+    symbol: "⟁",
+  },
+  {
+    k: "Stewardship",
+    v: "We are not interested in short-lived projects. Every initiative is designed to remain useful and valuable for years to come.",
+    symbol: "◫",
+  },
+  {
+    k: "Collaboration",
+    v: "Great work rarely happens in isolation. We bring together diverse perspectives because they produce stronger outcomes.",
+    symbol: "◌",
+  },
+  {
+    k: "Accessibility",
+    v: "Knowledge should not be hidden behind barriers. We strive to present ideas in ways that are understandable and open to everyone.",
+    symbol: "◈",
+  },
+  {
+    k: "Rootedness",
+    v: "Our work begins with Manipur. Being locally grounded enables us to contribute meaningfully while remaining open to global ideas.",
+    symbol: "◎",
+  },
 ];
 
 const faqs = [
@@ -146,9 +169,24 @@ const faqs = [
 const teamMembers = [
   { name: "Oliver Oinam", desc: "Founder & Tech Dept", image: "/team/oliver-oinam.png" },
   { name: "Basanta Haobijam", desc: "Founder & Academician", image: "/team/basanta.png" },
-  { name: "Rajbobo Khumukcham", desc: "Founder, Educator & Content Creator", image: "/team/rajbobo.png", imgClass: "object-[50%_15%]" },
-  { name: "Harishore Tourangbam", desc: "Founder & Academician", image: "/team/Harishore.png", imgClass: "object-[50%_15%]" },
-  { name: "Rimba Thoudam", desc: "Digital Illustrator", image: "/team/rimba.png", imgClass: "object-[50%_15%]" },
+  {
+    name: "Rajbobo Khumukcham",
+    desc: "Founder, Educator & Content Creator",
+    image: "/team/rajbobo.png",
+    imgClass: "object-[50%_15%]",
+  },
+  {
+    name: "Harishore Tourangbam",
+    desc: "Founder & Academician",
+    image: "/team/Harishore.png",
+    imgClass: "object-[50%_15%]",
+  },
+  {
+    name: "Rimba Thoudam",
+    desc: "Digital Illustrator",
+    image: "/team/rimba.png",
+    imgClass: "object-[50%_15%]",
+  },
   { name: "Preeti Yumnam", desc: "Singer, Writer & Creative Artist", image: "/team/preeti.png" },
 ];
 
@@ -314,7 +352,8 @@ function Index() {
             variants={itemVariants}
             className="mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground/80"
           >
-            iManipur is an independent initiative advancing culture, education, and innovation for Manipur through research, storytelling, and technology.
+            iManipur is an independent initiative advancing culture, education, and innovation for
+            Manipur through research, storytelling, and technology.
           </motion.p>
 
           {/* Animated Terminal */}
@@ -401,20 +440,30 @@ function Index() {
             </div>
             <div className="mt-10 space-y-6 text-[16px] leading-relaxed text-muted-foreground">
               <p>
-                Every generation inherits knowledge. Some of it is written. Some of it is remembered. Some exists only in stories, traditions, languages, and the people who carry them forward.
+                Every generation inherits knowledge. Some of it is written. Some of it is
+                remembered. Some exists only in stories, traditions, languages, and the people who
+                carry them forward.
               </p>
               <p>
-                When knowledge is preserved, a society grows stronger. When it is forgotten, something irreplaceable disappears.
+                When knowledge is preserved, a society grows stronger. When it is forgotten,
+                something irreplaceable disappears.
               </p>
               <p>
-                iManipur exists to help ensure that knowledge continues. We are an independent initiative bringing together educators, researchers, artists, technologists, designers, historians, and creators to build projects that contribute to the cultural, educational, and creative development of Manipur.
+                iManipur exists to help ensure that knowledge continues. We are an independent
+                initiative bringing together educators, researchers, artists, technologists,
+                designers, historians, and creators to build projects that contribute to the
+                cultural, educational, and creative development of Manipur.
               </p>
               <p>
-                Rather than operating within a single discipline, we work across culture, education, research, design, and technology. This interdisciplinary approach allows us to build initiatives that are locally relevant, thoughtfully designed, and valuable over the long term.
+                Rather than operating within a single discipline, we work across culture, education,
+                research, design, and technology. This interdisciplinary approach allows us to build
+                initiatives that are locally relevant, thoughtfully designed, and valuable over the
+                long term.
               </p>
               <div className="flex justify-center pt-2">
                 <p className="max-w-2xl border-b border-t border-primary/20 py-6 text-[15px] italic text-foreground/80">
-                  Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move from one generation to the next.
+                  Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move
+                  from one generation to the next.
                 </p>
               </div>
             </div>
@@ -672,8 +721,8 @@ function Index() {
               Our <span className="text-primary block sm:inline">contributors.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              We are an independent group of individuals working together to build and support projects
-              that matter to Manipur.
+              We are an independent group of individuals working together to build and support
+              projects that matter to Manipur.
             </p>
           </motion.div>
 
@@ -740,12 +789,14 @@ function Index() {
             </div>
             <p className="relative label-mono text-primary/70">Mission</p>
             <blockquote className="relative mt-8 max-w-2xl text-[1.2rem] leading-relaxed text-foreground/90 md:text-[1.4rem]">
-              Our mission is to preserve knowledge, strengthen education, and encourage innovation through projects that remain useful across generations.
+              Our mission is to preserve knowledge, strengthen education, and encourage innovation
+              through projects that remain useful across generations.
             </blockquote>
             <div className="relative mt-10 flex flex-col items-center gap-5">
               <div className="h-px w-12 bg-primary/60" />
               <p className="font-semibold text-[12px] text-muted-foreground">
-                We believe lasting impact comes from consistent effort, open collaboration, and a deep understanding of the place we serve.
+                We believe lasting impact comes from consistent effort, open collaboration, and a
+                deep understanding of the place we serve.
               </p>
             </div>
           </div>
@@ -775,9 +826,9 @@ function Index() {
             >
               We would like to express our deepest and most sincere gratitude to{" "}
               <span className="font-medium text-foreground">Eche Indira Laishram</span> for her
-              invaluable support, guidance, and encouragement throughout this journey. Her belief
-              in this project, along with her constant willingness to help, has played a
-              meaningful role in bringing this book to life and to publication.
+              invaluable support, guidance, and encouragement throughout this journey. Her belief in
+              this project, along with her constant willingness to help, has played a meaningful
+              role in bringing this book to life and to publication.
             </motion.p>
             <motion.p
               variants={itemVariants}

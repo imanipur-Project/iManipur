@@ -56,7 +56,11 @@ export function ContactForm() {
             placeholder="John"
           />
           {errors.firstName && (
-            <span id="firstName-error" role="alert" className="text-[11px] text-foreground font-medium">
+            <span
+              id="firstName-error"
+              role="alert"
+              className="text-[11px] text-foreground font-medium"
+            >
               {errors.firstName.message}
             </span>
           )}
@@ -77,7 +81,11 @@ export function ContactForm() {
             placeholder="Doe"
           />
           {errors.lastName && (
-            <span id="lastName-error" role="alert" className="text-[11px] text-foreground font-medium">
+            <span
+              id="lastName-error"
+              role="alert"
+              className="text-[11px] text-foreground font-medium"
+            >
               {errors.lastName.message}
             </span>
           )}

@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic --project-token=chpt_b6558341936b7ea --exit-zero-on-changes"
+    "chromatic": "chromatic --playwright --exit-zero-on-changes"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
