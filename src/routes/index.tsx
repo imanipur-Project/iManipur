@@ -6,10 +6,9 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Terminal, TypingAnimation, AnimatedSpan } from "../components/Terminal";
 import { ArrowUp, Instagram, Facebook } from "lucide-react";
-import LottieReact from "lottie-react";
-const Lottie = (LottieReact as any).default || LottieReact;
-import aboutLottie from "../../public/lottie/about.json";
-import ninjaLottie from "../../public/lottie/ninja.json";
+import Lottie from "lottie-react";
+import aboutLottie from "../assets/about.json";
+import ninjaLottie from "../assets/ninja.json";
 import {
   motion,
   useScroll,
@@ -195,8 +194,6 @@ const sectionVariants: Variants = {
   },
 };
 
-
-
 /* ─── Section Rule Component ─────────────────────────────── */
 
 function SectionRule() {
@@ -256,14 +253,19 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 /* ─── Navbar ─────────────────────────────────────────────── */
 
-
-
 /* ─── Main Page ─────────────────────────────────────────── */
 
 function Index() {
   const [terminalKey, setTerminalKey] = useState(0);
   const [showTopBtn, setShowTopBtn] = useState(false);
   const { scrollY } = useScroll();
+  const replayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (replayTimerRef.current) clearTimeout(replayTimerRef.current);
+    };
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setShowTopBtn(latest > 500);
@@ -297,8 +299,8 @@ function Index() {
             Community · Manipur
           </motion.p>
 
-          <motion.h1 
-            variants={itemVariants} 
+          <motion.h1
+            variants={itemVariants}
             className="mt-6 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
           >
             Creating culture, education, and innovation{" "}
@@ -317,11 +319,11 @@ function Index() {
 
           {/* Animated Terminal */}
           <motion.div variants={itemVariants} className="mt-10 w-full max-w-xl">
-            <Terminal 
+            <Terminal
               key={terminalKey}
               title="imanipur.sh"
               onComplete={() => {
-                setTimeout(() => setTerminalKey(prev => prev + 1), 3000);
+                replayTimerRef.current = setTimeout(() => setTerminalKey((prev) => prev + 1), 3000);
               }}
             >
               <TypingAnimation className="font-mono text-sm text-muted-foreground">
@@ -416,9 +418,16 @@ function Index() {
               </div>
             </div>
 
-            <motion.div variants={itemVariants} className="mt-10 overflow-hidden rounded-sm border border-border">
+            <motion.div
+              variants={itemVariants}
+              className="mt-10 overflow-hidden rounded-sm border border-border"
+            >
               <div className="aspect-[4/3] w-full bg-muted/20 flex items-center justify-center p-8">
-                <Lottie animationData={aboutLottie} loop={true} className="w-full max-w-xs opacity-80 mix-blend-screen" />
+                <Lottie
+                  animationData={aboutLottie}
+                  loop={true}
+                  className="w-full max-w-xs opacity-80 mix-blend-screen"
+                />
               </div>
             </motion.div>
 
@@ -558,6 +567,8 @@ function Index() {
                   <img
                     src={proj.image}
                     alt={proj.title}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-5">
@@ -759,16 +770,36 @@ function Index() {
             </h2>
           </motion.div>
           <div className="mx-auto mt-14 flex max-w-2xl flex-col items-center text-center">
-            <motion.p variants={itemVariants} className="text-[16px] leading-relaxed text-muted-foreground">
-              We would like to express our deepest and most sincere gratitude to <span className="font-medium text-foreground">Eche Indira Laishram</span> and <span className="font-medium text-foreground">Indira Kangjam</span> for their invaluable support, guidance, and encouragement throughout this journey. Their belief in this project, along with their constant willingness to help, has played a meaningful role in bringing this book to life and to publication.
+            <motion.p
+              variants={itemVariants}
+              className="text-[16px] leading-relaxed text-muted-foreground"
+            >
+              We would like to express our deepest and most sincere gratitude to{" "}
+              <span className="font-medium text-foreground">Eche Indira Laishram</span> and{" "}
+              <span className="font-medium text-foreground">Indira Kangjam</span> for their
+              invaluable support, guidance, and encouragement throughout this journey. Their belief
+              in this project, along with their constant willingness to help, has played a
+              meaningful role in bringing this book to life and to publication.
             </motion.p>
-            <motion.p variants={itemVariants} className="mt-4 text-[16px] leading-relaxed text-muted-foreground">
-              This book would not have reached its launch in the same way without their generous presence, thoughtful advice, and unwavering support. We are truly humbled by their contribution, and we carry forward their encouragement with great appreciation and respect.
+            <motion.p
+              variants={itemVariants}
+              className="mt-4 text-[16px] leading-relaxed text-muted-foreground"
+            >
+              This book would not have reached its launch in the same way without their generous
+              presence, thoughtful advice, and unwavering support. We are truly humbled by their
+              contribution, and we carry forward their encouragement with great appreciation and
+              respect.
             </motion.p>
-            <motion.p variants={itemVariants} className="mt-4 text-[16px] leading-relaxed text-muted-foreground">
-              Their support reminded us that every meaningful story is also shaped by the people who stand beside it with patience, trust, and care. With heartfelt thanks, we dedicate this achievement to their kindness and to the spirit of encouragement they shared with us.
+            <motion.p
+              variants={itemVariants}
+              className="mt-4 text-[16px] leading-relaxed text-muted-foreground"
+            >
+              Their support reminded us that every meaningful story is also shaped by the people who
+              stand beside it with patience, trust, and care. With heartfelt thanks, we dedicate
+              this achievement to their kindness and to the spirit of encouragement they shared with
+              us.
             </motion.p>
-            
+
             <motion.div variants={itemVariants} className="mt-12 flex items-center justify-center">
               <Lottie animationData={ninjaLottie} loop={true} className="w-32 h-32 opacity-90" />
             </motion.div>
@@ -833,10 +864,12 @@ function Index() {
               <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60 mb-6">
                 Reach us at
               </p>
-              
+
               <div className="flex w-full flex-col sm:flex-row justify-center gap-12 sm:gap-20">
                 <div className="flex flex-col items-center gap-3">
-                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50">Email</span>
+                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50">
+                    Email
+                  </span>
                   <a
                     href="mailto:heyimanipur@gmail.com"
                     className="text-[1.2rem] font-medium text-foreground transition-colors duration-200 hover:text-primary"
@@ -844,12 +877,24 @@ function Index() {
                     heyimanipur@gmail.com
                   </a>
                 </div>
-                
+
                 <div className="flex flex-col items-center gap-3">
-                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50">Phone</span>
+                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50">
+                    Phone
+                  </span>
                   <div className="flex flex-col items-center gap-1">
-                    <a href="tel:+919612055277" className="text-[1.1rem] font-medium text-foreground transition-colors duration-200 hover:text-primary">+91 96120 55277</a>
-                    <a href="tel:+917982284458" className="text-[1.1rem] font-medium text-foreground transition-colors duration-200 hover:text-primary">+91 79822 84458</a>
+                    <a
+                      href="tel:+919612055277"
+                      className="text-[1.1rem] font-medium text-foreground transition-colors duration-200 hover:text-primary"
+                    >
+                      +91 96120 55277
+                    </a>
+                    <a
+                      href="tel:+917982284458"
+                      className="text-[1.1rem] font-medium text-foreground transition-colors duration-200 hover:text-primary"
+                    >
+                      +91 79822 84458
+                    </a>
                   </div>
                 </div>
               </div>
@@ -909,6 +954,8 @@ function Index() {
       <AnimatePresence>
         {showTopBtn && (
           <motion.button
+            type="button"
+            aria-label="Scroll to top"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}

@@ -49,7 +49,11 @@ export function Footer() {
         viewport={{ once: true, margin: "-50px" }}
         className="mx-auto flex w-full max-w-[1200px] flex-col items-center text-center relative z-10 px-4"
       >
-        <motion.a href="#about" variants={itemVariants} className="group flex flex-col items-center gap-5">
+        <motion.a
+          href="#about"
+          variants={itemVariants}
+          className="group flex flex-col items-center gap-5"
+        >
           <div className="transition-transform duration-500 ease-out group-hover:scale-110">
             <Logo size="lg" />
           </div>
@@ -58,12 +62,18 @@ export function Footer() {
           </span>
         </motion.a>
 
-        <motion.p variants={itemVariants} className="mt-8 max-w-md text-[14px] leading-relaxed text-muted-foreground/70">
+        <motion.p
+          variants={itemVariants}
+          className="mt-8 max-w-md text-[14px] leading-relaxed text-muted-foreground/70"
+        >
           A community from Manipur building honest, useful, and locally relevant projects in
           culture, education, and innovation.
         </motion.p>
 
-        <motion.nav variants={itemVariants} className="mt-14 flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-x-10">
+        <motion.nav
+          variants={itemVariants}
+          className="mt-14 flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-x-10"
+        >
           {footerLinks.map((n) => (
             <a
               key={n}

@@ -10,11 +10,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import {
-  motion,
-  useInView,
-  type MotionProps,
-} from "motion/react";
+import { motion, useInView, type MotionProps } from "motion/react";
 
 /* ─── Sequencing Context ──────────────────────────────────── */
 
@@ -38,12 +34,7 @@ interface AnimatedSpanProps extends MotionProps {
   className?: string;
 }
 
-export function AnimatedSpan({
-  children,
-  delay = 0,
-  className,
-  ...props
-}: AnimatedSpanProps) {
+export function AnimatedSpan({ children, delay = 0, className, ...props }: AnimatedSpanProps) {
   const elementRef = useRef<HTMLDivElement | null>(null);
   const sequence = useSequence();
   const itemIndex = useItemIndex();
@@ -62,6 +53,7 @@ export function AnimatedSpan({
   return (
     <motion.div
       ref={elementRef}
+      {...props}
       initial={{ opacity: 0, y: -5 }}
       animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: -5 }}
       transition={{ duration: 0.3, delay: sequence ? 0 : delay / 1000 }}
@@ -70,7 +62,6 @@ export function AnimatedSpan({
         if (!sequence || itemIndex === null) return;
         sequence.completeItem(itemIndex);
       }}
-      {...props}
     >
       {children}
     </motion.div>
@@ -187,24 +178,26 @@ export function Terminal({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const numChildren = Children.count(children);
-  const sequenceHasStarted = sequence ? (!startOnView || isInView) : false;
+  const sequenceHasStarted = sequence ? !startOnView || isInView : false;
 
   const contextValue = useMemo<SequenceContextValue | null>(() => {
     if (!sequence) return null;
     return {
       completeItem: (index: number) => {
         setActiveIndex((current) => {
-          const next = index === current ? current + 1 : current;
-          if (next === numChildren && onComplete) {
-            onComplete();
-          }
-          return next;
+          return index === current ? current + 1 : current;
         });
       },
       activeIndex,
       sequenceStarted: sequenceHasStarted,
     };
-  }, [sequence, activeIndex, sequenceHasStarted]);
+  }, [sequence, activeIndex, sequenceHasStarted, numChildren, onComplete]);
+
+  useEffect(() => {
+    if (activeIndex === numChildren && onComplete) {
+      onComplete();
+    }
+  }, [activeIndex, numChildren, onComplete]);
 
   const wrappedChildren = useMemo(() => {
     if (!sequence) return children;
@@ -240,9 +233,5 @@ export function Terminal({
 
   if (!sequence) return content;
 
-  return (
-    <SequenceContext.Provider value={contextValue}>
-      {content}
-    </SequenceContext.Provider>
-  );
+  return <SequenceContext.Provider value={contextValue}>{content}</SequenceContext.Provider>;
 }

@@ -54,7 +54,7 @@ export function Journey() {
             end: "bottom center",
             scrub: true,
           },
-        }
+        },
       );
 
       // 2. Animate the spark travelling down the line
@@ -71,7 +71,7 @@ export function Journey() {
             end: "bottom center",
             scrub: true,
           },
-        }
+        },
       );
 
       // 3. Animate each timeline item as it enters view
@@ -94,16 +94,16 @@ export function Journey() {
         tl.fromTo(
           dot,
           { scale: 0, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }
+          { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" },
         ).fromTo(
           [year, title, desc],
           { opacity: 0, y: 15, x: i % 2 === 0 ? -15 : 15 }, // Slide up and from outside
           { opacity: 1, y: 0, x: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" },
-          "-=0.2"
+          "-=0.2",
         );
       });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -127,7 +127,7 @@ export function Journey() {
           ref={lineRef}
           className="absolute bottom-0 left-4 top-0 w-px bg-gradient-to-b from-primary via-primary to-transparent sm:left-1/2 sm:-translate-x-px"
         />
-        
+
         {/* The traveling spark */}
         <div
           ref={sparkRef}

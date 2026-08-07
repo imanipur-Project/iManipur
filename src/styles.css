@@ -84,7 +84,7 @@
   --secondary-foreground: oklch(0.94 0.01 80);
 
   --muted: oklch(0.2 0.01 65);
-  --muted-foreground: oklch(0.58 0.02 78);
+  --muted-foreground: oklch(0.75 0.02 78);
 
   --accent: oklch(0.22 0.02 68);
   --accent-foreground: oklch(0.92 0.05 80);
@@ -93,8 +93,8 @@
   --destructive-foreground: oklch(0.97 0.01 80);
 
   /* Borders — subtle, warm */
-  --border: oklch(0.24 0.015 72);
-  --input: oklch(0.24 0.015 72);
+  --border: oklch(0.35 0.015 72);
+  --input: oklch(0.35 0.015 72);
   --ring: oklch(0.78 0.19 78);
 
   /* Teal accent */
@@ -322,10 +322,4 @@
     font-size: 0.8em;
     color: #666;
   }
-}
-
-@utility noto-sans-meetei-mayek {
-  font-family: "Noto Sans Meetei Mayek", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
 }

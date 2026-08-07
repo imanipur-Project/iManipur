@@ -9,7 +9,7 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  
+
   const { scrollY } = useScroll();
   const [lastYPos, setLastYPos] = useState(0);
 
@@ -29,16 +29,23 @@ export function Navbar() {
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = prev;
     };
   }, [mobileOpen]);
 
+  // Clear mobileOpen when viewport crosses md breakpoint
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const handleMatch = (e: MediaQueryListEvent) => {
+      if (e.matches) setMobileOpen(false);
+    };
+    mediaQuery.addEventListener("change", handleMatch);
+    return () => mediaQuery.removeEventListener("change", handleMatch);
+  }, []);
 
   return (
     <motion.header
@@ -61,7 +68,7 @@ export function Navbar() {
         </motion.a>
 
         {/* Desktop nav */}
-        <nav 
+        <nav
           className="hidden items-center gap-2 md:flex absolute left-1/2 -translate-x-1/2"
           onMouseLeave={() => setHoveredLink(null)}
         >
@@ -87,6 +94,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#contact"
+            onClick={() => setMobileOpen(false)}
             className="group relative overflow-hidden rounded-sm border border-primary/40 px-3 py-1.5 font-semibold text-[10px] tracking-[0.16em] uppercase text-primary transition-all duration-300 hover:border-primary/70 hover:bg-primary/10"
           >
             Contact →
@@ -141,8 +149,8 @@ export function Navbar() {
                 </motion.a>
               ))}
             </div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
