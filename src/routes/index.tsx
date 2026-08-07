@@ -323,6 +323,7 @@ function Index() {
               key={terminalKey}
               title="imanipur.sh"
               onComplete={() => {
+                if (replayTimerRef.current) clearTimeout(replayTimerRef.current);
                 replayTimerRef.current = setTimeout(() => setTerminalKey((prev) => prev + 1), 3000);
               }}
             >

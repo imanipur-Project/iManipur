@@ -193,8 +193,10 @@ export function Terminal({
     };
   }, [sequence, activeIndex, sequenceHasStarted, numChildren, onComplete]);
 
+  const hasCompleted = useRef(false);
   useEffect(() => {
-    if (activeIndex === numChildren && onComplete) {
+    if (activeIndex === numChildren && !hasCompleted.current && onComplete) {
+      hasCompleted.current = true;
       onComplete();
     }
   }, [activeIndex, numChildren, onComplete]);
