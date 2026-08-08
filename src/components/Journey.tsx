@@ -35,6 +35,7 @@ const timeline = [
 
 export function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const sparkRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -49,7 +50,7 @@ export function Journey() {
           scaleY: 1,
           ease: "none",
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: trackRef.current,
             start: "top center",
             end: "bottom center",
             scrub: true,
@@ -66,7 +67,7 @@ export function Journey() {
           opacity: 1,
           ease: "none",
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: trackRef.current,
             start: "top center",
             end: "bottom center",
             scrub: true,
@@ -86,7 +87,7 @@ export function Journey() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: item,
-            start: "top center+=15%", // Triggers slightly before the item hits center
+            start: "top center", // Triggers exactly when item hits center (matches the spark)
             toggleActions: "play none none reverse", // Play down, reverse up
           },
         });
@@ -118,7 +119,7 @@ export function Journey() {
         </p>
       </div>
 
-      <div className="relative mx-auto max-w-2xl">
+      <div className="relative mx-auto max-w-2xl" ref={trackRef}>
         {/* Background track for the line */}
         <div className="absolute bottom-0 left-4 top-0 w-px bg-border/40 sm:left-1/2 sm:-translate-x-px" />
 
