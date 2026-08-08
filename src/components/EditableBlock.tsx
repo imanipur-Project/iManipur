@@ -29,6 +29,8 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
 
   useEffect(() => {
     if (!isCmsEnabled || !supabase) return;
+    // Capture in local const so TypeScript narrows away null inside the async closure.
+    const client = supabase;
 
     activeSlugRef.current = slug;
     setIsLoading(true);
@@ -37,7 +39,7 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
 
     async function fetchContent() {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await client
           .from("content_blocks")
           .select("html_content")
           .eq("slug", slug)
@@ -71,7 +73,9 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
     setIsSaving(true);
     try {
       if (!supabase) return;
-      const { error } = await supabase
+      // Capture in local const so TypeScript narrows away null for the await calls below.
+      const client = supabase;
+      const { error } = await client
         .from("content_blocks")
         .upsert({ slug, html_content: content }, { onConflict: "slug" });
 
