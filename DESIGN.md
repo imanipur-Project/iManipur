@@ -12,29 +12,29 @@ iManipur uses a handcrafted dark design system built on CSS custom properties wi
 
 ### Primary Palette
 
-| Token | Value | Use |
-|---|---|---|
+| Token            | Value                     | Use                              |
+| ---------------- | ------------------------- | -------------------------------- |
 | `--gold-primary` | `oklch(0.697 0.137 79.5)` | Primary accent, CTAs, highlights |
-| `--gold-hover` | `oklch(0.753 0.142 84.1)` | Gold hover state |
-| `--gold-dark` | `oklch(0.474 0.093 71.7)` | Secondary gold, muted accents |
-| `--gold-light` | `oklch(0.853 0.130 90.5)` | Light gold highlights |
+| `--gold-hover`   | `oklch(0.753 0.142 84.1)` | Gold hover state                 |
+| `--gold-dark`    | `oklch(0.474 0.093 71.7)` | Secondary gold, muted accents    |
+| `--gold-light`   | `oklch(0.853 0.130 90.5)` | Light gold highlights            |
 
 ### Backgrounds
 
-| Token | Value | Description |
-|---|---|---|
+| Token          | Value                     | Description                      |
+| -------------- | ------------------------- | -------------------------------- |
 | `--background` | `oklch(0.182 0.000 89.9)` | Page background (#121212 equiv.) |
-| `--surface` | `oklch(0.134 0.000 89.9)` | Deepest surface (#080808) |
-| `--surface-2` | `oklch(0.173 0.000 89.9)` | Card background (#101010) |
-| `--surface-3` | `oklch(0.205 0.000 89.9)` | Elevated card (#171717) |
+| `--surface`    | `oklch(0.134 0.000 89.9)` | Deepest surface (#080808)        |
+| `--surface-2`  | `oklch(0.173 0.000 89.9)` | Card background (#101010)        |
+| `--surface-3`  | `oklch(0.205 0.000 89.9)` | Elevated card (#171717)          |
 
 ### Text
 
-| Token | Value | Description |
-|---|---|---|
-| `--text-primary` | `oklch(0.940 0.018 78.2)` | Main text — warm ivory |
-| `--text-secondary` | `oklch(0.861 0.019 78.2)` | Body text |
-| `--text-muted` | `oklch(0.616 0.015 78.2)` | Muted / metadata text |
+| Token              | Value                     | Description            |
+| ------------------ | ------------------------- | ---------------------- |
+| `--text-primary`   | `oklch(0.940 0.018 78.2)` | Main text — warm ivory |
+| `--text-secondary` | `oklch(0.861 0.019 78.2)` | Body text              |
+| `--text-muted`     | `oklch(0.616 0.015 78.2)` | Muted / metadata text  |
 
 ### Tailwind Mappings
 
@@ -52,11 +52,11 @@ iManipur uses a handcrafted dark design system built on CSS custom properties wi
 
 ### Font Families
 
-| Role | Font | Weight Range |
-|---|---|---|
-| Display / headings | System serif or custom display var | 600–800 |
-| Body | System sans / Inter | 300–500 |
-| Mono / labels | System monospace | 400–600 |
+| Role                 | Font                   | Weight Range |
+| -------------------- | ---------------------- | ------------ |
+| Display / headings   | **Cormorant Garamond** | 300–600      |
+| Body / subtitles     | **Inter**              | 400–600      |
+| Mono / labels / code | **IBM Plex Mono**      | 400–500      |
 
 ### Type Scale
 
@@ -140,7 +140,9 @@ Hover: border-primary/50 + shadow-[inset_0_0_15px_rgba(202,146,29,0.1)]
 ### Section Headings
 
 ```jsx
-<h2>Title with <span className="text-primary">accent word.</span></h2>
+<h2>
+  Title with <span className="text-primary">accent word.</span>
+</h2>
 ```
 
 ### SectionRule
@@ -152,6 +154,7 @@ Hover: border-primary/50 + shadow-[inset_0_0_15px_rgba(202,146,29,0.1)]
   className="section-rule mx-auto"
 />
 ```
+
 A 1px gradient line: transparent → border → primary → border → transparent.
 
 ### FAQ Accordion
@@ -196,16 +199,17 @@ const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
 ## Design Rules (Do / Don't)
 
-| ✅ Do | ❌ Don't |
-|---|---|
-| Use `rounded-none` explicitly | Use any `rounded-*` class that adds radius |
-| Use CSS custom property tokens | Hardcode hex or rgb values |
-| Left-align body paragraphs | Center body text blocks |
-| Use `text-balance` on headings | Let h1/h2 break awkwardly |
-| Use `oklch()` for new colors | Use `hex`, `rgb()`, or HSL |
-| Name sections with `label-mono` | Skip the section label pattern |
-| Use `motion/react` for entries | Use CSS animations for complex sequences |
-| Keep max-width at 1200px | Allow content to exceed the grid |
+| ✅ Do                           | ❌ Don't                                   |
+| ------------------------------- | ------------------------------------------ |
+| Use `rounded-none` explicitly   | Use any `rounded-*` class that adds radius |
+| Ensure `<html lang="en">`       | Forget the document language attribute     |
+| Use CSS custom property tokens  | Hardcode hex or rgb values                 |
+| Left-align body paragraphs      | Center body text blocks                    |
+| Use `text-balance` on headings  | Let h1/h2 break awkwardly                  |
+| Use `oklch()` for new colors    | Use `hex`, `rgb()`, or HSL                 |
+| Name sections with `label-mono` | Skip the section label pattern             |
+| Use `motion/react` for entries  | Use CSS animations for complex sequences   |
+| Keep max-width at 1200px        | Allow content to exceed the grid           |
 
 ---
 

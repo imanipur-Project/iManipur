@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { Resend } from "resend";
-import { contactSchema } from "../components/ContactForm";
+import { contactSchema } from "./schema";
 
 function escapeHtml(unsafe: string) {
   return unsafe
@@ -17,7 +17,7 @@ export const sendContactEmail = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }) => {
     try {
-      const { firstName, lastName, email, mobile, message } = data;
+      const { firstName, lastName, email, message } = data;
 
       const apiKey = process.env["RESEND_API_KEY"];
       if (!apiKey) {
@@ -29,7 +29,6 @@ export const sendContactEmail = createServerFn({ method: "POST" })
       const safeFirstName = escapeHtml(firstName);
       const safeLastName = escapeHtml(lastName);
       const safeEmail = escapeHtml(email);
-      const safeMobile = escapeHtml(mobile);
       const safeMessage = escapeHtml(message);
 
       const { data: resendData, error } = await resend.emails.send({
@@ -37,12 +36,11 @@ export const sendContactEmail = createServerFn({ method: "POST" })
         to: "heyimanipur@gmail.com",
         replyTo: email,
         subject: `New Contact Form Submission from ${safeFirstName} ${safeLastName}`,
-        text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nMobile: ${mobile || "N/A"}\nMessage:\n${message}`,
+        text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nMessage:\n${message}`,
         html: `
           <h3>New Contact Message</h3>
           <p><strong>Name:</strong> ${safeFirstName} ${safeLastName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
-          <p><strong>Mobile:</strong> ${safeMobile || "N/A"}</p>
           <hr />
           <p><strong>Message:</strong></p>
           <p>${safeMessage.replace(/\n/g, "<br>")}</p>

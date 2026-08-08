@@ -20,10 +20,7 @@ export function Marquee({
 }: MarqueeProps) {
   return (
     <div
-      className={cn(
-        "group flex overflow-hidden [--duration:40s] [--gap:var(--marquee-gap)]",
-        className
-      )}
+      className={cn("group flex overflow-hidden [--gap:var(--marquee-gap)]", className)}
       style={
         {
           "--marquee-gap": gap,
@@ -37,9 +34,9 @@ export function Marquee({
           className={cn(
             "flex min-w-full shrink-0 items-center justify-around gap-[var(--marquee-gap)]",
             reverse
-              ? "animate-marquee-reverse"
-              : "animate-marquee",
-            pauseOnHover && "group-hover:[animation-play-state:paused]"
+              ? "animate-marquee-reverse motion-reduce:animate-none"
+              : "animate-marquee motion-reduce:animate-none",
+            pauseOnHover && "group-hover:[animation-play-state:paused]",
           )}
         >
           {children}

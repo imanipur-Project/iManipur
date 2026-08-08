@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { Toaster } from "sonner";
 import { AuthProvider } from "../components/AuthContext";
+import { EditModeToggle } from "../components/EditModeToggle";
 
 import appCss from "../styles.css?url";
 
@@ -129,6 +130,7 @@ function RootComponent() {
       <QueryClientProvider client={queryClient}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        <EditModeToggle />
         <Toaster theme="dark" position="bottom-right" />
       </QueryClientProvider>
     </AuthProvider>

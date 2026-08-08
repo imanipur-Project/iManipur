@@ -42,19 +42,19 @@ const navigation = {
   ],
 };
 
-const Underline = `hover:-translate-y-1 border border-border border-dotted rounded-none p-2.5 transition-transform bg-card hover:border-primary/50 text-muted-foreground hover:text-primary`;
+// Renamed from PascalCase `Underline` (which implies a component) to camelCase.
+const socialLinkClass = `hover:-translate-y-1 border border-border border-dotted rounded-none p-2.5 transition-transform bg-card hover:border-primary/50 text-muted-foreground hover:text-primary`;
 
 function handleScrollTop() {
-  window.scroll({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scroll({ top: 0, behavior: "smooth" });
 }
 
 export function Footer() {
   const { scrollYProgress } = useScroll();
+  // Clamp at 0 opacity minimum so footer stays visible on short pages where
+  // scrollYProgress never reaches 0.85.
   const y = useTransform(scrollYProgress, [0.8, 1], ["10%", "0%"]);
-  const opacity = useTransform(scrollYProgress, [0.85, 1], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 0.6, 1]);
 
   return (
     <motion.footer
@@ -73,7 +73,8 @@ export function Footer() {
           <Logo size="lg" />
         </a>
         <p className="text-muted-foreground text-center text-[15px] leading-relaxed md:text-left max-w-2xl">
-          An independent research and creative initiative dedicated to the culture, education, and history of Manipur. We build long-term projects to preserve knowledge and inspire the next generation.
+          An independent initiative rooted in Manipur — preserving its history, celebrating its
+          culture, and building resources for the next generation.
         </p>
       </div>
 
@@ -87,10 +88,16 @@ export function Footer() {
             >
               {category.sections.map((section) => (
                 <div key={section.name} className="flex-1 text-center">
-                  <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-widest">{section.name}</h3>
+                  {/* id matches the ul's aria-labelledby */}
+                  <h3
+                    id={`${category.id}-${section.id}-heading`}
+                    className="text-sm font-semibold text-foreground mb-4 uppercase tracking-widest"
+                  >
+                    {section.name}
+                  </h3>
                   <ul
                     role="list"
-                    aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
+                    aria-labelledby={`${category.id}-${section.id}-heading`}
                     className="flex flex-col space-y-3"
                   >
                     {section.items.map((item) => (
@@ -114,13 +121,8 @@ export function Footer() {
 
       <div className="flex flex-wrap justify-center gap-y-6 z-10 mt-4">
         <div className="flex flex-wrap items-center justify-center gap-6 gap-y-4 px-6">
-          <a
-            aria-label="Email"
-            href={MAIL_URL}
-            rel="noreferrer"
-            target="_blank"
-            className={Underline}
-          >
+          {/* mailto: should NOT open in a new tab */}
+          <a aria-label="Email" href={MAIL_URL} rel="noreferrer" className={socialLinkClass}>
             <Mail strokeWidth={1.5} className="h-5 w-5" />
           </a>
           <a
@@ -128,7 +130,7 @@ export function Footer() {
             href={TWITTER_URL}
             rel="noreferrer"
             target="_blank"
-            className={Underline}
+            className={socialLinkClass}
           >
             <Twitter strokeWidth={1.5} className="h-5 w-5" />
           </a>
@@ -137,7 +139,7 @@ export function Footer() {
             href={INSTAGRAM_URL}
             rel="noreferrer"
             target="_blank"
-            className={Underline}
+            className={socialLinkClass}
           >
             <Instagram strokeWidth={1.5} className="h-5 w-5" />
           </a>
@@ -146,17 +148,17 @@ export function Footer() {
             href={FACEBOOK_URL}
             rel="noreferrer"
             target="_blank"
-            className={Underline}
+            className={socialLinkClass}
           >
             <Facebook strokeWidth={1.5} className="h-5 w-5" />
           </a>
         </div>
-        
+
         {/* Scroll To Top Widget */}
         <div className="flex items-center justify-center mx-6">
           <div className="flex items-center rounded-none border border-border border-dotted bg-card p-1">
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={handleScrollTop}
               className="flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
             >

@@ -1,27 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { toast } from "sonner";
 import { sendContactEmail } from "../lib/actions";
-import {
-  Clock,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Users,
-  ArrowRight,
-} from "lucide-react";
+import { contactSchema, type ContactFormValues } from "../lib/schema";
+import { Clock, Mail, MapPin, MessageCircle, Phone, Users, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
-
-export const contactSchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required"),
-  lastName: z.string().trim().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().trim().min(5, "Message is too short"),
-});
-
-export type ContactFormValues = z.infer<typeof contactSchema>;
 
 export function ContactSection() {
   const {
@@ -52,7 +35,8 @@ export function ContactSection() {
         <div
           className="pointer-events-none absolute inset-0 z-0"
           style={{
-            background: "radial-gradient(ellipse at 50% 100%, var(--gold-primary) 0%, var(--background) 75%)",
+            background:
+              "radial-gradient(ellipse at 50% 100%, var(--gold-primary) 0%, var(--background) 75%)",
             opacity: 0.12,
           }}
         />
@@ -60,7 +44,8 @@ export function ContactSection() {
         <div
           className="pointer-events-none absolute inset-0 z-0"
           style={{
-            backgroundImage: "repeating-radial-gradient(circle at 50% 100%, transparent 0px, transparent 20px, var(--gold-primary) 20px, var(--gold-primary) 21px)",
+            backgroundImage:
+              "repeating-radial-gradient(circle at 50% 100%, transparent 0px, transparent 20px, var(--gold-primary) 20px, var(--gold-primary) 21px)",
             opacity: 0.05,
             maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%)",
             WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%)",
@@ -77,12 +62,11 @@ export function ContactSection() {
             Let's work on <span className="text-primary">Manipur</span> together.
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-balance">
-            If you are working on something for Manipur — in culture, education, or a new idea — 
-            we would like to hear about it.
+            If you are working on something for Manipur — in culture, education, or a new idea — we
+            would like to hear about it.
           </p>
         </div>
       </section>
-
 
       {/* Quick Contact Cards */}
       <section className="relative z-10 mx-auto mt-8 mb-24 max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -106,7 +90,6 @@ export function ContactSection() {
             title="Location"
             value="Manipur, India"
             description="Based locally, working globally"
-            href="#"
           />
         </div>
       </section>
@@ -114,13 +97,10 @@ export function ContactSection() {
       {/* Main Content Grid */}
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 md:pb-24 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-          
           {/* Contact Form */}
           <div>
             <div className="mb-8">
-              <h2 className="text-foreground mb-2 text-3xl font-bold">
-                Send a Message
-              </h2>
+              <h2 className="text-foreground mb-2 text-3xl font-bold">Send a Message</h2>
               <p className="text-muted-foreground">
                 Fill out the form below and our team will get back to you shortly.
               </p>
@@ -129,57 +109,93 @@ export function ContactSection() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="firstName" className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground">
+                  <label
+                    htmlFor="firstName"
+                    className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                  >
                     First Name
                   </label>
                   <input
                     {...register("firstName")}
                     id="firstName"
+                    aria-invalid={!!errors.firstName}
+                    aria-describedby={errors.firstName ? "firstName-error" : undefined}
                     className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     placeholder="Your first name"
                   />
-                  {errors.firstName && <span className="text-[11px] text-destructive">{errors.firstName.message}</span>}
+                  {errors.firstName && (
+                    <span id="firstName-error" className="text-[11px] text-destructive">
+                      {errors.firstName.message}
+                    </span>
+                  )}
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="lastName" className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground">
+                  <label
+                    htmlFor="lastName"
+                    className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                  >
                     Last Name
                   </label>
                   <input
                     {...register("lastName")}
                     id="lastName"
+                    aria-invalid={!!errors.lastName}
+                    aria-describedby={errors.lastName ? "lastName-error" : undefined}
                     className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     placeholder="Your last name"
                   />
-                  {errors.lastName && <span className="text-[11px] text-destructive">{errors.lastName.message}</span>}
+                  {errors.lastName && (
+                    <span id="lastName-error" className="text-[11px] text-destructive">
+                      {errors.lastName.message}
+                    </span>
+                  )}
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="email" className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground">
+                <label
+                  htmlFor="email"
+                  className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                >
                   Email Address
                 </label>
                 <input
                   {...register("email")}
                   id="email"
                   type="email"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                   className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="john@example.com"
                 />
-                {errors.email && <span className="text-[11px] text-destructive">{errors.email.message}</span>}
+                {errors.email && (
+                  <span id="email-error" className="text-[11px] text-destructive">
+                    {errors.email.message}
+                  </span>
+                )}
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="message" className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground">
+                <label
+                  htmlFor="message"
+                  className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                >
                   Message
                 </label>
                 <textarea
                   {...register("message")}
                   id="message"
                   rows={5}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                   className="resize-y rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="How can we work together?"
                 />
-                {errors.message && <span className="text-[11px] text-destructive">{errors.message.message}</span>}
+                {errors.message && (
+                  <span id="message-error" className="text-[11px] text-destructive">
+                    {errors.message.message}
+                  </span>
+                )}
               </div>
 
               <button
@@ -196,9 +212,7 @@ export function ContactSection() {
           {/* Contact Info & Benefits */}
           <div className="space-y-12">
             <div>
-              <h2 className="text-foreground mb-8 text-3xl font-bold">
-                Why Reach Out?
-              </h2>
+              <h2 className="text-foreground mb-8 text-3xl font-bold">Why Reach Out?</h2>
               <div className="space-y-6">
                 <BenefitCard
                   icon={<MessageCircle className="h-5 w-5" />}
@@ -229,28 +243,29 @@ interface QuickContactCardProps {
   title: string;
   value: string;
   description: string;
-  href: string;
+  href?: string;
 }
 
-function QuickContactCard({
-  icon,
-  title,
-  value,
-  description,
-  href,
-}: QuickContactCardProps) {
-  return (
-    <a href={href} className="group block">
-      <div className="border-border bg-card hover:border-primary/50 h-full rounded-none border p-8 transition-all duration-300">
-        <div className="bg-primary/10 text-primary group-hover:bg-primary/20 mb-6 inline-flex rounded-none p-4 transition-colors">
-          {icon}
-        </div>
-        <h3 className="text-foreground mb-2 font-mono text-sm tracking-widest uppercase">{title}</h3>
-        <p className="text-foreground mb-2 text-lg font-medium">{value}</p>
-        <p className="text-muted-foreground text-sm">{description}</p>
+function QuickContactCard({ icon, title, value, description, href }: QuickContactCardProps) {
+  const inner = (
+    <div className="border-border bg-card hover:border-primary/50 h-full rounded-none border p-8 transition-all duration-300">
+      <div className="bg-primary/10 text-primary group-hover:bg-primary/20 mb-6 inline-flex rounded-none p-4 transition-colors">
+        {icon}
       </div>
-    </a>
+      <h3 className="text-foreground mb-2 font-mono text-sm tracking-widest uppercase">{title}</h3>
+      <p className="text-foreground mb-2 text-lg font-medium">{value}</p>
+      <p className="text-muted-foreground text-sm">{description}</p>
+    </div>
   );
+
+  if (href) {
+    return (
+      <a href={href} className="group block">
+        {inner}
+      </a>
+    );
+  }
+  return <div className="group block">{inner}</div>;
 }
 
 interface BenefitCardProps {
@@ -262,9 +277,7 @@ interface BenefitCardProps {
 function BenefitCard({ icon, title, description }: BenefitCardProps) {
   return (
     <div className="flex gap-5 border border-border bg-card p-6 rounded-none">
-      <div className="bg-primary/10 text-primary flex-shrink-0 rounded-none p-3 h-fit">
-        {icon}
-      </div>
+      <div className="bg-primary/10 text-primary flex-shrink-0 rounded-none p-3 h-fit">{icon}</div>
       <div>
         <h3 className="text-foreground font-semibold mb-2">{title}</h3>
         <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>

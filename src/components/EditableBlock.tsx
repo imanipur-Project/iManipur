@@ -1,74 +1,93 @@
-import { useState, useEffect } from 'react'
-import DOMPurify from 'dompurify'
-import { RichTextEditor } from './RichTextEditor'
-import { useAuth } from './AuthContext'
-import { supabase } from '../lib/supabase'
-
-const isCmsEnabled = import.meta.env['VITE_ENABLE_CMS'] === 'true';
+import { useState, useEffect, useRef } from "react";
+import DOMPurify from "dompurify";
+import { toast } from "sonner";
+import { RichTextEditor } from "./RichTextEditor";
+import { useAuth } from "./AuthContext";
+import { supabase } from "../lib/supabase";
+import { isCmsEnabled } from "../lib/flags";
 
 interface EditableBlockProps {
-  slug: string
-  defaultHtml: string
+  slug: string;
+  defaultHtml: string;
 }
 
 export function EditableBlock({ slug, defaultHtml }: EditableBlockProps) {
-  const { isEditMode, user } = useAuth()
-  const [content, setContent] = useState(defaultHtml)
-  const [originalContent, setOriginalContent] = useState(defaultHtml)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isSaving, setIsSaving] = useState(false)
+  const { isEditMode, user } = useAuth();
+  const [content, setContent] = useState(defaultHtml);
+  const [originalContent, setOriginalContent] = useState(defaultHtml);
+  const [isLoading, setIsLoading] = useState(isCmsEnabled);
+  const [isSaving, setIsSaving] = useState(false);
 
-  // Fetch live content from DB on mount
+  // Key trick: incrementing this forces RichTextEditor to re-mount with fresh content.
+  const [editorKey, setEditorKey] = useState(0);
+
+  // Guard against stale fetch responses when slug changes mid-flight.
+  const activeSlugRef = useRef(slug);
+
   useEffect(() => {
+    if (!isCmsEnabled) return;
+
+    activeSlugRef.current = slug;
+    setIsLoading(true);
+
     async function fetchContent() {
       try {
         const { data, error } = await supabase
-          .from('content_blocks')
-          .select('html_content')
-          .eq('slug', slug)
-          .single()
-        
-        if (error && error.code !== 'PGRST116') {
-          console.error(`Error loading ${slug}:`, error)
+          .from("content_blocks")
+          .select("html_content")
+          .eq("slug", slug)
+          .single();
+
+        // Discard response if slug changed while request was in flight.
+        if (activeSlugRef.current !== slug) return;
+
+        if (error && error.code !== "PGRST116") {
+          console.error(`Error loading ${slug}:`, error);
         }
-        
+
         if (data?.html_content) {
-          setContent(data.html_content)
-          setOriginalContent(data.html_content)
+          setContent(data.html_content);
+          setOriginalContent(data.html_content);
         }
       } catch (err) {
-        console.error('Unexpected error:', err)
+        if (activeSlugRef.current !== slug) return;
+        console.error("Unexpected error:", err);
       } finally {
-        setIsLoading(false)
+        if (activeSlugRef.current === slug) {
+          setIsLoading(false);
+        }
       }
     }
-    fetchContent()
-  }, [slug])
+
+    fetchContent();
+  }, [slug]);
 
   const handleSave = async () => {
-    setIsSaving(true)
+    setIsSaving(true);
     try {
       const { error } = await supabase
-        .from('content_blocks')
-        .upsert({ slug, html_content: content }, { onConflict: 'slug' })
-      
-      if (error) throw error
-      setOriginalContent(content)
-      alert('Saved to Supabase!')
+        .from("content_blocks")
+        .upsert({ slug, html_content: content }, { onConflict: "slug" });
+
+      if (error) throw error;
+      setOriginalContent(content);
+      toast.success("Saved to live site.");
     } catch (err) {
-      console.error('Save failed:', err)
-      alert('Failed to save')
+      console.error("Save failed:", err);
+      toast.error("Failed to save. Please try again.");
     } finally {
-      setIsSaving(false)
+      setIsSaving(false);
     }
-  }
+  };
 
   const handleCancel = () => {
-    setContent(originalContent)
-  }
+    setContent(originalContent);
+    // Increment key to force RichTextEditor remount with the reset content.
+    setEditorKey((k) => k + 1);
+  };
 
   if (isLoading) {
-    return <div className="animate-pulse h-10 bg-white/5 rounded-none w-full" />
+    return <div className="animate-pulse h-10 bg-white/5 rounded-none w-full" />;
   }
 
   if (isCmsEnabled && isEditMode && user) {
@@ -77,33 +96,33 @@ export function EditableBlock({ slug, defaultHtml }: EditableBlockProps) {
         <div className="absolute -top-3 left-4 bg-[#080808] px-2 label-mono text-primary z-10 text-[10px]">
           Editing: {slug}
         </div>
-        <RichTextEditor content={content} onChange={setContent} />
-        
+        <RichTextEditor key={editorKey} content={content} onChange={setContent} />
+
         <div className="flex justify-end gap-2 mt-2">
-          <button 
+          <button
             onClick={handleCancel}
             className="px-4 py-2 border border-border text-muted-foreground hover:bg-white/5 text-sm transition-colors rounded-none"
           >
             Cancel
           </button>
-          <button 
+          <button
             onClick={handleSave}
             disabled={isSaving || content === originalContent}
             className="px-6 py-2 bg-primary/20 border border-primary text-primary hover:bg-primary/30 transition-all text-sm rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSaving ? 'Saving...' : 'Save to Live Site'}
+            {isSaving ? "Saving..." : "Save to Live Site"}
           </button>
         </div>
       </div>
-    )
+    );
   }
 
-  const cleanHtml = DOMPurify.sanitize(content)
+  const cleanHtml = DOMPurify.sanitize(content);
 
   return (
-    <div 
+    <div
       className="prose prose-invert prose-p:text-muted-foreground prose-headings:text-foreground prose-a:text-primary max-w-none transition-opacity duration-300"
       dangerouslySetInnerHTML={{ __html: cleanHtml }}
     />
-  )
+  );
 }

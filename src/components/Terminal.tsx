@@ -214,7 +214,7 @@ export function Terminal({
   const content = (
     <div
       ref={containerRef}
-      className={`w-full overflow-hidden rounded-[16px] border border-border bg-card text-left shadow-none ${className ?? ""}`}
+      className={`w-full overflow-hidden rounded-none border border-border bg-card text-left shadow-none ${className ?? ""}`}
     >
       <div className="flex items-center gap-1.5 border-b border-border bg-muted/20 px-4 py-2.5">
         <span className="h-2.5 w-2.5 rounded-none bg-[oklch(0.65_0_0)]" />

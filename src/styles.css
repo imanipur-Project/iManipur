@@ -65,15 +65,15 @@
 
 :root {
   /* Backgrounds */
-  --background: oklch(0.182 0.000 89.9);     /* #121212 */
-  --surface: oklch(0.134 0.000 89.9);        /* #080808 */
-  --surface-2: oklch(0.173 0.000 89.9);      /* #101010 */
-  --surface-3: oklch(0.205 0.000 89.9);      /* #171717 */
+  --background: oklch(0.182 0 89.9); /* #121212 */
+  --surface: oklch(0.134 0 89.9); /* #080808 */
+  --surface-2: oklch(0.173 0 89.9); /* #101010 */
+  --surface-3: oklch(0.205 0 89.9); /* #171717 */
 
   /* Text - Warm Ivory */
-  --text-primary: oklch(0.940 0.018 78.2);   /* #F2EADE */
+  --text-primary: oklch(0.94 0.018 78.2); /* #F2EADE */
   --text-secondary: oklch(0.861 0.019 78.2); /* #D8D0C4 */
-  --text-muted: oklch(0.616 0.015 78.2);     /* #8A847B */
+  --text-muted: oklch(0.616 0.015 78.2); /* #8A847B */
 
   /* Legacy Mapping (for compatibility with existing tailwind classes) */
   --foreground: var(--text-primary);
@@ -81,10 +81,10 @@
   --muted-foreground: var(--text-muted);
 
   /* Brand Gold */
-  --gold-primary: oklch(0.697 0.137 79.5);   /* #CA921D */
-  --gold-hover: oklch(0.753 0.142 84.1);     /* #D9A62B */
-  --gold-dark: oklch(0.474 0.093 71.7);      /* #7C5213 */
-  --gold-light: oklch(0.853 0.130 90.5);     /* #EFCB62 */
+  --gold-primary: oklch(0.697 0.137 79.5); /* #CA921D */
+  --gold-hover: oklch(0.753 0.142 84.1); /* #D9A62B */
+  --gold-dark: oklch(0.474 0.093 71.7); /* #7C5213 */
+  --gold-light: oklch(0.853 0.13 90.5); /* #EFCB62 */
 
   /* Primary Map to Gold */
   --primary: var(--gold-primary);
@@ -93,8 +93,8 @@
   --secondary: var(--gold-dark);
 
   /* Supporting Teal */
-  --teal-primary: oklch(0.333 0.049 209.7);  /* #103D44 */
-  --teal-dark: oklch(0.259 0.037 219.1);     /* #0B2830 */
+  --teal-primary: oklch(0.333 0.049 209.7); /* #103D44 */
+  --teal-dark: oklch(0.259 0.037 219.1); /* #0B2830 */
 
   /* Status Colors */
   --success: oklch(0.723 0.192 149.6);
@@ -115,7 +115,7 @@
   --muted: var(--surface);
 
   /* Borders & Overlays - Gold driven */
-  --border: oklch(0.697 0.137 79.5 / 0.25);  /* rgba(202,146,29,0.25) */
+  --border: oklch(0.697 0.137 79.5 / 0.25); /* rgba(202,146,29,0.25) */
   --border-strong: oklch(0.697 0.137 79.5 / 0.45); /* rgba(202,146,29,0.45) */
   --input: var(--border);
   --ring: var(--primary);
@@ -160,8 +160,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
-  code, kbd, samp, pre {
+
+  code,
+  kbd,
+  samp,
+  pre {
     font-family: var(--font-mono);
   }
 }
@@ -174,10 +177,9 @@
 
   .text-gradient-primary {
     /* Solid warm ivory text with subtle gold glow */
-    color: oklch(var(--text-primary));
-    text-shadow: 0 0 40px oklch(var(--gold-primary) / 0.15);
+    color: var(--text-primary);
+    text-shadow: 0 0 40px color-mix(in oklab, var(--gold-primary) 15%, transparent);
   }
-
 
   h1,
   h2,
@@ -269,8 +271,6 @@
   }
 }
 
-
-
 /* ─── Dot pattern ─────────────────────────────────────────── */
 
 .dot-bg {
@@ -289,7 +289,7 @@
 }
 
 .btn-shimmer:hover {
-  background-color: oklch(var(--primary-hover));
+  background-color: var(--primary-hover);
   transform: translateY(-1px);
 }
 
@@ -305,13 +305,21 @@
 /* ─── Marquee animation ───────────────────────────────────── */
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(calc(-100% - var(--marquee-gap, 40px))); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap, 40px)));
+  }
 }
 
 @keyframes marquee-reverse {
-  from { transform: translateX(calc(-100% - var(--marquee-gap, 40px))); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(calc(-100% - var(--marquee-gap, 40px)));
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-marquee {

@@ -48,6 +48,8 @@ export const Route = createFileRoute("/")({
 
 /* ─── Data ──────────────────────────────────────────────── */
 
+const ABOUT_DEFAULT_HTML = `<p>Every generation inherits knowledge. Some of it is written. Some of it is remembered. Some exists only in stories, traditions, languages, and the people who carry them forward.</p><p>When knowledge is preserved, a society grows stronger. When it is forgotten, something irreplaceable disappears.</p><p>iManipur exists to help ensure that knowledge continues. We are an independent initiative bringing together educators, researchers, artists, technologists, designers, historians, and creators to build projects that contribute to the cultural, educational, and creative development of Manipur.</p><p>Rather than operating within a single discipline, we work across culture, education, research, design, and technology. This interdisciplinary approach allows us to build initiatives that are locally relevant, thoughtfully designed, and valuable over the long term.</p><blockquote>Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move from one generation to the next.</blockquote>`;
+
 const pillars = [
   {
     no: "01",
@@ -260,8 +262,6 @@ function SectionRule() {
 
 /* ─── FAQ Item Component ─────────────────────────────────── */
 
-
-
 /* ─── Navbar ─────────────────────────────────────────────── */
 
 /* ─── Main Page ─────────────────────────────────────────── */
@@ -290,7 +290,10 @@ function Index() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section id="about" className="relative overflow-hidden border-b border-border bg-hero-gradient">
+      <section
+        id="about"
+        className="relative overflow-hidden border-b border-border bg-hero-gradient"
+      >
         {/* Animated grid background — adapted from ali imam hero-01 */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-10 dark:opacity-20"
@@ -306,7 +309,11 @@ function Index() {
         {/* Radial glow at bottom — adapted from ali imam hero-01 */}
         <div
           className="pointer-events-none absolute inset-0 z-0"
-          style={{ background: "radial-gradient(125% 125% at 50% 10%, transparent 40%, var(--gold-primary) 100%)", opacity: 0.07 }}
+          style={{
+            background:
+              "radial-gradient(125% 125% at 50% 10%, transparent 40%, var(--gold-primary) 100%)",
+            opacity: 0.07,
+          }}
         />
         {/* Parallax Dot-grid background */}
         <motion.div
@@ -329,9 +336,7 @@ function Index() {
             className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
           >
             Preserving Manipur's knowledge for the next generation.{" "}
-            <span className="inline-block text-gradient-primary pb-1">
-              Building the future.
-            </span>
+            <span className="inline-block text-gradient-primary pb-1">Building the future.</span>
           </motion.h1>
 
           <motion.p
@@ -410,11 +415,31 @@ function Index() {
       </section>
 
       {/* ── Marquee ──────────────────────────────────────── */}
-      <div aria-hidden="true" className="border-b border-t border-border bg-card/40 py-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <div
+        aria-hidden="true"
+        className="border-b border-t border-border bg-card/40 py-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+      >
         <Marquee gap="60px" speed={30} pauseOnHover>
-          {["Culture", "Education", "Innovation", "Manipur", "Heritage", "Language", "Research", "Technology", "Future", "Community", "Identity", "Stories"].map((word) => (
-            <span key={word} className="font-mono text-[11px] tracking-[0.25em] uppercase text-muted-foreground/60 select-none">
-              <span className="text-primary/50 mr-4">◈</span>{word}
+          {[
+            "Culture",
+            "Education",
+            "Innovation",
+            "Manipur",
+            "Heritage",
+            "Language",
+            "Research",
+            "Technology",
+            "Future",
+            "Community",
+            "Identity",
+            "Stories",
+          ].map((word) => (
+            <span
+              key={word}
+              className="font-mono text-[11px] tracking-[0.25em] uppercase text-muted-foreground/60 select-none"
+            >
+              <span className="text-primary/50 mr-4">◈</span>
+              {word}
             </span>
           ))}
         </Marquee>
@@ -435,10 +460,7 @@ function Index() {
               <p className="label-mono text-primary/70">Built for Manipur</p>
             </div>
             <div className="mt-10 w-full text-left">
-              <EditableBlock 
-                slug="homepage-about"
-                defaultHtml={`<p>Every generation inherits knowledge. Some of it is written. Some of it is remembered. Some exists only in stories, traditions, languages, and the people who carry them forward.</p><p>When knowledge is preserved, a society grows stronger. When it is forgotten, something irreplaceable disappears.</p><p>iManipur exists to help ensure that knowledge continues. We are an independent initiative bringing together educators, researchers, artists, technologists, designers, historians, and creators to build projects that contribute to the cultural, educational, and creative development of Manipur.</p><p>Rather than operating within a single discipline, we work across culture, education, research, design, and technology. This interdisciplinary approach allows us to build initiatives that are locally relevant, thoughtfully designed, and valuable over the long term.</p><blockquote>Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move from one generation to the next.</blockquote>`}
-              />
+              <EditableBlock slug="homepage-about" defaultHtml={ABOUT_DEFAULT_HTML} />
             </div>
 
             <motion.div
@@ -541,8 +563,6 @@ function Index() {
                     </li>
                   ))}
                 </ul>
-
-
               </motion.article>
             ))}
           </div>
@@ -573,7 +593,7 @@ function Index() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {projects.map((proj) => (
               <motion.a
-                href={proj.link || "#"}
+                href={proj.href || "#"}
                 key={proj.title}
                 variants={itemVariants}
                 className="group flex flex-col overflow-hidden rounded-none border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
@@ -800,10 +820,18 @@ function Index() {
                 />
               </div>
             </motion.div>
-            
-            <motion.div variants={itemVariants} className="flex-1 space-y-5 text-[15px] leading-relaxed text-muted-foreground md:pl-16">
+
+            <motion.div
+              variants={itemVariants}
+              className="flex-1 space-y-5 text-[15px] leading-relaxed text-muted-foreground md:pl-16"
+            >
               <p>
-                This initiative exists because of the quiet, enduring efforts of people who believed in preserving our culture before we did. We owe a profound debt of gratitude to <strong>Indira Laisram</strong>, whose foundational work and extensive documentation provided the bedrock upon which iManipur stands. Her lifelong dedication to safeguarding our stories and traditions ensures that they survive not merely as memories, but as a living inheritance for the generations that follow.
+                This initiative exists because of the quiet, enduring efforts of people who believed
+                in preserving our culture before we did. We owe a profound debt of gratitude to{" "}
+                <strong>Indira Laisram</strong>, whose foundational work and extensive documentation
+                provided the bedrock upon which iManipur stands. Her lifelong dedication to
+                safeguarding our stories and traditions ensures that they survive not merely as
+                memories, but as a living inheritance for the generations that follow.
               </p>
             </motion.div>
           </div>
@@ -823,7 +851,10 @@ function Index() {
           {/* faq-02 two-column layout: heading left, accordion right */}
           <div className="mx-auto flex max-w-5xl flex-1 flex-col gap-6 lg:flex-row">
             {/* Left: Heading & support text */}
-            <motion.div variants={itemVariants} className="flex w-full flex-col gap-4 lg:flex-1 lg:py-5">
+            <motion.div
+              variants={itemVariants}
+              className="flex w-full flex-col gap-4 lg:flex-1 lg:py-5"
+            >
               <p className="label-mono text-primary/70">FAQ</p>
               <h2 className="mt-2 text-foreground text-4xl font-bold leading-tight tracking-tight">
                 Common <span className="text-primary">questions.</span>
@@ -842,8 +873,8 @@ function Index() {
                     value={`item-${index}`}
                     className="space-y-1 border-none"
                   >
-                    <AccordionTrigger className="group flex w-full justify-end py-0 hover:no-underline [&_svg]:hidden">
-                      <div className="bg-primary text-primary-foreground max-w-[90%] cursor-pointer px-4 py-3 text-left text-base transition">
+                    <AccordionTrigger className="group flex w-full justify-between py-0 hover:no-underline">
+                      <div className="bg-primary text-primary-foreground max-w-[90%] flex-1 cursor-pointer px-4 py-3 text-left text-base transition">
                         {item.q}
                       </div>
                     </AccordionTrigger>
