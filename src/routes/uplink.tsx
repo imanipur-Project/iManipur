@@ -20,6 +20,12 @@ function UplinkRoute() {
     setIsSigningIn(true);
     setError(null);
 
+    if (!supabase) {
+      setError("CMS is not configured on this deployment.");
+      setIsSigningIn(false);
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
