@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { toast } from "sonner";
 import { RichTextEditor } from "./RichTextEditor";
 import { useAuth } from "./AuthContext";
@@ -32,6 +32,8 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
 
     activeSlugRef.current = slug;
     setIsLoading(true);
+    setContent(defaultHtml);
+    setOriginalContent(defaultHtml);
 
     async function fetchContent() {
       try {
@@ -84,6 +86,7 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
   };
 
   const handleCancel = () => {
+    if (isSaving) return;
     setContent(originalContent);
     // Increment key to force RichTextEditor remount with the reset content.
     setEditorKey((k) => k + 1);
@@ -104,7 +107,8 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
         <div className="flex justify-end gap-2 mt-2">
           <button
             onClick={handleCancel}
-            className="px-4 py-2 border border-border text-muted-foreground hover:bg-white/5 text-sm transition-colors rounded-none"
+            disabled={isSaving}
+            className="px-4 py-2 border border-border text-muted-foreground hover:bg-white/5 text-sm transition-colors rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Cancel
           </button>
