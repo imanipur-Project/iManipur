@@ -69,7 +69,7 @@ export function Footer() {
 
       <div className="relative mx-auto grid max-w-[1200px] items-center justify-center gap-6 px-5 pt-10 pb-0 md:px-8 md:flex z-10 w-full">
         <a href="#home" onClick={handleScrollTop} className="flex items-center justify-center">
-          <Logo size="lg" />
+          <Logo size="lg" withText={true} />
         </a>
         <p className="text-muted-foreground text-center text-[15px] leading-relaxed md:text-left max-w-2xl">
           An independent initiative rooted in Manipur — preserving its history, celebrating its

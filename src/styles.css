@@ -61,6 +61,7 @@
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono);
+  --font-meetei: "Noto Sans Meetei Mayek", sans-serif;
 }
 
 :root {
