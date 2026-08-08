@@ -2,10 +2,8 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Instagram, Facebook, Mail, Twitter, ArrowUp, Heart } from "lucide-react";
 import { Logo } from "./Logo";
 
-const INSTAGRAM_URL = "https://instagram.com/imanipur";
-const FACEBOOK_URL = "https://facebook.com/imanipur";
-const MAIL_URL = "mailto:heyimanipur@gmail.com";
-const TWITTER_URL = "https://twitter.com/imanipur";
+const INSTAGRAM_URL = "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
+const TWITTER_URL = "https://x.com/i_manipur?s=11";
 
 const navigation = {
   categories: [
@@ -121,10 +119,6 @@ export function Footer() {
 
       <div className="flex flex-wrap justify-center gap-y-6 z-10 mt-4">
         <div className="flex flex-wrap items-center justify-center gap-6 gap-y-4 px-6">
-          {/* mailto: should NOT open in a new tab */}
-          <a aria-label="Email" href={MAIL_URL} rel="noreferrer" className={socialLinkClass}>
-            <Mail strokeWidth={1.5} className="h-5 w-5" />
-          </a>
           <a
             aria-label="Twitter"
             href={TWITTER_URL}
@@ -142,15 +136,6 @@ export function Footer() {
             className={socialLinkClass}
           >
             <Instagram strokeWidth={1.5} className="h-5 w-5" />
-          </a>
-          <a
-            aria-label="Facebook"
-            href={FACEBOOK_URL}
-            rel="noreferrer"
-            target="_blank"
-            className={socialLinkClass}
-          >
-            <Facebook strokeWidth={1.5} className="h-5 w-5" />
           </a>
         </div>
       </div>
