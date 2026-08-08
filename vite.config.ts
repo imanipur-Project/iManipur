@@ -25,6 +25,11 @@ export default defineConfig({
     // binds to 0.0.0.0 for Render
     allowedHosts: [".onrender.com"], // allow Render host
   },
+  ssr: {
+    // dompurify is browser-only; never bundle it into the SSR/Nitro server function.
+    external: ["dompurify"],
+    noExternal: [],
+  },
   plugins: [
     tanstackStart({
       server: {
