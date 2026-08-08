@@ -112,7 +112,7 @@ const projects = [
     title: "Historical Stories Collection",
     status: "Coming Soon" as const,
     pillar: "Culture",
-    image: "/assets/Stories-Collection.jpg",
+    image: "/assets/Stories-Collection.jpeg",
     description:
       "A growing archive of lesser-known historical narratives from Manipur — stories of communities, places, and events that deserve to be remembered.",
     href: "#projects",

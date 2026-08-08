@@ -39,12 +39,12 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
           .from("content_blocks")
           .select("html_content")
           .eq("slug", slug)
-          .single();
+          .maybeSingle();
 
         // Discard response if slug changed while request was in flight.
         if (activeSlugRef.current !== slug) return;
 
-        if (error && error.code !== "PGRST116") {
+        if (error) {
           console.error(`Error loading ${slug}:`, error);
         }
 
