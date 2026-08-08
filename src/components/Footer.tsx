@@ -63,7 +63,7 @@ export function Footer() {
     >
       {/* Giant Watermark Background */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.02]">
-        <h2 className="font-display text-[25vw] md:text-[15vw] font-bold leading-none tracking-tighter text-foreground whitespace-nowrap">
+        <h2 className="font-display text-[15vw] md:text-[12vw] font-bold leading-none tracking-tighter text-foreground whitespace-nowrap">
           IMANIPUR
         </h2>
       </div>
@@ -83,7 +83,7 @@ export function Footer() {
           {navigation.categories.map((category) => (
             <div
               key={category.name}
-              className="grid grid-cols-3 flex-row justify-center md:justify-between gap-6 leading-6 md:flex max-w-2xl mx-auto"
+              className="grid grid-cols-1 sm:grid-cols-3 flex-row justify-center md:justify-between gap-8 leading-6 md:flex max-w-2xl mx-auto"
             >
               {category.sections.map((section) => (
                 <div key={section.name} className="flex-1 text-center">

@@ -153,7 +153,7 @@ export function Journey() {
             {/* Content (strictly 50% width on desktop to prevent overlap) */}
             <div
               className={[
-                "journey-content ml-10 flex-none sm:ml-0 sm:w-1/2",
+                "journey-content ml-12 pr-4 flex-none sm:ml-0 sm:pr-0 sm:w-1/2",
                 i % 2 === 0 ? "sm:pr-12 sm:text-left" : "sm:pl-12 sm:text-left",
               ].join(" ")}
             >

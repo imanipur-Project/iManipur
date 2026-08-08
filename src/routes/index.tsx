@@ -95,6 +95,7 @@ const projects = [
     image: "/assets/Historical-Animation.png",
     description:
       "An animation project honoring the 13th August Patriots' Day and our Fallen Heroes. Bringing Manipur's rich history to life through visual storytelling.",
+    href: "#projects",
   },
   {
     title: "Folk Stories of Manipur",
@@ -103,14 +104,16 @@ const projects = [
     image: "/assets/project-image.png",
     description:
       "Collecting and retelling the folk tales passed down through generations in Manipur — preserving oral traditions through modern media and illustration.",
+    href: "#projects",
   },
   {
     title: "Historical Stories Collection",
     status: "Coming Soon" as const,
     pillar: "Culture",
-    image: "/assets/Stories-Collection.jpeg",
+    image: "/assets/Stories-Collection.jpg",
     description:
       "A growing archive of lesser-known historical narratives from Manipur — stories of communities, places, and events that deserve to be remembered.",
+    href: "#projects",
   },
 ];
 
@@ -315,7 +318,7 @@ function Index() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-24 pt-[160px] text-center md:px-8 md:pb-36 md:pt-[200px]"
+          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-20 pt-[120px] text-center md:px-8 md:pb-36 md:pt-[200px]"
         >
           <motion.p variants={itemVariants} className="label-mono text-primary/70">
             Independent Initiative · Manipur
@@ -570,7 +573,7 @@ function Index() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {projects.map((proj) => (
               <motion.a
-                href="#"
+                href={proj.link || "#"}
                 key={proj.title}
                 variants={itemVariants}
                 className="group flex flex-col overflow-hidden rounded-none border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
@@ -598,18 +601,18 @@ function Index() {
                       className={[
                         "px-2 py-0.5 rounded-none text-[9px] font-semibold tracking-[0.1em] uppercase border",
                         proj.status === "In Progress"
-                          ? "border-primary/20 bg-primary/5 text-primary"
-                          : "border-border bg-muted/10 text-muted-foreground",
+                          ? "border-primary/40 bg-primary/10 text-primary"
+                          : "border-muted-foreground/30 bg-muted/30 text-muted-foreground",
                       ].join(" ")}
                     >
                       {proj.status}
                     </span>
                   </div>
-                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground flex-1">
+                  <p className="mt-3 mb-4 text-[13px] leading-relaxed text-muted-foreground flex-1">
                     {proj.description}
                   </p>
-                  <div className="mt-6 flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-foreground/50 group-hover:text-primary transition-colors">
-                    Explore project →
+                  <div className="mt-auto flex items-center gap-1 font-semibold text-[11px] tracking-[0.12em] uppercase text-primary transition-colors hover:text-primary/80">
+                    View project <ArrowUp className="h-3 w-3 rotate-45" />
                   </div>
                 </div>
               </motion.a>
@@ -695,7 +698,7 @@ function Index() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="group relative flex h-[220px] flex-col items-center justify-center gap-4 rounded-none border border-border bg-card px-6 py-8 text-center transition-all duration-300 hover:border-t-primary/70 hover:shadow-[inset_0_40px_100px_rgba(202,146,29,0.02)]"
+                className="group relative flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-none border border-border bg-card px-6 py-8 text-center transition-all duration-300 hover:border-t-primary/70 hover:shadow-[inset_0_40px_100px_rgba(202,146,29,0.02)]"
               >
                 {/* Cartographic Crosshairs */}
                 <div className="absolute -left-1 -top-1 h-2.5 w-2.5 border-l border-t border-primary/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -747,7 +750,7 @@ function Index() {
           variants={sectionVariants}
           className="scroll-mt-20 py-20"
         >
-          <div className="relative mx-auto flex max-w-4xl flex-col items-start overflow-hidden rounded-none border border-border bg-card p-8 text-left md:p-16">
+          <div className="relative mx-auto flex max-w-4xl flex-col items-start overflow-hidden rounded-none border border-border bg-card p-6 text-left md:p-12 lg:p-16">
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-none bg-primary/5 blur-[80px]" />
             <div
               aria-hidden
@@ -787,19 +790,8 @@ function Index() {
               With deepest <span className="text-primary">gratitude.</span>
             </h2>
           </motion.div>
-          <div className="mx-auto mt-14 flex max-w-2xl flex-col text-left space-y-6">
-            <motion.p
-              variants={itemVariants}
-              className="text-[16px] leading-relaxed text-muted-foreground"
-            >
-              We would like to express our deepest and most sincere gratitude to{" "}
-              <span className="font-medium text-foreground">Indira Laisram, Features Editor (National) The Indian Sun</span> for her
-              invaluable support, guidance, and encouragement throughout this journey. Her belief in
-              this project, along with her constant willingness to help, has played a meaningful
-              role in bringing this initiative to life.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="mt-12 flex items-center justify-center">
+          <div className="mx-auto mt-14 flex max-w-4xl flex-col items-center md:flex-row gap-8">
+            <motion.div variants={itemVariants} className="flex items-center justify-center">
               <div className="group relative flex h-32 w-32 items-center justify-center overflow-hidden rounded-none border border-border bg-primary/10 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-primary/50 hover:shadow-[inset_0_0_15px_rgba(202,146,29,0.1)]">
                 <img
                   src="/team/indira.png"
@@ -807,6 +799,12 @@ function Index() {
                   className="h-full w-full object-cover object-[50%_15%] opacity-80 mix-blend-luminosity transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:opacity-100 group-hover:mix-blend-normal"
                 />
               </div>
+            </motion.div>
+            
+            <motion.div variants={itemVariants} className="flex-1 space-y-5 text-[15px] leading-relaxed text-muted-foreground md:pl-16">
+              <p>
+                This initiative exists because of the quiet, enduring efforts of people who believed in preserving our culture before we did. We owe a profound debt of gratitude to <strong>Indira Laisram</strong>, whose foundational work and extensive documentation provided the bedrock upon which iManipur stands. Her lifelong dedication to safeguarding our stories and traditions ensures that they survive not merely as memories, but as a living inheritance for the generations that follow.
+              </p>
             </motion.div>
           </div>
         </motion.section>

@@ -18,9 +18,6 @@ export const contactSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required"),
   lastName: z.string().trim().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
-  mobile: z.string().optional().refine((v) => !v || v.replace(/\D/g, "").length >= 10, {
-    message: "Mobile number must be at least 10 digits",
-  }),
   message: z.string().trim().min(5, "Message is too short"),
 });
 
@@ -89,7 +86,7 @@ export function ContactSection() {
 
       {/* Quick Contact Cards */}
       <section className="relative z-10 mx-auto mt-8 mb-24 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           <QuickContactCard
             icon={<Mail className="h-6 w-6" />}
             title="Email Us"
@@ -172,20 +169,6 @@ export function ContactSection() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="mobile" className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground">
-                  Mobile Number
-                </label>
-                <input
-                  {...register("mobile")}
-                  id="mobile"
-                  type="tel"
-                  className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  placeholder="+91 98765 43210"
-                />
-                {errors.mobile && <span className="text-[11px] text-destructive">{errors.mobile.message}</span>}
-              </div>
-
-              <div className="flex flex-col gap-1.5">
                 <label htmlFor="message" className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground">
                   Message
                 </label>
@@ -202,7 +185,7 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex w-full items-center justify-center gap-2 rounded-none bg-primary px-4 py-4 font-mono text-[12px] tracking-wider uppercase text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-70"
+                className="flex w-full min-h-[44px] items-center justify-center gap-2 rounded-none bg-primary px-4 py-4 font-mono text-[12px] tracking-wider uppercase text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-70"
               >
                 {isSubmitting ? "Sending..." : "Send"}
                 {!isSubmitting && <ArrowRight className="h-4 w-4" />}
