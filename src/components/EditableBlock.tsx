@@ -6,12 +6,15 @@ import { useAuth } from "./AuthContext";
 import { supabase } from "../lib/supabase";
 import { isCmsEnabled } from "../lib/flags";
 
+import { cn } from "../lib/utils";
+
 interface EditableBlockProps {
   slug: string;
   defaultHtml: string;
+  className?: string;
 }
 
-export function EditableBlock({ slug, defaultHtml }: EditableBlockProps) {
+export function EditableBlock({ slug, defaultHtml, className }: EditableBlockProps) {
   const { isEditMode, user } = useAuth();
   const [content, setContent] = useState(defaultHtml);
   const [originalContent, setOriginalContent] = useState(defaultHtml);
@@ -121,7 +124,10 @@ export function EditableBlock({ slug, defaultHtml }: EditableBlockProps) {
 
   return (
     <div
-      className="prose prose-invert prose-p:text-muted-foreground prose-headings:text-foreground prose-a:text-primary max-w-none transition-opacity duration-300"
+      className={cn(
+        "prose prose-invert prose-p:text-muted-foreground prose-headings:text-foreground prose-a:text-primary max-w-none transition-opacity duration-300",
+        className,
+      )}
       dangerouslySetInnerHTML={{ __html: cleanHtml }}
     />
   );

@@ -459,8 +459,12 @@ function Index() {
             <div className="flex flex-col items-center">
               <p className="label-mono text-primary/70">Built for Manipur</p>
             </div>
-            <div className="mt-10 w-full text-left">
-              <EditableBlock slug="homepage-about" defaultHtml={ABOUT_DEFAULT_HTML} />
+            <div className="mt-14 w-full text-left">
+              <EditableBlock
+                slug="homepage-about"
+                defaultHtml={ABOUT_DEFAULT_HTML}
+                className="prose-p:mb-8 prose-p:leading-[1.85] prose-p:text-[1.1rem] prose-p:first-of-type:text-2xl md:prose-p:first-of-type:text-3xl prose-p:first-of-type:font-display prose-p:first-of-type:text-foreground prose-p:first-of-type:leading-snug prose-blockquote:font-display prose-blockquote:text-3xl md:prose-blockquote:text-4xl prose-blockquote:not-italic prose-blockquote:text-foreground prose-blockquote:border-l-primary prose-blockquote:py-4 prose-blockquote:my-12 prose-blockquote:px-8 prose-blockquote:leading-tight"
+              />
             </div>
 
             <motion.div

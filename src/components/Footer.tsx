@@ -153,32 +153,12 @@ export function Footer() {
             <Facebook strokeWidth={1.5} className="h-5 w-5" />
           </a>
         </div>
-
-        {/* Scroll To Top Widget */}
-        <div className="flex items-center justify-center mx-6">
-          <div className="flex items-center rounded-none border border-border border-dotted bg-card p-1">
-            <button
-              type="button"
-              onClick={handleScrollTop}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-            >
-              <ArrowUp className="h-4 w-4" />
-              <span>Top</span>
-            </button>
-          </div>
-        </div>
       </div>
 
-      <div className="mx-auto mt-14 mb-10 flex flex-col items-center gap-2 text-center max-w-[1200px] px-5 md:px-8 z-10 w-full">
-        <div className="flex flex-row flex-wrap items-center justify-center gap-1.5 text-muted-foreground/60 uppercase tracking-widest font-mono text-[10px]">
-          <span>Built by the</span>
-          <span className="font-bold text-foreground">iManipur Team</span>
-          <span>—</span>
-          <span>with</span>
-          <Heart className="h-3 w-3 text-primary/70 inline-block" />
-          <span>love,</span>
-          <span>☕ caffeine,</span>
-          <span>&amp; a couple of hours of coding.</span>
+      <div className="mx-auto mt-14 mb-10 flex flex-col items-center gap-3 text-center max-w-[1200px] px-5 md:px-8 z-10 w-full">
+        <div className="flex flex-col items-center justify-center gap-1.5 text-muted-foreground/60 uppercase tracking-widest font-mono text-[10px]">
+          <span className="font-bold text-foreground">iManipur</span>
+          <span>Crafted in Manipur. Built for the future.</span>
         </div>
         <div className="font-mono text-[9px] text-muted-foreground/30 uppercase tracking-widest">
           © {new Date().getFullYear()} iManipur — All rights reserved.
