@@ -35,6 +35,7 @@ const timeline = [
 
 export function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const sparkRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -49,7 +50,7 @@ export function Journey() {
           scaleY: 1,
           ease: "none",
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: trackRef.current,
             start: "top center",
             end: "bottom center",
             scrub: true,
@@ -66,7 +67,7 @@ export function Journey() {
           opacity: 1,
           ease: "none",
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: trackRef.current,
             start: "top center",
             end: "bottom center",
             scrub: true,
@@ -86,7 +87,7 @@ export function Journey() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: item,
-            start: "top center+=15%", // Triggers slightly before the item hits center
+            start: "top center", // Triggers exactly when item hits center (matches the spark)
             toggleActions: "play none none reverse", // Play down, reverse up
           },
         });
@@ -118,7 +119,7 @@ export function Journey() {
         </p>
       </div>
 
-      <div className="relative mx-auto max-w-2xl">
+      <div className="relative mx-auto max-w-2xl" ref={trackRef}>
         {/* Background track for the line */}
         <div className="absolute bottom-0 left-4 top-0 w-px bg-border/40 sm:left-1/2 sm:-translate-x-px" />
 
@@ -131,7 +132,7 @@ export function Journey() {
         {/* The traveling spark */}
         <div
           ref={sparkRef}
-          className="absolute left-4 z-20 h-3 w-1 -translate-x-[1.5px] rounded-full bg-primary shadow-[0_0_15px_2px_var(--color-primary)] sm:left-1/2 sm:-translate-x-px"
+          className="absolute left-4 z-20 h-3 w-1 -translate-x-[1.5px] rounded-none bg-primary shadow-[0_0_15px_2px_var(--color-primary)] sm:left-1/2 sm:-translate-x-px"
         />
 
         {timeline.map((item, i) => (
@@ -147,14 +148,14 @@ export function Journey() {
           >
             {/* Dot */}
             <div className="absolute left-4 top-2 z-10 flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:left-1/2">
-              <span className="journey-dot h-3 w-3 rounded-full border-[2.5px] border-primary bg-background shadow-[0_0_15px_var(--color-primary)]" />
+              <span className="journey-dot h-3 w-3 rounded-none border-[2.5px] border-primary bg-background shadow-[0_0_15px_var(--color-primary)]" />
             </div>
 
             {/* Content (strictly 50% width on desktop to prevent overlap) */}
             <div
               className={[
-                "journey-content ml-10 flex-none sm:ml-0 sm:w-1/2",
-                i % 2 === 0 ? "sm:pr-12 sm:text-right" : "sm:pl-12 sm:text-left",
+                "journey-content ml-12 pr-4 flex-none sm:ml-0 sm:pr-0 sm:w-1/2",
+                i % 2 === 0 ? "sm:pr-12 sm:text-left" : "sm:pl-12 sm:text-left",
               ].join(" ")}
             >
               <span className="journey-year font-semibold text-[11px] tracking-[0.2em] uppercase text-primary">

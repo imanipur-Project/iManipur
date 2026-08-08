@@ -214,12 +214,12 @@ export function Terminal({
   const content = (
     <div
       ref={containerRef}
-      className={`w-full overflow-hidden rounded-sm border border-border bg-card text-left shadow-[var(--shadow-card)] ${className ?? ""}`}
+      className={`w-full overflow-hidden rounded-none border border-border bg-card text-left shadow-none ${className ?? ""}`}
     >
-      <div className="flex items-center gap-1.5 border-b border-border bg-muted/40 px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.65_0_0)]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.75_0_0)]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[oklch(0.65_0_0)]" />
+      <div className="flex items-center gap-1.5 border-b border-border bg-muted/20 px-4 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-none bg-[oklch(0.65_0_0)]" />
+        <span className="h-2.5 w-2.5 rounded-none bg-[oklch(0.75_0_0)]" />
+        <span className="h-2.5 w-2.5 rounded-none bg-[oklch(0.65_0_0)]" />
         <div className="flex-1 text-center">
           <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-muted-foreground/60">
             {title}

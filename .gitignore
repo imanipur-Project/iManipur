@@ -46,3 +46,13 @@ storybook-static
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# AI Agents & Hooks
+.github/agents/
+.github/hooks/
+.github/skills/
+.impeccable/
+
+# Scratch scripts
+calc.py
+create_admin.mjs
