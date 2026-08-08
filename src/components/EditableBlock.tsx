@@ -28,7 +28,7 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
   const activeSlugRef = useRef(slug);
 
   useEffect(() => {
-    if (!isCmsEnabled) return;
+    if (!isCmsEnabled || !supabase) return;
 
     activeSlugRef.current = slug;
     setIsLoading(true);
@@ -70,6 +70,7 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
   const handleSave = async () => {
     setIsSaving(true);
     try {
+      if (!supabase) return;
       const { error } = await supabase
         .from("content_blocks")
         .upsert({ slug, html_content: content }, { onConflict: "slug" });
