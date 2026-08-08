@@ -2,7 +2,8 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Instagram, Facebook, Mail, Twitter, ArrowUp, Heart } from "lucide-react";
 import { Logo } from "./Logo";
 
-const INSTAGRAM_URL = "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
+const INSTAGRAM_URL =
+  "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
 const TWITTER_URL = "https://x.com/i_manipur?s=11";
 
 const navigation = {

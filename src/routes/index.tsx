@@ -457,9 +457,8 @@ function Index() {
         >
           <div className="mx-auto max-w-[1200px] px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
-              
-              {/* Hero Title Block (Spans 8 columns) */}
-              <motion.div 
+              {/* Hero & Narrative Block (Spans 8 columns) */}
+              <motion.div
                 variants={itemVariants}
                 className="col-span-1 md:col-span-8 group relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 lg:p-12 transition-all hover:border-primary/30"
               >
@@ -469,19 +468,16 @@ function Index() {
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                     Built for Manipur
                   </p>
-                  <h2 className="max-w-2xl text-balance text-4xl font-display font-medium tracking-tight lg:text-[3.5rem] text-foreground leading-[1.1]">
-                    Every generation inherits knowledge.
-                  </h2>
-                  <div className="mt-10 border-l-2 border-primary/40 pl-6">
-                    <p className="max-w-xl text-xl md:text-2xl font-display text-foreground/90 italic leading-snug">
-                      Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move from one generation to the next.
-                    </p>
-                  </div>
+                  <EditableBlock
+                    slug="homepage-about"
+                    defaultHtml={ABOUT_DEFAULT_HTML}
+                    className="prose-p:mb-6 prose-p:text-muted-foreground prose-p:text-balance prose-p:text-lg prose-p:leading-relaxed prose-p:first-of-type:text-4xl lg:prose-p:first-of-type:text-[3.5rem] prose-p:first-of-type:font-display prose-p:first-of-type:font-medium prose-p:first-of-type:tracking-tight prose-p:first-of-type:text-foreground prose-p:first-of-type:leading-[1.1] prose-p:first-of-type:mb-10 prose-blockquote:mt-10 prose-blockquote:border-l-2 prose-blockquote:border-primary/40 prose-blockquote:pl-6 prose-blockquote:text-xl md:prose-blockquote:text-2xl prose-blockquote:font-display prose-blockquote:text-foreground/90 prose-blockquote:italic prose-blockquote:leading-snug"
+                  />
                 </div>
               </motion.div>
 
               {/* Lottie Animation Block (Spans 4 columns) */}
-              <motion.div 
+              <motion.div
                 variants={itemVariants}
                 className="col-span-1 md:col-span-4 relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md p-8 flex items-center justify-center min-h-[300px]"
               >
@@ -493,32 +489,19 @@ function Index() {
                 />
               </motion.div>
 
-              {/* Narrative Block (Spans 6 columns) */}
-              <motion.div 
+              {/* Features (Spans 12 columns) */}
+              <motion.div
                 variants={itemVariants}
-                className="col-span-1 md:col-span-6 rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 lg:p-10"
-              >
-                <div className="space-y-6">
-                  <p className="text-muted-foreground text-balance text-lg leading-relaxed">
-                    Some of it is written. Some of it is remembered. Some exists only in stories, traditions, languages, and the people who carry them forward. When knowledge is preserved, a society grows stronger. When it is forgotten, something irreplaceable disappears.
-                  </p>
-                  <p className="text-muted-foreground text-balance text-lg leading-relaxed">
-                    iManipur exists to help ensure that knowledge continues. We are an independent initiative bringing together educators, researchers, artists, technologists, designers, historians, and creators to build projects that contribute to the cultural, educational, and creative development of Manipur.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Features (Spans 6 columns) */}
-              <motion.div 
-                variants={itemVariants}
-                className="col-span-1 md:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6"
+                className="col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6"
               >
                 {/* Feature 1 */}
                 <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
                   <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
                     <Zap className="size-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-display font-medium text-foreground mb-3">Interdisciplinary.</h3>
+                  <h3 className="text-xl font-display font-medium text-foreground mb-3">
+                    Interdisciplinary.
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     We work across culture, education, research, design, and technology.
                   </p>
@@ -529,7 +512,9 @@ function Index() {
                   <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
                     <Shield className="size-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-display font-medium text-foreground mb-3">Long-term Value.</h3>
+                  <h3 className="text-xl font-display font-medium text-foreground mb-3">
+                    Long-term Value.
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Building initiatives that are locally relevant and thoughtfully designed.
                   </p>
@@ -537,7 +522,7 @@ function Index() {
               </motion.div>
 
               {/* Stats row integrated into Bento (Spans 12 columns) */}
-              <motion.div 
+              <motion.div
                 variants={itemVariants}
                 className="col-span-1 md:col-span-12 grid grid-cols-2 sm:grid-cols-4 gap-6 mt-2"
               >
@@ -555,7 +540,6 @@ function Index() {
                   </div>
                 ))}
               </motion.div>
-
             </div>
           </div>
         </motion.section>
