@@ -35,6 +35,9 @@ jobs:
 
       - name: Run Playwright tests
         run: pnpm exec playwright test
+        env:
+          VITE_SUPABASE_URL: "https://mock.supabase.co"
+          VITE_SUPABASE_PUBLISHABLE_KEY: "mock-key"
 
       - name: Publish Chromatic Playwright
         if: ${{ env.CHROMATIC_PROJECT_TOKEN != '' }}
