@@ -5,7 +5,7 @@ import { Journey } from "../components/Journey";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Terminal, TypingAnimation, AnimatedSpan } from "../components/Terminal";
-import { ArrowUp, Instagram, Facebook } from "lucide-react";
+import { ArrowUp, Instagram, Facebook, Zap, Shield } from "lucide-react";
 import { EditableBlock } from "../components/EditableBlock";
 import { Marquee } from "../components/Marquee";
 import {
@@ -455,47 +455,91 @@ function Index() {
           variants={sectionVariants}
           className="py-20"
         >
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <div className="flex flex-col items-center">
-              <p className="label-mono text-primary/70">Built for Manipur</p>
-            </div>
-            <div className="mt-14 w-full text-left">
-              <EditableBlock
-                slug="homepage-about"
-                defaultHtml={ABOUT_DEFAULT_HTML}
-                className="prose-p:mb-8 prose-p:leading-[1.85] prose-p:text-[1.1rem] prose-p:first-of-type:text-2xl md:prose-p:first-of-type:text-3xl prose-p:first-of-type:font-display prose-p:first-of-type:text-foreground prose-p:first-of-type:leading-snug prose-blockquote:font-display prose-blockquote:text-3xl md:prose-blockquote:text-4xl prose-blockquote:not-italic prose-blockquote:text-foreground prose-blockquote:border-l-primary prose-blockquote:py-4 prose-blockquote:my-12 prose-blockquote:px-8 prose-blockquote:leading-tight"
-              />
-            </div>
+          <div className="mx-auto max-w-[1200px] px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
+              {/* Hero & Narrative Block (Spans 8 columns) */}
+              <motion.div
+                variants={itemVariants}
+                className="col-span-1 md:col-span-8 group relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 lg:p-12 transition-all hover:border-primary/30"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-30" />
+                <div className="relative z-10">
+                  <p className="label-mono text-primary mb-6 flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Built for Manipur
+                  </p>
+                  <EditableBlock
+                    slug="homepage-about"
+                    defaultHtml={ABOUT_DEFAULT_HTML}
+                    className="prose-p:mb-6 prose-p:text-muted-foreground prose-p:text-balance prose-p:text-lg prose-p:leading-relaxed prose-p:first-of-type:text-4xl lg:prose-p:first-of-type:text-[3.5rem] prose-p:first-of-type:font-display prose-p:first-of-type:font-medium prose-p:first-of-type:tracking-tight prose-p:first-of-type:text-foreground prose-p:first-of-type:leading-[1.1] prose-p:first-of-type:mb-10 prose-blockquote:mt-10 prose-blockquote:border-l-2 prose-blockquote:border-primary/40 prose-blockquote:pl-6 prose-blockquote:text-xl md:prose-blockquote:text-2xl prose-blockquote:font-display prose-blockquote:text-foreground/90 prose-blockquote:italic prose-blockquote:leading-snug"
+                  />
+                </div>
+              </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="mt-10 overflow-hidden rounded-none border border-border"
-            >
-              <div className="w-full bg-muted/20 flex items-center justify-center p-8">
+              {/* Lottie Animation Block (Spans 4 columns) */}
+              <motion.div
+                variants={itemVariants}
+                className="col-span-1 md:col-span-4 relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md p-8 flex items-center justify-center min-h-[300px]"
+              >
+                <div className="absolute inset-0 bg-primary/5 opacity-50" />
                 <Lottie
                   animationData={aboutLottie}
                   loop={true}
-                  className="w-full max-w-xs opacity-80 mix-blend-screen"
+                  className="relative z-10 w-full max-w-[220px] opacity-90 mix-blend-screen transition-transform duration-500 hover:scale-105"
                 />
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Stats row */}
-            <div className="mt-14 grid w-full grid-cols-2 gap-4 sm:grid-cols-4">
-              {stats.map((s) => (
-                <motion.div
-                  key={s.label}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="group flex flex-col items-center gap-2 rounded-none border border-border bg-card px-4 py-6 transition-colors duration-200 hover:border-primary/30 hover:bg-accent/20"
-                >
-                  <span className="font-display text-3xl font-bold text-primary transition-colors duration-200">
-                    {s.value}
-                  </span>
-                  <span className="font-semibold text-[10px] tracking-[0.16em] uppercase text-muted-foreground/70">
-                    {s.label}
-                  </span>
-                </motion.div>
-              ))}
+              {/* Features (Spans 12 columns) */}
+              <motion.div
+                variants={itemVariants}
+                className="col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                {/* Feature 1 */}
+                <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
+                  <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
+                    <Zap className="size-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-display font-medium text-foreground mb-3">
+                    Interdisciplinary.
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    We work across culture, education, research, design, and technology.
+                  </p>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
+                  <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
+                    <Shield className="size-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-display font-medium text-foreground mb-3">
+                    Long-term Value.
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Building initiatives that are locally relevant and thoughtfully designed.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Stats row integrated into Bento (Spans 12 columns) */}
+              <motion.div
+                variants={itemVariants}
+                className="col-span-1 md:col-span-12 grid grid-cols-2 sm:grid-cols-4 gap-6 mt-2"
+              >
+                {stats.map((s, i) => (
+                  <div
+                    key={s.label}
+                    className="group flex flex-col items-center justify-center gap-3 rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
+                  >
+                    <span className="font-display text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      {s.value}
+                    </span>
+                    <span className="font-semibold text-xs tracking-[0.2em] uppercase text-muted-foreground/70 text-center">
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
         </motion.section>

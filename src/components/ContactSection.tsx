@@ -81,9 +81,9 @@ export function ContactSection() {
           <QuickContactCard
             icon={<Phone className="h-6 w-6" />}
             title="Call Us"
-            value="+91 96120 55277"
+            value="+91 79822 84458"
             description="Available during business hours"
-            href="tel:+919612055277"
+            href="tel:+917982284458"
           />
           <QuickContactCard
             icon={<MapPin className="h-6 w-6" />}
