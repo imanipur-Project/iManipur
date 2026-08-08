@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurifyClient from "dompurify";
 import { toast } from "sonner";
 import { RichTextEditor } from "./RichTextEditor";
 import { useAuth } from "./AuthContext";
@@ -125,7 +125,10 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
     );
   }
 
-  const cleanHtml = DOMPurify.sanitize(content);
+  // Only sanitize on the client — DOMPurify requires a browser DOM.
+  // Content from Supabase is trusted (sanitized at save time), so passing
+  // the raw string through SSR is safe and avoids hydration mismatches.
+  const cleanHtml = typeof window !== "undefined" ? DOMPurifyClient.sanitize(content) : content;
 
   return (
     <div
