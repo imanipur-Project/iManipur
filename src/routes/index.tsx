@@ -476,50 +476,51 @@ function Index() {
                 </div>
               </motion.div>
 
-              {/* Lottie Animation Block (Spans 4 columns) */}
-              <motion.div
-                variants={itemVariants}
-                className="col-span-1 md:col-span-4 relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md p-8 flex items-center justify-center min-h-[300px]"
-              >
-                <div className="absolute inset-0 bg-primary/5 opacity-50" />
-                <Lottie
-                  animationData={aboutLottie}
-                  loop={true}
-                  className="relative z-10 w-full max-w-[220px] opacity-90 mix-blend-screen transition-transform duration-500 hover:scale-105"
-                />
-              </motion.div>
+              {/* Right Column Stack (Spans 4 columns) */}
+              <div className="col-span-1 md:col-span-4 flex flex-col gap-6">
+                {/* Lottie Animation Block */}
+                <motion.div
+                  variants={itemVariants}
+                  className="relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md p-8 flex-1 flex items-center justify-center min-h-[320px] group"
+                >
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-primary/5 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="dot-bg absolute inset-0 opacity-20" />
+                  <Lottie
+                    animationData={aboutLottie}
+                    loop={true}
+                    className="relative z-10 w-full max-w-[260px] opacity-90 mix-blend-screen transition-transform duration-500 group-hover:scale-105"
+                  />
+                </motion.div>
 
-              {/* Features (Spans 12 columns) */}
-              <motion.div
-                variants={itemVariants}
-                className="col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6"
-              >
-                {/* Feature 1 */}
-                <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
-                  <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
-                    <Zap className="size-6 text-primary" />
+                {/* Features Grid */}
+                <motion.div variants={itemVariants} className="grid grid-cols-1 gap-6">
+                  {/* Feature 1 */}
+                  <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
+                    <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
+                      <Zap className="size-5 lg:size-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-display font-medium text-foreground mb-2 lg:mb-3">
+                      Interdisciplinary.
+                    </h3>
+                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+                      We work across culture, education, research, design, and technology.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-display font-medium text-foreground mb-3">
-                    Interdisciplinary.
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    We work across culture, education, research, design, and technology.
-                  </p>
-                </div>
 
-                {/* Feature 2 */}
-                <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
-                  <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
-                    <Shield className="size-6 text-primary" />
+                  {/* Feature 2 */}
+                  <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
+                    <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
+                      <Shield className="size-5 lg:size-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-display font-medium text-foreground mb-2 lg:mb-3">
+                      Long-term Value.
+                    </h3>
+                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+                      Building initiatives that are locally relevant and thoughtfully designed.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-display font-medium text-foreground mb-3">
-                    Long-term Value.
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Building initiatives that are locally relevant and thoughtfully designed.
-                  </p>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
 
               {/* Stats row integrated into Bento (Spans 12 columns) */}
               <motion.div

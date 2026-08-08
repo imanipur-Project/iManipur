@@ -97,10 +97,7 @@ export function Navbar() {
     >
       <div className="relative z-50 mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-8">
         <motion.a href="#about" className="group flex items-center gap-2.5" whileHover="hover">
-          <Logo size="sm" />
-          <span className="hidden font-semibold text-[11px] tracking-[0.22em] uppercase text-foreground transition-colors duration-200 group-hover:text-primary sm:inline-block">
-            iManipur
-          </span>
+          <Logo size="sm" withText={true} />
         </motion.a>
 
         {/* Desktop nav */}
@@ -216,7 +213,7 @@ export function Navbar() {
               transition={{ delay: 0.6 }}
               className="absolute bottom-10"
             >
-              <Logo size="lg" />
+              <Logo size="lg" withText={true} />
             </motion.div>
           </motion.nav>
         )}
