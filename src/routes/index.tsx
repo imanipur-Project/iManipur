@@ -1,6 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useRef, useCallback, useId } from "react";
-import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import { EditableBlock } from "../components/EditableBlock";
 import { ContactSection } from "../components/ContactSection";
 import { Journey } from "../components/Journey";
