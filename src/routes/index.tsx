@@ -292,7 +292,7 @@ function Index() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section
         id="about"
-        className="relative overflow-hidden border-b border-border bg-hero-gradient"
+        className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-border bg-hero-gradient pt-[80px]"
       >
         {/* Animated grid background - adapted from ali imam hero-01 */}
         <div
@@ -325,7 +325,7 @@ function Index() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-20 pt-[140px] text-center md:px-8 md:pb-36 md:pt-[200px]"
+          className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center px-5 py-12 text-center md:px-8 md:py-20"
         >
           <motion.p variants={itemVariants} className="label-mono text-primary/70">
             Independent Initiative · Manipur
@@ -333,18 +333,17 @@ function Index() {
 
           <motion.h1
             variants={itemVariants}
-            className="mt-6 max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-[4rem] lg:text-[5rem]"
+            className="mt-6 max-w-4xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
           >
-            Preserving Manipur's knowledge for the future.{" "}
-            <span className="inline-block text-gradient-primary pb-1">Architecting tomorrow.</span>
+            Preserving Knowledge.{" "}
+            <span className="inline-block text-gradient-primary pb-1">Shaping Tomorrow.</span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
             className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground/80 md:text-base"
           >
-            iManipur is an independent initiative advancing culture, education, and innovation for
-            Manipur through research, storytelling, and technology.
+            Culture, education, and innovation for Manipur.
           </motion.p>
 
           {/* Animated Terminal */}
