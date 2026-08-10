@@ -348,7 +348,10 @@ function Index() {
           </motion.p>
 
           {/* Animated Terminal */}
-          <motion.div variants={itemVariants} className="group mt-10 w-full max-w-xl transition-shadow duration-500 hover:shadow-[var(--shadow-glow)]">
+          <motion.div
+            variants={itemVariants}
+            className="group mt-10 w-full max-w-xl transition-shadow duration-500 hover:shadow-[var(--shadow-glow)]"
+          >
             <Terminal
               key={terminalKey}
               title="imanipur.sh"
@@ -562,7 +565,8 @@ function Index() {
               Three pillars, <span className="text-primary block sm:inline">one intention.</span>
             </h2>
             <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
-              Locally calibrated operations - synthesizing culture, intelligence, and frameworks that optimize Manipur.
+              Locally calibrated operations - synthesizing culture, intelligence, and frameworks
+              that optimize Manipur.
             </p>
           </motion.div>
 
@@ -635,8 +639,9 @@ function Index() {
               Our <span className="text-primary">projects.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              Active computational processes - archiving, safeguarding, and transmitting the narratives of Manipur
-              through advanced animation, digital illustration, and rigorous archival research.
+              Active computational processes - archiving, safeguarding, and transmitting the
+              narratives of Manipur through advanced animation, digital illustration, and rigorous
+              archival research.
             </p>
           </motion.div>
 

@@ -115,7 +115,8 @@ export function Journey() {
           How we <span className="text-primary">got here.</span>
         </h2>
         <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-          From conceptualization to operational initiative - every phase is rigorously calibrated for purpose.
+          From conceptualization to operational initiative - every phase is rigorously calibrated
+          for purpose.
         </p>
       </div>
 

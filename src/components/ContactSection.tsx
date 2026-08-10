@@ -62,7 +62,8 @@ export function ContactSection() {
             Let's work on <span className="text-primary">Manipur</span> together.
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-balance">
-            If you are architecting solutions for Manipur - within cultural preservation, advanced education, or innovative frameworks - we invite you to initiate dialogue.
+            If you are architecting solutions for Manipur - within cultural preservation, advanced
+            education, or innovative frameworks - we invite you to initiate dialogue.
           </p>
         </div>
       </section>

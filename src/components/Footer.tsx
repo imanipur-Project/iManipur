@@ -72,8 +72,8 @@ export function Footer() {
           <Logo size="lg" withText={true} />
         </a>
         <p className="text-muted-foreground text-center text-[15px] leading-relaxed md:text-left max-w-2xl">
-          An autonomous initiative engineered in Manipur - systematically preserving historical data, amplifying 
-          cultural intelligence, and architecting robust resources for the future.
+          An autonomous initiative engineered in Manipur - systematically preserving historical
+          data, amplifying cultural intelligence, and architecting robust resources for the future.
         </p>
       </div>
 
