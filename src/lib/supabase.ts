@@ -5,7 +5,7 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string 
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn(
-    "[iManipur] Supabase env vars not set — CMS features disabled. " +
+    "[iManipur] Supabase env vars not set - CMS features disabled. " +
       "Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY to enable.",
   );
 }

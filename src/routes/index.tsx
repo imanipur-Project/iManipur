@@ -30,16 +30,16 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "iManipur — Independent Initiative for Manipur" },
+      { title: "iManipur - Independent Initiative for Manipur" },
       {
         name: "description",
         content:
-          "iManipur is an independent initiative advancing culture, education, and innovation for Manipur.",
+          "iManipur functions as an autonomous initiative optimizing culture, education, and technological frameworks for Manipur.",
       },
-      { property: "og:title", content: "iManipur — Independent Initiative for Manipur" },
+      { property: "og:title", content: "iManipur - Independent Initiative for Manipur" },
       {
         property: "og:description",
-        content: "Preserving knowledge. Inspiring learning. Building the future.",
+        content: "Safeguarding data. Accelerating intelligence. Architecting the future.",
       },
     ],
   }),
@@ -48,43 +48,43 @@ export const Route = createFileRoute("/")({
 
 /* ─── Data ──────────────────────────────────────────────── */
 
-const ABOUT_DEFAULT_HTML = `<p>Every generation inherits knowledge. Some of it is written. Some of it is remembered. Some exists only in stories, traditions, languages, and the people who carry them forward.</p><p>When knowledge is preserved, a society grows stronger. When it is forgotten, something irreplaceable disappears.</p><p>iManipur exists to help ensure that knowledge continues. We are an independent initiative bringing together educators, researchers, artists, technologists, designers, historians, and creators to build projects that contribute to the cultural, educational, and creative development of Manipur.</p><p>Rather than operating within a single discipline, we work across culture, education, research, design, and technology. This interdisciplinary approach allows us to build initiatives that are locally relevant, thoughtfully designed, and valuable over the long term.</p><blockquote>Our work is rooted in Manipur, but its purpose is timeless: To help knowledge move from one generation to the next.</blockquote>`;
+const ABOUT_DEFAULT_HTML = `<p>Knowledge is the fundamental framework of civilization. While some is formally documented, much is encoded within the cultural matrix - the narratives, traditions, languages, and the consciousness of the people who sustain them.</p><p>The systematic preservation of this heritage fortifies societal resilience. Conversely, its loss results in an irreversible erasure of identity.</p><p>iManipur is engineered to counteract this entropy. As an autonomous initiative, we synthesize the expertise of educators, researchers, technologists, and artists to architect solutions that accelerate the cultural, educational, and creative evolution of Manipur.</p><p>By transcending traditional disciplinary boundaries, we deploy an interdisciplinary methodology integrating technology, research, and design. This framework ensures our initiatives are highly optimized, contextually precise, and architected for enduring impact.</p><blockquote>Our operational core is rooted in Manipur, yet our overarching objective remains universal: Facilitating the seamless transfer of knowledge into the future.</blockquote>`;
 
 const pillars = [
   {
     no: "01",
     tag: "Culture",
     symbol: "◈",
-    title: "Knowledge begins with identity",
-    body: "We preserve the stories, traditions, languages, art, and historical narratives that define Manipur. By documenting and sharing cultural knowledge, we help ensure that future generations inherit more than memories—they inherit understanding.",
+    title: "Identity is the Genesis of Knowledge",
+    body: "We systematically preserve the narratives, traditions, languages, and artistic expressions that define Manipur. Through advanced documentation and strategic dissemination of cultural data, we guarantee that the future inherits profound comprehension - not merely fragmented memories.",
     points: [
-      "Document oral traditions & folk tales",
-      "Archive historical narratives",
-      "Celebrate Manipuri art forms",
+      "Document oral traditions & folklore",
+      "Archive historical data systems",
+      "Immortalize artistic expressions",
     ],
   },
   {
     no: "02",
     tag: "Education",
     symbol: "◎",
-    title: "Knowledge grows when it is shared",
-    body: "We create opportunities for learning through educational resources, mentorship, research, workshops, and collaborative initiatives that encourage curiosity and lifelong learning. Education is a continuous process of discovering, questioning, and contributing.",
+    title: "Dissemination Accelerates Intelligence",
+    body: "We architect dynamic learning ecosystems through strategic mentorship, open-source resources, and collaborative frameworks designed to optimize intellectual curiosity. Education is conceptualized as an iterative algorithm of discovery, analysis, and active contribution.",
     points: [
-      "Mentorship & knowledge sharing",
-      "Open learning resources",
-      "Skill-building workshops",
+      "Mentorship & intelligence sharing",
+      "Open-source learning nodes",
+      "Skill-optimization workshops",
     ],
   },
   {
     no: "03",
     tag: "Innovation",
     symbol: "◇",
-    title: "Knowledge creates progress",
-    body: "Innovation is most meaningful when it responds to real needs and reflects local context. We explore technology, design, creative media, and interdisciplinary collaboration to build practical solutions that contribute to the future of Manipur.",
+    title: "Innovation Catalyzes Evolution",
+    body: "Technological advancement achieves peak efficacy when calibrated to localized paradigms. We synthesize emerging technologies, strategic design, and interdisciplinary methodologies to engineer pragmatic solutions that directly accelerate the future of Manipur.",
     points: [
-      "Community-first digital tools",
-      "Creative storytelling media",
-      "Local problem-solving",
+      "Community-optimized digital tools",
+      "Advanced storytelling media",
+      "Localized system engineering",
     ],
   },
 ];
@@ -96,7 +96,7 @@ const projects = [
     pillar: "History",
     image: "/assets/Historical-Animation.png",
     description:
-      "An animation project honoring the 13th August Patriots' Day and our Fallen Heroes. Bringing Manipur's rich history to life through visual storytelling.",
+      "A sophisticated animation initiative memorializing the 13th August Patriots' Day and our fallen visionaries. Reviving Manipur's historical archives through high-fidelity visual storytelling.",
     href: "#projects",
   },
   {
@@ -105,7 +105,7 @@ const projects = [
     pillar: "Story",
     image: "/assets/project-image.png",
     description:
-      "Collecting and retelling the folk tales passed down through generations in Manipur — preserving oral traditions through modern media and illustration.",
+      "Aggregating and reimagining traditional folklore - deploying modern digital media and advanced illustration techniques to immortalize oral histories for the future.",
     href: "#projects",
   },
   {
@@ -114,7 +114,7 @@ const projects = [
     pillar: "Culture",
     image: "/assets/Stories-Collection.jpeg",
     description:
-      "A growing archive of lesser-known historical narratives from Manipur — stories of communities, places, and events that deserve to be remembered.",
+      "An expanding, high-resolution archive of undocumented historical narratives - synthesizing data on communities, geographical loci, and pivotal events engineered for perpetual preservation.",
     href: "#projects",
   },
 ];
@@ -122,32 +122,32 @@ const projects = [
 const principles = [
   {
     k: "Research",
-    v: "Thoughtful work begins with understanding. We take time to learn, document, verify, and listen before creating solutions.",
+    v: "Strategic execution necessitates profound comprehension. We prioritize rigorous data acquisition, verification, and contextual analysis prior to architecting solutions.",
     symbol: "◬",
   },
   {
     k: "Integrity",
-    v: "Accuracy matters more than attention. We value careful research, honest representation, and responsible storytelling over popularity.",
+    v: "Precision supersedes visibility. Our operations are governed by empirical research, authentic representation, and ethical narrative synthesis.",
     symbol: "⟁",
   },
   {
     k: "Stewardship",
-    v: "We are not interested in short-lived projects. Every initiative is designed to remain useful and valuable for years to come.",
+    v: "We reject ephemeral objectives. Every initiative is meticulously engineered for maximum longevity and sustained utility across subsequent phases.",
     symbol: "◫",
   },
   {
     k: "Collaboration",
-    v: "Great work rarely happens in isolation. We bring together diverse perspectives because they produce stronger outcomes.",
+    v: "Optimal outputs require systemic integration. We synergize diverse multidisciplinary perspectives to generate exponentially superior results.",
     symbol: "◌",
   },
   {
     k: "Accessibility",
-    v: "Knowledge should not be hidden behind barriers. We strive to present ideas in ways that are understandable and open to everyone.",
+    v: "Information must remain democratized. We engineer our interfaces and intellectual properties to ensure universal access and frictionless comprehension.",
     symbol: "◒",
   },
   {
     k: "Rootedness",
-    v: "Our work begins with Manipur. Being locally grounded enables us to contribute meaningfully while remaining open to global ideas.",
+    v: "Our operational matrix originates in Manipur. This localized grounding calibrates our impact, while maintaining interoperability with global advancements.",
     symbol: "◎",
   },
 ];
@@ -155,27 +155,27 @@ const principles = [
 const faqs = [
   {
     q: "What is iManipur?",
-    a: "iManipur is an independent initiative from Manipur focused on cultural preservation, education, and innovation. We work on projects that preserve knowledge and build for the future.",
+    a: "iManipur functions as an autonomous initiative engineered to optimize cultural preservation, educational frameworks, and localized innovation. Our operations safeguard foundational knowledge while architecting robust systems for the future.",
   },
   {
     q: "How can I contribute?",
-    a: "We welcome collaborators — whether you're a writer, artist, educator, developer, or simply someone who cares about Manipur. Reach out to us via email and tell us what you'd like to work on.",
+    a: "We actively integrate external collaborators - from developers and researchers to artists and strategists. Initiate contact via our communication channels and propose your operational vector.",
   },
   {
     q: "Who funds iManipur?",
-    a: "iManipur is currently self-funded by its contributors. We are open to partnerships and support that align with our values and long-term vision.",
+    a: "iManipur operates on a self-sustained financial model driven by core contributors. We remain receptive to strategic partnerships that synchronize with our operational protocols and long-term trajectory.",
   },
   {
     q: "Where is iManipur based?",
-    a: "The iManipur team is rooted in Manipur, but our contributors are spread out in different parts of the world, collaborating remotely.",
+    a: "Our organizational core is stationed in Manipur, while our contributor network operates as a decentralized, global matrix collaborating via asynchronous digital frameworks.",
   },
   {
     q: "Can I join the initiative?",
-    a: "Yes. We're always looking for people who share our values — people who care about Manipur and want to contribute through culture, education, or creative work. Get in touch.",
+    a: "Affirmative. We continuously scan for aligned individuals who are equipped to contribute to our cultural, educational, or technological directives. Initiate communication to explore integration.",
   },
   {
     q: "Is iManipur open to new contributors?",
-    a: "Absolutely. We are always looking for researchers, artists, developers, and educators who care about Manipur to collaborate with us. Reach out via email.",
+    a: "Confirmed. Our ecosystem is dynamically expanding to incorporate researchers, technologists, and visionaries dedicated to the advancement of Manipur. Connect with us to initialize collaboration.",
   },
 ];
 
@@ -294,7 +294,7 @@ function Index() {
         id="about"
         className="relative overflow-hidden border-b border-border bg-hero-gradient"
       >
-        {/* Animated grid background — adapted from ali imam hero-01 */}
+        {/* Animated grid background - adapted from ali imam hero-01 */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-10 dark:opacity-20"
           style={{
@@ -306,26 +306,26 @@ function Index() {
             WebkitMaskComposite: "source-in",
           }}
         />
-        {/* Radial glow at bottom — adapted from ali imam hero-01 */}
+        {/* Angular strict background */}
         <div
           className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              "radial-gradient(125% 125% at 50% 10%, transparent 40%, var(--gold-primary) 100%)",
-            opacity: 0.07,
+              "linear-gradient(to bottom right, transparent 40%, var(--gold-primary) 100%)",
+            opacity: 0.05,
           }}
         />
-        {/* Parallax Dot-grid background */}
+        {/* Parallax Crosshatch background */}
         <motion.div
           style={{ y: heroY, opacity }}
-          className="pointer-events-none absolute inset-0 dot-bg mix-blend-overlay opacity-5"
+          className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,var(--primary)_20px,var(--primary)_21px)] mix-blend-overlay opacity-[0.02]"
         />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-20 pt-[120px] text-center md:px-8 md:pb-36 md:pt-[200px]"
+          className="relative mx-auto flex max-w-[1200px] flex-col items-center px-5 pb-20 pt-[140px] text-center md:px-8 md:pb-36 md:pt-[200px]"
         >
           <motion.p variants={itemVariants} className="label-mono text-primary/70">
             Independent Initiative · Manipur
@@ -333,22 +333,22 @@ function Index() {
 
           <motion.h1
             variants={itemVariants}
-            className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-[3.5rem]"
+            className="mt-6 max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-[4rem] lg:text-[5rem]"
           >
-            Preserving Manipur's knowledge for the next generation.{" "}
-            <span className="inline-block text-gradient-primary pb-1">Building the future.</span>
+            Preserving Manipur's knowledge for the future.{" "}
+            <span className="inline-block text-gradient-primary pb-1">Architecting tomorrow.</span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground/80"
+            className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground/80 md:text-base"
           >
             iManipur is an independent initiative advancing culture, education, and innovation for
             Manipur through research, storytelling, and technology.
           </motion.p>
 
           {/* Animated Terminal */}
-          <motion.div variants={itemVariants} className="mt-10 w-full max-w-xl">
+          <motion.div variants={itemVariants} className="group mt-10 w-full max-w-xl transition-shadow duration-500 hover:shadow-[var(--shadow-glow)]">
             <Terminal
               key={terminalKey}
               title="imanipur.sh"
@@ -357,26 +357,26 @@ function Index() {
                 replayTimerRef.current = setTimeout(() => setTerminalKey((prev) => prev + 1), 3000);
               }}
             >
-              <TypingAnimation className="font-mono text-sm text-muted-foreground">
+              <TypingAnimation className="font-mono text-xs text-muted-foreground sm:text-sm">
                 {"$ imanipur start"}
               </TypingAnimation>
-              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+              <AnimatedSpan className="font-mono text-xs text-muted-foreground sm:text-sm">
                 <span>&gt; loading: folk tales archive</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+              <AnimatedSpan className="font-mono text-xs text-muted-foreground sm:text-sm">
                 <span>&gt; loading: historical resources</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+              <AnimatedSpan className="font-mono text-xs text-muted-foreground sm:text-sm">
                 <span>[OK] Core initiatives loaded...</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+              <AnimatedSpan className="font-mono text-xs text-muted-foreground sm:text-sm">
                 <span>[OK] Education framework ready.</span>
               </AnimatedSpan>
-              <AnimatedSpan className="font-mono text-sm text-muted-foreground">
+              <AnimatedSpan className="font-mono text-xs text-muted-foreground sm:text-sm">
                 <span>[OK] Culture preserved.</span>
               </AnimatedSpan>
-              <TypingAnimation className="mt-2 font-mono text-sm font-semibold text-primary">
-                {"Building for Manipur."}
+              <TypingAnimation className="mt-2 font-mono text-xs font-semibold text-primary sm:text-sm">
+                {"Architecting for Manipur."}
               </TypingAnimation>
             </Terminal>
           </motion.div>
@@ -384,21 +384,21 @@ function Index() {
           {/* CTAs */}
           <motion.div
             variants={itemVariants}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+            className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
           >
             <motion.a
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.96 }}
               href="#culture"
-              className="btn-shimmer inline-flex items-center gap-2 rounded-none px-5 py-2.5 font-semibold text-[11px] tracking-[0.14em] uppercase text-primary-foreground"
+              className="btn-shimmer flex w-full items-center justify-center gap-2 rounded-none px-6 py-3 font-semibold text-[12px] tracking-[0.14em] uppercase text-primary-foreground transition-shadow duration-300 hover:shadow-[var(--shadow-glow)] focus-visible:shadow-[var(--shadow-glow)] sm:w-auto"
             >
               Our pillars
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.96 }}
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-none border border-border px-5 py-2.5 font-semibold text-[11px] tracking-[0.14em] uppercase text-foreground/80 transition-all duration-200 hover:border-primary/60 hover:text-foreground"
+              className="flex w-full items-center justify-center gap-2 rounded-none border border-border px-6 py-3 font-semibold text-[12px] tracking-[0.14em] uppercase text-foreground/80 transition-all duration-200 hover:border-primary/60 hover:text-foreground sm:w-auto"
             >
               Our projects
             </motion.a>
@@ -460,12 +460,12 @@ function Index() {
               {/* Hero & Narrative Block (Spans 8 columns) */}
               <motion.div
                 variants={itemVariants}
-                className="col-span-1 md:col-span-8 group relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-8 lg:p-12 transition-all hover:border-primary/30"
+                className="col-span-1 md:col-span-8 group relative overflow-hidden rounded-none border border-border/50 bg-card/40 backdrop-blur-md p-8 lg:p-12 transition-all hover:border-primary/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-30" />
                 <div className="relative z-10">
                   <p className="label-mono text-primary mb-6 flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span className="h-1.5 w-1.5 rounded-none bg-primary" />
                     Built for Manipur
                   </p>
                   <EditableBlock
@@ -481,10 +481,10 @@ function Index() {
                 {/* Lottie Animation Block */}
                 <motion.div
                   variants={itemVariants}
-                  className="relative overflow-hidden rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md p-8 flex-1 flex items-center justify-center min-h-[320px] group"
+                  className="relative overflow-hidden rounded-none border border-border/50 bg-card/20 backdrop-blur-md p-8 flex-1 flex items-center justify-center min-h-[320px] group"
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-primary/5 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="dot-bg absolute inset-0 opacity-20" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--primary)_10px,var(--primary)_11px)] opacity-[0.03]" />
                   <Lottie
                     animationData={aboutLottie}
                     loop={true}
@@ -495,8 +495,8 @@ function Index() {
                 {/* Features Grid */}
                 <motion.div variants={itemVariants} className="grid grid-cols-1 gap-6">
                   {/* Feature 1 */}
-                  <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
-                    <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
+                  <div className="group rounded-none border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
+                    <div className="mb-4 inline-flex rounded-none bg-primary/10 p-3">
                       <Zap className="size-5 lg:size-6 text-primary" />
                     </div>
                     <h3 className="text-lg lg:text-xl font-display font-medium text-foreground mb-2 lg:mb-3">
@@ -508,8 +508,8 @@ function Index() {
                   </div>
 
                   {/* Feature 2 */}
-                  <div className="group rounded-[2rem] border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
-                    <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3">
+                  <div className="group rounded-none border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
+                    <div className="mb-4 inline-flex rounded-none bg-primary/10 p-3">
                       <Shield className="size-5 lg:size-6 text-primary" />
                     </div>
                     <h3 className="text-lg lg:text-xl font-display font-medium text-foreground mb-2 lg:mb-3">
@@ -530,7 +530,7 @@ function Index() {
                 {stats.map((s, i) => (
                   <div
                     key={s.label}
-                    className="group flex flex-col items-center justify-center gap-3 rounded-[2rem] border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
+                    className="group flex flex-col items-center justify-center gap-3 rounded-none border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
                   >
                     <span className="font-display text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                       {s.value}
@@ -562,7 +562,7 @@ function Index() {
               Three pillars, <span className="text-primary block sm:inline">one intention.</span>
             </h2>
             <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-muted-foreground">
-              Work that is grounded in place — culture, learning, and ideas that serve Manipur.
+              Locally calibrated operations - synthesizing culture, intelligence, and frameworks that optimize Manipur.
             </p>
           </motion.div>
 
@@ -572,8 +572,9 @@ function Index() {
                 key={p.tag}
                 variants={itemVariants}
                 whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="scroll-mt-24 flex flex-col items-start text-left group relative overflow-hidden bg-card p-8 md:p-10"
+                className="scroll-mt-24 flex flex-col items-start text-left group relative overflow-hidden bg-card p-8 md:p-10 transition-shadow duration-300 hover:shadow-[var(--shadow-glow)] focus-visible:shadow-[var(--shadow-glow)]"
               >
                 {/* Decorative number */}
                 <span className="pointer-events-none absolute right-4 bottom-4 font-display text-[8rem] font-bold leading-none text-foreground/[0.03] select-none">
@@ -634,8 +635,8 @@ function Index() {
               Our <span className="text-primary">projects.</span>
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-              Real work in progress — documenting, preserving, and telling the stories of Manipur
-              through animation, illustration, and archival research.
+              Active computational processes - archiving, safeguarding, and transmitting the narratives of Manipur
+              through advanced animation, digital illustration, and rigorous archival research.
             </p>
           </motion.div>
 
@@ -645,7 +646,8 @@ function Index() {
                 href={proj.href || "#"}
                 key={proj.title}
                 variants={itemVariants}
-                className="group flex flex-col overflow-hidden rounded-none border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
+                whileTap={{ scale: 0.98 }}
+                className="group flex flex-col overflow-hidden rounded-none border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)] focus-visible:border-primary/30 focus-visible:shadow-[var(--shadow-glow)]"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-muted/20">
                   <img
@@ -766,31 +768,32 @@ function Index() {
                 key={member.name}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="group relative flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-none border border-border bg-card px-6 py-8 text-center transition-all duration-300 hover:border-t-primary/70 hover:shadow-[inset_0_40px_100px_rgba(202,146,29,0.02)]"
+                className="group relative flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-none border border-border bg-card px-6 py-8 text-center transition-all duration-300 hover:border-t-primary/70 hover:shadow-[var(--shadow-glow)] focus-visible:shadow-[var(--shadow-glow)]"
               >
                 {/* Cartographic Crosshairs */}
-                <div className="absolute -left-1 -top-1 h-2.5 w-2.5 border-l border-t border-primary/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute -right-1 -top-1 h-2.5 w-2.5 border-r border-t border-primary/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute -bottom-1 -left-1 h-2.5 w-2.5 border-b border-l border-primary/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute -bottom-1 -right-1 h-2.5 w-2.5 border-b border-r border-primary/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute -left-1 -top-1 h-2.5 w-2.5 border-l border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100 group-hover:-translate-x-1 group-hover:-translate-y-1" />
+                <div className="absolute -right-1 -top-1 h-2.5 w-2.5 border-r border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <div className="absolute -bottom-1 -left-1 h-2.5 w-2.5 border-b border-l border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100 group-hover:-translate-x-1 group-hover:translate-y-1" />
+                <div className="absolute -bottom-1 -right-1 h-2.5 w-2.5 border-b border-r border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100 group-hover:translate-x-1 group-hover:translate-y-1" />
                 {member.image ? (
                   // Real Photo Portrait
-                  <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-primary/10 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-hover:shadow-[inset_0_0_15px_rgba(202,146,29,0.1)]">
+                  <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-primary/10 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-active:border-primary group-hover:shadow-[0_0_20px_rgba(202,146,29,0.2),inset_0_0_15px_rgba(202,146,29,0.1)] group-active:shadow-[0_0_30px_rgba(202,146,29,0.6),inset_0_0_20px_rgba(202,146,29,0.3)]">
                     <img
                       src={member.image}
                       alt={member.name}
                       loading="lazy"
-                      className={`h-full w-full object-cover opacity-80 mix-blend-luminosity transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:opacity-100 group-hover:mix-blend-normal ${member.imgClass || ""}`}
+                      className={`h-full w-full object-cover opacity-80 mix-blend-luminosity transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:opacity-100 group-hover:mix-blend-normal group-active:scale-110 group-active:opacity-100 group-active:mix-blend-normal ${member.imgClass || ""}`}
                     />
                   </div>
                 ) : (
                   // Barcode Graphic
-                  <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-[#000] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-hover:shadow-[inset_0_0_15px_rgba(202,146,29,0.1)]">
+                  <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-[#000] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-active:border-primary group-hover:shadow-[0_0_20px_rgba(202,146,29,0.2),inset_0_0_15px_rgba(202,146,29,0.1)] group-active:shadow-[0_0_30px_rgba(202,146,29,0.6),inset_0_0_20px_rgba(202,146,29,0.3)]">
                     <img
                       src="/barcode.png"
                       alt=""
-                      className="h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"
+                      className="h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100"
                     />
                   </div>
                 )}

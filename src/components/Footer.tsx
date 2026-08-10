@@ -72,8 +72,8 @@ export function Footer() {
           <Logo size="lg" withText={true} />
         </a>
         <p className="text-muted-foreground text-center text-[15px] leading-relaxed md:text-left max-w-2xl">
-          An independent initiative rooted in Manipur — preserving its history, celebrating its
-          culture, and building resources for the next generation.
+          An autonomous initiative engineered in Manipur - systematically preserving historical data, amplifying 
+          cultural intelligence, and architecting robust resources for the future.
         </p>
       </div>
 
@@ -147,7 +147,7 @@ export function Footer() {
           <span>Crafted in Manipur. Built for the future.</span>
         </div>
         <div className="font-mono text-[9px] text-muted-foreground/30 uppercase tracking-widest">
-          © {new Date().getFullYear()} iManipur — All rights reserved.
+          © {new Date().getFullYear()} iManipur - All rights reserved.
         </div>
       </div>
     </motion.footer>

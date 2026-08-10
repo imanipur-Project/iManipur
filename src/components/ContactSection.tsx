@@ -29,7 +29,7 @@ export function ContactSection() {
 
   return (
     <div id="contact" className="min-h-screen py-20 scroll-mt-20">
-      {/* Hero Section — with radial gradient background adapted from ali imam cta-01 */}
+      {/* Hero Section - with radial gradient background adapted from ali imam cta-01 */}
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
         {/* Radial gradient background glow */}
         <div
@@ -62,8 +62,7 @@ export function ContactSection() {
             Let's work on <span className="text-primary">Manipur</span> together.
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-balance">
-            If you are working on something for Manipur — in culture, education, or a new idea — we
-            would like to hear about it.
+            If you are architecting solutions for Manipur - within cultural preservation, advanced education, or innovative frameworks - we invite you to initiate dialogue.
           </p>
         </div>
       </section>
