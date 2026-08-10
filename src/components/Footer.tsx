@@ -1,9 +1,13 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { Instagram, Facebook, Mail, Twitter, ArrowUp, Heart } from "lucide-react";
+import {
+  Instagram,
+  Facebook,
+  Twitter,
+  Heart
+} from "lucide-react";
 import { Logo } from "./Logo";
 
-const INSTAGRAM_URL =
-  "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
+const INSTAGRAM_URL = "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
 const TWITTER_URL = "https://x.com/i_manipur?s=11";
 
 const navigation = {
@@ -13,27 +17,57 @@ const navigation = {
       name: "Main",
       sections: [
         {
+          id: "about",
+          name: "About",
+          items: [
+            { name: "Mission", href: "/#mission" },
+            { name: "Vision", href: "/#culture" },
+            { name: "Pillars", href: "/#culture" },
+          ],
+        },
+        {
           id: "initiative",
           name: "Initiative",
           items: [
-            { name: "Culture", href: "#culture" },
-            { name: "Projects", href: "#projects" },
+            { name: "Culture", href: "/#culture" },
+            { name: "Education", href: "/#culture" },
+            { name: "Innovation", href: "/#culture" },
+          ],
+        },
+        {
+          id: "projects",
+          name: "Projects",
+          items: [
+            { name: "Animation", href: "/#projects" },
+            { name: "Folklore", href: "/#projects" },
+            { name: "Archive", href: "/#projects" },
           ],
         },
         {
           id: "community",
           name: "Community",
           items: [
-            { name: "Team", href: "#team" },
-            { name: "Acknowledgement", href: "#acknowledgement" },
+            { name: "Team", href: "/#team" },
+            { name: "Partners", href: "/#team" },
+            { name: "Gratitude", href: "/#acknowledgement" },
+          ],
+        },
+        {
+          id: "legal",
+          name: "Legal",
+          items: [
+            { name: "Terms", href: "/legal#terms" },
+            { name: "Privacy", href: "/legal#privacy" },
+            { name: "Guidelines", href: "/legal#guidelines" },
           ],
         },
         {
           id: "connect",
           name: "Connect",
           items: [
-            { name: "FAQ", href: "#faq" },
-            { name: "Contact", href: "#contact" },
+            { name: "Contact", href: "/#contact" },
+            { name: "FAQ", href: "/#faq" },
+            { name: "Support", href: "/#contact" },
           ],
         },
       ],
@@ -41,17 +75,11 @@ const navigation = {
   ],
 };
 
-// Renamed from PascalCase `Underline` (which implies a component) to camelCase.
-const socialLinkClass = `hover:-translate-y-1 border border-border border-dotted rounded-none p-2.5 transition-transform bg-card hover:border-primary/50 text-muted-foreground hover:text-primary`;
+const socialLinkClass = `hover:-translate-y-1 border border-border border-dotted rounded-xl p-2.5 transition-transform bg-card hover:border-primary/50 text-muted-foreground hover:text-primary`;
 
-function handleScrollTop() {
-  window.scroll({ top: 0, behavior: "smooth" });
-}
 
 export function Footer() {
   const { scrollYProgress } = useScroll();
-  // Clamp at 0 opacity minimum so footer stays visible on short pages where
-  // scrollYProgress never reaches 0.85.
   const y = useTransform(scrollYProgress, [0.8, 1], ["10%", "0%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 0.6, 1]);
 
@@ -60,34 +88,31 @@ export function Footer() {
       style={{ y, opacity }}
       className="mx-auto mt-20 flex h-full w-full flex-col items-center justify-center bg-background border-t border-border overflow-hidden relative"
     >
-      {/* Giant Watermark Background */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.02]">
-        <h2 className="font-display text-[15vw] md:text-[12vw] font-bold leading-none tracking-tighter text-foreground whitespace-nowrap">
-          IMANIPUR
-        </h2>
-      </div>
-
-      <div className="relative mx-auto grid max-w-[1200px] items-center justify-center gap-6 px-5 pt-10 pb-0 md:px-8 md:flex z-10 w-full">
-        <a href="#home" onClick={handleScrollTop} className="flex items-center justify-center">
-          <Logo size="lg" withText={true} />
+      <div className="relative mx-auto grid max-w-7xl items-center justify-center gap-6 p-10 pb-0 md:flex z-10 w-full">
+        <a href="/#home" className="flex items-center justify-center rounded-full">
+          <img src="/imanipur_Web.svg" alt="iManipur" className="h-16 w-auto" />
         </a>
-        <p className="text-muted-foreground text-center text-[15px] leading-relaxed md:text-left max-w-2xl">
+        <p className="text-muted-foreground text-center text-xs leading-5 md:text-left max-w-3xl ml-4">
           An autonomous initiative engineered in Manipur - systematically preserving historical
           data, amplifying cultural intelligence, and architecting robust resources for the future.
+          I am passionate about transforming ideas into compelling visual experiences. I specialize
+          in crafting unique brand identities, immersive digital experiences, and engaging content
+          that resonates with your audience. My mission is to empower businesses and brands to
+          stand out in a crowded market. I believe in the power of design to tell stories, evoke
+          emotions, and drive meaningful connections.
         </p>
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-5 py-10 md:px-8 z-10">
+      <div className="mx-auto w-full max-w-7xl px-6 py-10 z-10">
         <div className="border-b border-border border-dotted"> </div>
         <div className="py-10">
           {navigation.categories.map((category) => (
             <div
               key={category.name}
-              className="grid grid-cols-1 sm:grid-cols-3 flex-row justify-center md:justify-between gap-8 leading-6 md:flex max-w-2xl mx-auto"
+              className="grid grid-cols-2 md:grid-cols-6 flex-row justify-between gap-6 leading-6"
             >
               {category.sections.map((section) => (
-                <div key={section.name} className="flex-1 text-center">
-                  {/* id matches the ul's aria-labelledby */}
+                <div key={section.name} className="flex flex-col text-left">
                   <h3
                     id={`${category.id}-${section.id}-heading`}
                     className="text-sm font-semibold text-foreground mb-4 uppercase tracking-widest"
@@ -97,13 +122,13 @@ export function Footer() {
                   <ul
                     role="list"
                     aria-labelledby={`${category.id}-${section.id}-heading`}
-                    className="flex flex-col space-y-3"
+                    className="flex flex-col space-y-2"
                   >
                     {section.items.map((item) => (
                       <li key={item.name} className="flow-root">
                         <a
                           href={item.href}
-                          className="text-[14px] text-muted-foreground hover:text-primary transition-colors"
+                          className="text-sm text-muted-foreground hover:text-foreground md:text-xs transition-colors"
                         >
                           {item.name}
                         </a>
@@ -118,36 +143,23 @@ export function Footer() {
         <div className="border-b border-border border-dotted"> </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-y-6 z-10 mt-4">
+      <div className="flex flex-wrap justify-center items-center gap-6 z-10">
         <div className="flex flex-wrap items-center justify-center gap-6 gap-y-4 px-6">
-          <a
-            aria-label="Twitter"
-            href={TWITTER_URL}
-            rel="noreferrer"
-            target="_blank"
-            className={socialLinkClass}
-          >
-            <Twitter strokeWidth={1.5} className="h-5 w-5" />
-          </a>
-          <a
-            aria-label="Instagram"
-            href={INSTAGRAM_URL}
-            rel="noreferrer"
-            target="_blank"
-            className={socialLinkClass}
-          >
+          <a aria-label="Instagram" href={INSTAGRAM_URL} rel="noreferrer" target="_blank" className={socialLinkClass}>
             <Instagram strokeWidth={1.5} className="h-5 w-5" />
+          </a>
+          <a aria-label="Facebook" href="#" rel="noreferrer" target="_blank" className={socialLinkClass}>
+            <Facebook strokeWidth={1.5} className="h-5 w-5" />
+          </a>
+          <a aria-label="Twitter" href={TWITTER_URL} rel="noreferrer" target="_blank" className={socialLinkClass}>
+            <Twitter strokeWidth={1.5} className="h-5 w-5" />
           </a>
         </div>
       </div>
 
-      <div className="mx-auto mt-14 mb-10 flex flex-col items-center gap-3 text-center max-w-[1200px] px-5 md:px-8 z-10 w-full">
-        <div className="flex flex-col items-center justify-center gap-1.5 text-muted-foreground/60 uppercase tracking-widest font-mono text-[10px]">
-          <span className="font-bold text-foreground">iManipur</span>
-          <span>Crafted in Manipur. Built for the future.</span>
-        </div>
-        <div className="font-mono text-[9px] text-muted-foreground/30 uppercase tracking-widest">
-          © {new Date().getFullYear()} iManipur - All rights reserved.
+      <div className="mx-auto mt-10 mb-10 flex flex-col justify-between text-center text-xs md:max-w-7xl z-10 w-full">
+        <div className="flex flex-row items-center justify-center gap-1 text-muted-foreground">
+          <span>© {new Date().getFullYear()} iManipur. Built on Stories, Code, and Coffee.</span>
         </div>
       </div>
     </motion.footer>

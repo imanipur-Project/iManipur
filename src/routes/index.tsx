@@ -5,8 +5,13 @@ import { Journey } from "../components/Journey";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Terminal, TypingAnimation, AnimatedSpan } from "../components/Terminal";
-import { ArrowUp, Instagram, Facebook, Zap, Shield } from "lucide-react";
-import { EditableBlock } from "../components/EditableBlock";
+import { Lens } from "../components/ui/lens";
+import { BorderBeam } from "../components/ui/border-beam";
+import { ShineBorder } from "../components/ui/shine-border";
+import { NumberTicker } from "../components/ui/number-ticker";
+import { AnimatedShinyText } from "../components/ui/animated-shiny-text";
+import { ArrowUp, Instagram, Facebook, ShieldCheck, Sprout } from "lucide-react";
+
 import { Marquee } from "../components/Marquee";
 import {
   Accordion,
@@ -48,7 +53,28 @@ export const Route = createFileRoute("/")({
 
 /* ─── Data ──────────────────────────────────────────────── */
 
-const ABOUT_DEFAULT_HTML = `<p>Knowledge is the fundamental framework of civilization. While some is formally documented, much is encoded within the cultural matrix - the narratives, traditions, languages, and the consciousness of the people who sustain them.</p><p>The systematic preservation of this heritage fortifies societal resilience. Conversely, its loss results in an irreversible erasure of identity.</p><p>iManipur is engineered to counteract this entropy. As an autonomous initiative, we synthesize the expertise of educators, researchers, technologists, and artists to architect solutions that accelerate the cultural, educational, and creative evolution of Manipur.</p><p>By transcending traditional disciplinary boundaries, we deploy an interdisciplinary methodology integrating technology, research, and design. This framework ensures our initiatives are highly optimized, contextually precise, and architected for enduring impact.</p><blockquote>Our operational core is rooted in Manipur, yet our overarching objective remains universal: Facilitating the seamless transfer of knowledge into the future.</blockquote>`;
+const ABOUT_HERO_TITLE = "Knowledge is the fundamental framework of civilization.";
+const ABOUT_HERO_SUBTITLE = "While some is formally documented, much is encoded within the cultural matrix \u2014 the narratives, traditions, languages, and the consciousness of the people who sustain them.";
+
+const ABOUT_CARDS = [
+  {
+    icon: ShieldCheck,
+    heading: "Preserve. Protect. Connect.",
+    body: [
+      "Cultural heritage is more than a record of the past\u2014it is a foundation for identity, continuity, and resilience.",
+      "When preserved, it strengthens communities and connects generations. When lost, it risks the irreversible disappearance of collective memory and cultural knowledge.",
+    ],
+  },
+  {
+    icon: Sprout,
+    heading: "Revitalize. Unite. Advance.",
+    body: [
+      "iManipur exists to help safeguard and revitalize this inheritance. As an independent initiative, we unite educators, researchers, technologists, artists, and cultural practitioners to create innovative pathways for the cultural, educational, and creative advancement of Manipur.",
+    ],
+  },
+];
+
+const ABOUT_QUOTE = "Our work transcends conventional disciplinary boundaries, combining research, technology, design, and storytelling into a cohesive framework. Through this approach, we develop initiatives that are contextually informed, strategically designed, and capable of creating enduring value for present and future generations.";
 
 const pillars = [
   {
@@ -292,8 +318,23 @@ function Index() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section
         id="about"
-        className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-border bg-hero-gradient pt-[80px]"
+        className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-border bg-hero-gradient pt-[120px] md:pt-[80px]"
       >
+        {/* Background Image Texture */}
+        <motion.div
+          style={{ y: heroY, opacity }}
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        >
+          <img
+            src="/assets/hero-background.png"
+            alt=""
+            className="absolute inset-0 h-full w-full object-contain object-[center_15%] md:object-cover md:object-center mix-blend-overlay opacity-[0.15]"
+          />
+          {/* Fading mask at the edges and bottom */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_25%,transparent_20%,var(--background)_100%)] md:bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,transparent_30%,var(--background)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent md:via-background/20" />
+        </motion.div>
+
         {/* Animated grid background - adapted from ali imam hero-01 */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-10 dark:opacity-20"
@@ -325,15 +366,17 @@ function Index() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center px-5 py-12 text-center md:px-8 md:py-20"
+          className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center mt-10 md:mt-0 px-5 py-12 text-center md:px-8 md:py-20"
         >
-          <motion.p variants={itemVariants} className="label-mono text-primary/70">
-            Independent Initiative · Manipur
-          </motion.p>
+          <motion.div variants={itemVariants}>
+            <AnimatedShinyText className="label-mono text-primary/70">
+              Independent Initiative · Manipur
+            </AnimatedShinyText>
+          </motion.div>
 
           <motion.h1
             variants={itemVariants}
-            className="mt-6 max-w-4xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
+            className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Preserving Knowledge.{" "}
             <span className="inline-block text-gradient-primary pb-1">Shaping Tomorrow.</span>
@@ -458,92 +501,136 @@ function Index() {
           className="py-20"
         >
           <div className="mx-auto max-w-[1200px] px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
-              {/* Hero & Narrative Block (Spans 8 columns) */}
-              <motion.div
-                variants={itemVariants}
-                className="col-span-1 md:col-span-8 group relative overflow-hidden rounded-none border border-border/50 bg-card/40 backdrop-blur-md p-8 lg:p-12 transition-all hover:border-primary/30"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-30" />
-                <div className="relative z-10">
-                  <p className="label-mono text-primary mb-6 flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-none bg-primary" />
-                    Built for Manipur
-                  </p>
-                  <EditableBlock
-                    slug="homepage-about"
-                    defaultHtml={ABOUT_DEFAULT_HTML}
-                    className="prose-p:mb-6 prose-p:text-muted-foreground prose-p:text-balance prose-p:text-lg prose-p:leading-relaxed prose-p:first-of-type:text-4xl lg:prose-p:first-of-type:text-[3.5rem] prose-p:first-of-type:font-display prose-p:first-of-type:font-medium prose-p:first-of-type:tracking-tight prose-p:first-of-type:text-foreground prose-p:first-of-type:leading-[1.1] prose-p:first-of-type:mb-10 prose-blockquote:mt-10 prose-blockquote:border-l-2 prose-blockquote:border-primary/40 prose-blockquote:pl-6 prose-blockquote:text-xl md:prose-blockquote:text-2xl prose-blockquote:font-display prose-blockquote:text-foreground/90 prose-blockquote:italic prose-blockquote:leading-snug"
-                  />
-                </div>
-              </motion.div>
+            {/* Section Label */}
+            <motion.div
+              variants={itemVariants}
+              className="mb-8 flex items-center gap-2"
+            >
+              <span className="h-1.5 w-1.5 rounded-none bg-primary" />
+              <AnimatedShinyText className="label-mono text-primary">
+                Built for Manipur
+              </AnimatedShinyText>
+            </motion.div>
 
-              {/* Right Column Stack (Spans 4 columns) */}
-              <div className="col-span-1 md:col-span-4 flex flex-col gap-6">
-                {/* Lottie Animation Block */}
+            {/* Hero Title */}
+            <motion.h2
+              variants={itemVariants}
+              className="max-w-3xl font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-foreground"
+            >
+              {ABOUT_HERO_TITLE}
+            </motion.h2>
+
+            {/* Gold underline accent */}
+            <motion.div variants={itemVariants} className="mt-6 h-0.5 w-16 bg-primary" />
+
+            {/* Subtitle */}
+            <motion.p
+              variants={itemVariants}
+              className="mt-6 max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+            >
+              {ABOUT_HERO_SUBTITLE}
+            </motion.p>
+
+            {/* Lottie Animation Card */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-14 rounded-none border border-border/50 bg-card/20 backdrop-blur-md overflow-hidden relative flex items-center justify-center h-[200px] md:h-[280px] group"
+            >
+              <BorderBeam duration={8} colorFrom="var(--primary)" colorTo="transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--primary)_10px,var(--primary)_11px)] opacity-[0.03]" />
+              <Lottie
+                animationData={aboutLottie}
+                loop={true}
+                className="relative z-10 h-full max-h-[160px] md:max-h-[220px] opacity-90 mix-blend-screen transition-transform duration-500 group-hover:scale-105"
+              />
+            </motion.div>
+
+            {/* Two Feature Cards */}
+            <motion.div
+              variants={gridContainerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {ABOUT_CARDS.map((card, i) => (
                 <motion.div
+                  key={card.heading}
                   variants={itemVariants}
-                  className="relative overflow-hidden rounded-none border border-border/50 bg-card/20 backdrop-blur-md p-8 flex-1 flex items-center justify-center min-h-[320px] group"
+                  className="group rounded-none border border-border/50 bg-card/30 backdrop-blur-md p-8 lg:p-10 transition-all duration-300 hover:border-primary/30 hover:bg-card/50 relative overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,var(--primary)_10px,var(--primary)_11px)] opacity-[0.03]" />
-                  <Lottie
-                    animationData={aboutLottie}
-                    loop={true}
-                    className="relative z-10 w-full max-w-[260px] opacity-90 mix-blend-screen transition-transform duration-500 group-hover:scale-105"
-                  />
-                </motion.div>
-
-                {/* Features Grid */}
-                <motion.div variants={itemVariants} className="grid grid-cols-1 gap-6">
-                  {/* Feature 1 */}
-                  <div className="group rounded-none border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
-                    <div className="mb-4 inline-flex rounded-none bg-primary/10 p-3">
-                      <Zap className="size-5 lg:size-6 text-primary" />
+                  <ShineBorder duration={14} shineColor="var(--primary)" />
+                  {/* Icon + accent line */}
+                  <div className="flex items-center gap-4 mb-1">
+                    <div className="flex size-12 items-center justify-center rounded-full bg-muted/50 border border-border/50 transition-colors group-hover:bg-primary/10 group-hover:border-primary/30">
+                      <card.icon className="size-5 text-primary" />
                     </div>
-                    <h3 className="text-lg lg:text-xl font-display font-medium text-foreground mb-2 lg:mb-3">
-                      Interdisciplinary.
-                    </h3>
-                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                      We work across culture, education, research, design, and technology.
-                    </p>
+                    <span className="block h-0.5 w-6 bg-primary/40" />
                   </div>
 
-                  {/* Feature 2 */}
-                  <div className="group rounded-none border border-border/50 bg-card/40 backdrop-blur-md p-6 lg:p-8 transition-all hover:bg-card/60 hover:border-primary/30 hover:-translate-y-1">
-                    <div className="mb-4 inline-flex rounded-none bg-primary/10 p-3">
-                      <Shield className="size-5 lg:size-6 text-primary" />
-                    </div>
-                    <h3 className="text-lg lg:text-xl font-display font-medium text-foreground mb-2 lg:mb-3">
-                      Long-term Value.
-                    </h3>
-                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                      Building initiatives that are locally relevant and thoughtfully designed.
-                    </p>
+                  {/* Card heading */}
+                  <h3 className="mt-4 font-display text-lg font-semibold text-foreground">
+                    {card.heading}
+                  </h3>
+
+                  {/* Card body paragraphs */}
+                  <div className="mt-4 space-y-4">
+                    {card.body.map((para, i) => (
+                      <p key={i} className="text-base text-muted-foreground leading-relaxed">
+                        {para}
+                      </p>
+                    ))}
                   </div>
                 </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Bottom Quote Block */}
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              className="mt-6 rounded-none border border-border/50 bg-card/30 backdrop-blur-md p-8 lg:p-10 flex gap-6"
+            >
+              {/* Decorative quotation mark */}
+              <span className="hidden md:block shrink-0 font-serif text-6xl leading-none text-primary/25 select-none" aria-hidden>
+                {"\u201C"}
+              </span>
+              <div className="border-l-2 border-primary/50 pl-6">
+                <p className="text-lg md:text-xl text-foreground/90 leading-relaxed italic">
+                  {ABOUT_QUOTE}
+                </p>
               </div>
+            </motion.div>
 
-              {/* Stats row integrated into Bento (Spans 12 columns) */}
-              <motion.div
-                variants={itemVariants}
-                className="col-span-1 md:col-span-12 grid grid-cols-2 sm:grid-cols-4 gap-6 mt-2"
-              >
-                {stats.map((s, i) => (
-                  <div
-                    key={s.label}
-                    className="group flex flex-col items-center justify-center gap-3 rounded-none border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
-                  >
-                    <span className="font-display text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                      {s.value}
-                    </span>
-                    <span className="font-semibold text-xs tracking-[0.2em] uppercase text-muted-foreground/70 text-center">
-                      {s.label}
-                    </span>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
+            {/* Stats Row */}
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-6"
+            >
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="group flex flex-col items-center justify-center gap-3 rounded-none border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
+                >
+                  <span className="font-display text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                    {!isNaN(Number(s.value)) ? (
+                      <NumberTicker value={Number(s.value)} />
+                    ) : (
+                      s.value
+                    )}
+                  </span>
+                  <span className="font-semibold text-xs tracking-[0.2em] uppercase text-muted-foreground/70">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </motion.section>
 
@@ -558,8 +645,8 @@ function Index() {
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
-          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">What we care about</p>
+          <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
+            <AnimatedShinyText className="label-mono text-primary/70">What we care about</AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Three pillars, <span className="text-primary block sm:inline">one intention.</span>
             </h2>
@@ -570,7 +657,7 @@ function Index() {
           </motion.div>
 
           <div className="mt-14 grid gap-px overflow-hidden rounded-none border border-border bg-border md:grid-cols-3">
-            {pillars.map((p) => (
+            {pillars.map((p, i) => (
               <motion.article
                 key={p.tag}
                 variants={itemVariants}
@@ -579,6 +666,7 @@ function Index() {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className="scroll-mt-24 flex flex-col items-start text-left group relative overflow-hidden bg-card p-8 md:p-10 transition-shadow duration-300 hover:shadow-[var(--shadow-glow)] focus-visible:shadow-[var(--shadow-glow)]"
               >
+                <ShineBorder duration={14} shineColor="var(--primary)" />
                 {/* Decorative number */}
                 <span className="pointer-events-none absolute right-4 bottom-4 font-display text-[8rem] font-bold leading-none text-foreground/[0.03] select-none">
                   {p.no}
@@ -632,8 +720,8 @@ function Index() {
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
-          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">What we're building</p>
+          <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
+            <AnimatedShinyText className="label-mono text-primary/70">What we're building</AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Our <span className="text-primary">projects.</span>
             </h2>
@@ -645,49 +733,67 @@ function Index() {
           </motion.div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {projects.map((proj) => (
+            {projects.map((proj, i) => (
               <motion.a
                 href={proj.href || "#"}
                 key={proj.title}
                 variants={itemVariants}
                 whileTap={{ scale: 0.98 }}
-                className="group flex flex-col overflow-hidden rounded-none border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)] focus-visible:border-primary/30 focus-visible:shadow-[var(--shadow-glow)]"
+                className="group relative flex flex-col overflow-hidden rounded-none border border-border bg-card/40 backdrop-blur-md transition-all duration-500 hover:border-primary/50 hover:bg-card/60 hover:shadow-[0_0_30px_rgba(202,146,29,0.15)] focus-visible:border-primary/50 focus-visible:shadow-[0_0_30px_rgba(202,146,29,0.15)]"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-muted/20">
-                  <img
-                    src={proj.image}
-                    alt={proj.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-5">
-                    <span className="font-semibold text-[10px] tracking-[0.16em] uppercase text-primary">
+                <ShineBorder duration={14} shineColor="var(--primary)" />
+                {/* Cartographic Crosshairs */}
+                <div className="absolute -left-1 -top-1 z-20 h-3 w-3 border-l border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-1 group-hover:-translate-y-1" />
+                <div className="absolute -right-1 -top-1 z-20 h-3 w-3 border-r border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <div className="absolute -bottom-1 -left-1 z-20 h-3 w-3 border-b border-l border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-1 group-hover:translate-y-1" />
+                <div className="absolute -bottom-1 -right-1 z-20 h-3 w-3 border-b border-r border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:translate-y-1" />
+
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-muted/20">
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
+                  
+                  {/* Glitch/Scanline effect overlay */}
+                  <div className="absolute inset-0 z-10 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.1)_2px,rgba(0,0,0,0.1)_4px)] opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100" />
+                  
+                  <Lens zoomFactor={1.5} lensSize={180} duration={0.3}>
+                    <img
+                      src={proj.image}
+                      alt={proj.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover mix-blend-luminosity opacity-80 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:mix-blend-normal group-hover:opacity-100"
+                    />
+                  </Lens>
+                  <div className="absolute inset-x-0 bottom-0 z-20 p-5 md:p-6 flex flex-col justify-end translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0">
+                    <span className="inline-flex w-fit items-center gap-2 border border-primary/30 bg-background/80 backdrop-blur-md px-3 py-1 font-mono text-[10px] tracking-[0.2em] uppercase text-primary shadow-[0_0_10px_rgba(202,146,29,0.2)]">
+                      <span className="h-1.5 w-1.5 bg-primary/80 rounded-none animate-pulse" />
                       {proj.pillar}
                     </span>
                   </div>
                 </div>
-                <div className="flex flex-col flex-1 p-6">
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-[16px] font-medium text-foreground group-hover:text-primary transition-colors">
+                <div className="flex flex-col flex-1 p-5 md:p-6 lg:p-8 relative z-10">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <h3 className="font-display text-xl md:text-2xl font-medium text-foreground transition-colors duration-300 group-hover:text-primary leading-[1.2]">
                       {proj.title}
                     </h3>
+                  </div>
+                  <p className="mb-6 text-[14px] leading-relaxed text-muted-foreground flex-1">
+                    {proj.description}
+                  </p>
+                  
+                  <div className="mt-auto flex items-center justify-between">
                     <span
                       className={[
-                        "px-2 py-0.5 rounded-none text-[9px] font-semibold tracking-[0.1em] uppercase border",
+                        "px-2.5 py-1 rounded-none text-[10px] font-mono tracking-[0.15em] uppercase border transition-colors duration-300",
                         proj.status === "In Progress"
-                          ? "border-primary/40 bg-primary/10 text-primary"
+                          ? "border-primary/40 bg-primary/10 text-primary group-hover:border-primary/60 group-hover:bg-primary/20"
                           : "border-muted-foreground/30 bg-muted/30 text-muted-foreground",
                       ].join(" ")}
                     >
                       {proj.status}
                     </span>
-                  </div>
-                  <p className="mt-3 mb-4 text-[13px] leading-relaxed text-muted-foreground flex-1">
-                    {proj.description}
-                  </p>
-                  <div className="mt-auto flex items-center gap-1 font-semibold text-[11px] tracking-[0.12em] uppercase text-primary transition-colors hover:text-primary/80">
-                    View project <ArrowUp className="h-3 w-3 rotate-45" />
+                    <div className="flex items-center justify-center h-8 w-8 rounded-none border border-border/50 bg-background transition-all duration-300 group-hover:border-primary/50 group-hover:bg-primary/10 text-muted-foreground group-hover:text-primary">
+                      <ArrowUp className="h-4 w-4 rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
                   </div>
                 </div>
               </motion.a>
@@ -706,8 +812,8 @@ function Index() {
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
-          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">Our Principles</p>
+          <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
+            <AnimatedShinyText className="label-mono text-primary/70">Our Principles</AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Building for the <span className="text-primary block sm:inline">long term.</span>
             </h2>
@@ -755,8 +861,8 @@ function Index() {
           variants={gridContainerVariants}
           className="scroll-mt-20 py-20"
         >
-          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">The Initiative</p>
+          <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
+            <AnimatedShinyText className="label-mono text-primary/70">The Initiative</AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Our <span className="text-primary block sm:inline">contributors.</span>
             </h2>
@@ -776,6 +882,7 @@ function Index() {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className="group relative flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-none border border-border bg-card px-6 py-8 text-center transition-all duration-300 hover:border-t-primary/70 hover:shadow-[var(--shadow-glow)] focus-visible:shadow-[var(--shadow-glow)]"
               >
+                <ShineBorder duration={14} shineColor="var(--primary)" />
                 {/* Cartographic Crosshairs */}
                 <div className="absolute -left-1 -top-1 h-2.5 w-2.5 border-l border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100 group-hover:-translate-x-1 group-hover:-translate-y-1" />
                 <div className="absolute -right-1 -top-1 h-2.5 w-2.5 border-r border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -784,16 +891,18 @@ function Index() {
                 {member.image ? (
                   // Real Photo Portrait
                   <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-primary/10 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-active:border-primary group-hover:shadow-[0_0_20px_rgba(202,146,29,0.2),inset_0_0_15px_rgba(202,146,29,0.1)] group-active:shadow-[0_0_30px_rgba(202,146,29,0.6),inset_0_0_20px_rgba(202,146,29,0.3)]">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      loading="lazy"
-                      className={`h-full w-full object-cover opacity-80 mix-blend-luminosity transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:opacity-100 group-hover:mix-blend-normal group-active:scale-110 group-active:opacity-100 group-active:mix-blend-normal ${member.imgClass || ""}`}
-                    />
+                    <Lens zoomFactor={1.8} lensSize={120} duration={0.3}>
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        loading="lazy"
+                        className={`h-full w-full object-cover opacity-80 mix-blend-luminosity transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-100 group-hover:mix-blend-normal group-active:opacity-100 group-active:mix-blend-normal ${member.imgClass || ""}`}
+                      />
+                    </Lens>
                   </div>
                 ) : (
                   // Barcode Graphic
-                  <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-[#000] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-active:border-primary group-hover:shadow-[0_0_20px_rgba(202,146,29,0.2),inset_0_0_15px_rgba(202,146,29,0.1)] group-active:shadow-[0_0_30px_rgba(202,146,29,0.6),inset_0_0_20px_rgba(202,146,29,0.3)]">
+                  <div className="relative flex h-10 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-background transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-active:border-primary group-hover:shadow-[0_0_20px_rgba(202,146,29,0.2),inset_0_0_15px_rgba(202,146,29,0.1)] group-active:shadow-[0_0_30px_rgba(202,146,29,0.6),inset_0_0_20px_rgba(202,146,29,0.3)]">
                     <img
                       src="/barcode.png"
                       alt=""
@@ -834,7 +943,7 @@ function Index() {
             >
               "
             </div>
-            <p className="relative label-mono text-primary/70">Mission</p>
+            <AnimatedShinyText className="relative label-mono text-primary/70">Mission</AnimatedShinyText>
             <blockquote className="relative mt-8 max-w-2xl text-[1.2rem] leading-relaxed text-foreground/90 md:text-[1.4rem]">
               Our mission is to preserve knowledge, strengthen education, and encourage innovation
               through projects that remain useful across generations.
@@ -860,8 +969,8 @@ function Index() {
           variants={sectionVariants}
           className="scroll-mt-20 py-20"
         >
-          <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-            <p className="label-mono text-primary/70">Acknowledgement</p>
+          <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
+            <AnimatedShinyText className="label-mono text-primary/70">Acknowledgement</AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               With deepest <span className="text-primary">gratitude.</span>
             </h2>
@@ -911,7 +1020,7 @@ function Index() {
               variants={itemVariants}
               className="flex w-full flex-col gap-4 lg:flex-1 lg:py-5"
             >
-              <p className="label-mono text-primary/70">FAQ</p>
+              <AnimatedShinyText className="label-mono text-primary/70">FAQ</AnimatedShinyText>
               <h2 className="mt-2 text-foreground text-4xl font-bold leading-tight tracking-tight">
                 Common <span className="text-primary">questions.</span>
               </h2>

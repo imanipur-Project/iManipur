@@ -5,6 +5,8 @@ import { sendContactEmail } from "../lib/actions";
 import { contactSchema, type ContactFormValues } from "../lib/schema";
 import { Clock, Mail, MapPin, MessageCircle, Phone, Users, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import { ShineBorder } from "./ui/shine-border";
+import { AnimatedShinyText } from "./ui/animated-shiny-text";
 
 export function ContactSection() {
   const {
@@ -51,17 +53,17 @@ export function ContactSection() {
             WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <div className="relative z-10 mx-auto max-w-[1200px] text-left">
           <div className="border-border bg-card mb-8 inline-flex items-center gap-2 rounded-none border px-4 py-2">
             <MessageCircle className="text-primary h-4 w-4" />
-            <span className="text-foreground text-sm font-medium font-mono uppercase tracking-widest">
+            <AnimatedShinyText className="text-foreground text-sm font-medium font-mono uppercase tracking-widest">
               Get in touch
-            </span>
+            </AnimatedShinyText>
           </div>
           <h2 className="text-foreground mb-6 text-4xl font-bold text-balance md:text-5xl lg:text-6xl">
             Let's work on <span className="text-primary">Manipur</span> together.
           </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-balance">
+          <p className="text-muted-foreground max-w-2xl text-lg text-balance">
             If you are architecting solutions for Manipur - within cultural preservation, advanced
             education, or innovative frameworks - we invite you to initiate dialogue.
           </p>
@@ -106,8 +108,13 @@ export function ContactSection() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid gap-5 sm:grid-cols-2">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 relative rounded-none border border-border bg-card/20 backdrop-blur-md p-6 sm:p-8 overflow-hidden group">
+              <ShineBorder duration={14} shineColor="var(--primary)" />
+              
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+              
+              <div className="relative z-10 space-y-6">
+                <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="firstName"
@@ -206,6 +213,7 @@ export function ContactSection() {
                 {isSubmitting ? "Sending..." : "Send"}
                 {!isSubmitting && <ArrowRight className="h-4 w-4" />}
               </button>
+              </div>
             </form>
           </div>
 

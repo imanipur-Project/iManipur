@@ -103,8 +103,8 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
 
   if (isCmsEnabled && isEditMode && user) {
     return (
-      <div className="flex flex-col gap-4 p-4 border border-primary/30 bg-[#080808] rounded-none shadow-[0_0_20px_rgba(202,146,29,0.05)] relative -mx-4">
-        <div className="absolute -top-3 left-4 bg-[#080808] px-2 label-mono text-primary z-10 text-[10px]">
+      <div className="flex flex-col gap-4 p-4 border border-primary/30 bg-muted rounded-none shadow-[0_0_20px_rgba(202,146,29,0.05)] relative -mx-4">
+        <div className="absolute -top-3 left-4 bg-muted px-2 label-mono text-primary z-10 text-[10px]">
           Editing: {slug}
         </div>
         <RichTextEditor key={editorKey} content={content} onChange={setContent} />

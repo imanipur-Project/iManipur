@@ -2,6 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { AnimatedShinyText } from "./ui/animated-shiny-text";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,8 +110,8 @@ export function Journey() {
 
   return (
     <section id="journey" className="scroll-mt-20 py-20" ref={containerRef}>
-      <div className="mb-14 flex flex-col items-center text-center">
-        <p className="label-mono text-primary/70">Our journey</p>
+      <div className="mb-14 flex flex-col items-start text-left">
+        <AnimatedShinyText className="label-mono text-primary/70">Our journey</AnimatedShinyText>
         <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
           How we <span className="text-primary">got here.</span>
         </h2>

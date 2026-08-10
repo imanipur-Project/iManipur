@@ -71,7 +71,7 @@ export function RichTextEditor({
   // Using { emitUpdate: false } prevents triggering the onChange callback.
   useEffect(() => {
     if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content, false);
+      editor.commands.setContent(content, { emitUpdate: false });
     }
   }, [editor, content]);
 
@@ -80,8 +80,8 @@ export function RichTextEditor({
   }
 
   return (
-    <div className="w-full flex flex-col rounded-none border border-border bg-[#121212] overflow-hidden shadow-card transition-all duration-300 focus-within:border-primary/50 focus-within:shadow-[inset_0_0_20px_rgba(202,146,29,0.05)]">
-      <div className="flex flex-wrap items-center gap-1 border-b border-border p-2 bg-[#080808]">
+    <div className="w-full flex flex-col rounded-none border border-border bg-background overflow-hidden shadow-card transition-all duration-300 focus-within:border-primary/50 focus-within:shadow-[inset_0_0_20px_rgba(202,146,29,0.05)]">
+      <div className="flex flex-wrap items-center gap-1 border-b border-border p-2 bg-muted">
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive("bold")}
