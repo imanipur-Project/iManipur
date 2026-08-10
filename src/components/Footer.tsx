@@ -1,14 +1,10 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import {
-  Instagram,
-  Facebook,
-  Twitter,
-  Heart
-} from "lucide-react";
+import { Instagram, Facebook, Twitter, Heart } from "lucide-react";
 import { Logo } from "./Logo";
 
-const INSTAGRAM_URL = "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
+const INSTAGRAM_URL =
+  "https://www.instagram.com/imanipur_?igsh=MTd6eGt6YWhneWJ6Mg%3D%3D&utm_source=qr";
 const TWITTER_URL = "https://x.com/i_manipur?s=11";
 
 const navigation = {
@@ -78,7 +74,6 @@ const navigation = {
 
 const socialLinkClass = `hover:-translate-y-1 border border-border border-dotted rounded-xl p-2.5 transition-transform bg-card hover:border-primary/50 text-muted-foreground hover:text-primary`;
 
-
 export function Footer() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0.8, 1], ["10%", "0%"]);
@@ -98,9 +93,9 @@ export function Footer() {
           data, amplifying cultural intelligence, and architecting robust resources for the future.
           I am passionate about transforming ideas into compelling visual experiences. I specialize
           in crafting unique brand identities, immersive digital experiences, and engaging content
-          that resonates with your audience. My mission is to empower businesses and brands to
-          stand out in a crowded market. I believe in the power of design to tell stories, evoke
-          emotions, and drive meaningful connections.
+          that resonates with your audience. My mission is to empower businesses and brands to stand
+          out in a crowded market. I believe in the power of design to tell stories, evoke emotions,
+          and drive meaningful connections.
         </p>
       </div>
 
@@ -150,10 +145,22 @@ export function Footer() {
 
       <div className="flex flex-wrap justify-center items-center gap-6 z-10">
         <div className="flex flex-wrap items-center justify-center gap-6 gap-y-4 px-6">
-          <a aria-label="Instagram" href={INSTAGRAM_URL} rel="noreferrer" target="_blank" className={socialLinkClass}>
+          <a
+            aria-label="Instagram"
+            href={INSTAGRAM_URL}
+            rel="noreferrer"
+            target="_blank"
+            className={socialLinkClass}
+          >
             <Instagram strokeWidth={1.5} className="h-5 w-5" />
           </a>
-          <a aria-label="Twitter" href={TWITTER_URL} rel="noreferrer" target="_blank" className={socialLinkClass}>
+          <a
+            aria-label="Twitter"
+            href={TWITTER_URL}
+            rel="noreferrer"
+            target="_blank"
+            className={socialLinkClass}
+          >
             <Twitter strokeWidth={1.5} className="h-5 w-5" />
           </a>
         </div>

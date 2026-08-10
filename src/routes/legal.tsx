@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence, type Variants } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  AnimatePresence,
+  type Variants,
+} from "motion/react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { AnimatedShinyText } from "../components/ui/animated-shiny-text";
@@ -56,8 +62,8 @@ function LegalPage() {
               Legal & <span className="text-primary">Policies</span>
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Transparent, secure, and respectful guidelines for the iManipur community.
-              Last updated: <time dateTime="2026-08-10">August 10, 2026</time>
+              Transparent, secure, and respectful guidelines for the iManipur community. Last
+              updated: <time dateTime="2026-08-10">August 10, 2026</time>
             </p>
           </motion.div>
 
@@ -79,19 +85,34 @@ function LegalPage() {
               </div>
               <div className="prose prose-invert max-w-none text-muted-foreground/90 space-y-6">
                 <p>
-                  Welcome to iManipur. By accessing or using our platform, archives, and resources, you agree to be bound by these Terms of Service. iManipur is an independent, non-profit initiative dedicated to the preservation, documentation, and digital amplification of Manipur's cultural heritage.
+                  Welcome to iManipur. By accessing or using our platform, archives, and resources,
+                  you agree to be bound by these Terms of Service. iManipur is an independent,
+                  non-profit initiative dedicated to the preservation, documentation, and digital
+                  amplification of Manipur's cultural heritage.
                 </p>
                 <h3 className="text-foreground text-xl font-medium mt-8 mb-4">1. Use of Content</h3>
                 <p>
-                  The digital archives, stories, code, and media provided on iManipur are strictly for educational, research, and cultural preservation purposes. You may not use our platform or its contents for commercial exploitation without explicit, written permission from the iManipur initiative.
+                  The digital archives, stories, code, and media provided on iManipur are strictly
+                  for educational, research, and cultural preservation purposes. You may not use our
+                  platform or its contents for commercial exploitation without explicit, written
+                  permission from the iManipur initiative.
                 </p>
-                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">2. Intellectual Property</h3>
+                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">
+                  2. Intellectual Property
+                </h3>
                 <p>
-                  All proprietary content, original digital illustrations, code architecture, and structured data presented on this platform belong to iManipur and its contributors. Cultural artifacts, folktales, and historical data remain the collective heritage of the people of Manipur. We act solely as custodians and digital curators of this knowledge.
+                  All proprietary content, original digital illustrations, code architecture, and
+                  structured data presented on this platform belong to iManipur and its
+                  contributors. Cultural artifacts, folktales, and historical data remain the
+                  collective heritage of the people of Manipur. We act solely as custodians and
+                  digital curators of this knowledge.
                 </p>
                 <h3 className="text-foreground text-xl font-medium mt-8 mb-4">3. Governing Law</h3>
                 <p>
-                  These Terms shall be governed and construed in accordance with the laws of Manipur, India, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
+                  These Terms shall be governed and construed in accordance with the laws of
+                  Manipur, India, without regard to its conflict of law provisions. Our failure to
+                  enforce any right or provision of these Terms will not be considered a waiver of
+                  those rights.
                 </p>
               </div>
             </motion.section>
@@ -115,19 +136,36 @@ function LegalPage() {
               </div>
               <div className="prose prose-invert max-w-none text-muted-foreground/90 space-y-6">
                 <p>
-                  iManipur is committed to protecting your privacy and ensuring that your personal data is handled securely and transparently. We believe in minimal data collection and maximum privacy.
+                  iManipur is committed to protecting your privacy and ensuring that your personal
+                  data is handled securely and transparently. We believe in minimal data collection
+                  and maximum privacy.
                 </p>
-                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">1. Data Collection</h3>
+                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">
+                  1. Data Collection
+                </h3>
                 <p>
-                  We only collect data that is strictly necessary for the operation of the platform. This includes basic analytics (which are anonymized) to help us understand how our archives are accessed, and information you explicitly provide when contacting us or contributing to the initiative.
+                  We only collect data that is strictly necessary for the operation of the platform.
+                  This includes information you explicitly provide when contacting us (such as your
+                  name, email address, and message) which is processed securely by our email
+                  provider, Resend.
                 </p>
-                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">2. Data Usage & Sharing</h3>
+                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">
+                  2. Data Usage & Sharing
+                </h3>
                 <p>
-                  Your data is never sold, rented, or traded. Information provided by contributors is used solely for attribution and communication regarding your contributions to the cultural archive. We comply with international data protection standards (including principles analogous to GDPR) to ensure your data rights are respected.
+                  Your data is never sold, rented, or traded. Information provided via contact forms
+                  is used solely for responding to your inquiries. When authentication and CMS
+                  features are enabled, user accounts and content edits are stored securely using
+                  Supabase. We comply with data protection standards to ensure your rights are
+                  respected, retaining contact messages only as long as necessary to address your
+                  request.
                 </p>
                 <h3 className="text-foreground text-xl font-medium mt-8 mb-4">3. Security</h3>
                 <p>
-                  We implement robust, state-of-the-art security measures to protect against unauthorized access, alteration, or destruction of any data we hold. However, no internet transmission is completely secure, and we cannot guarantee absolute security.
+                  We utilize industry-standard services (Supabase for backend storage and Resend for
+                  communications) that implement robust security measures to protect against
+                  unauthorized access or data alteration. While we strive to protect your data, no
+                  internet transmission is completely secure.
                 </p>
               </div>
             </motion.section>
@@ -151,19 +189,34 @@ function LegalPage() {
               </div>
               <div className="prose prose-invert max-w-none text-muted-foreground/90 space-y-6">
                 <p>
-                  iManipur thrives on collaboration from educators, researchers, artists, and technologists. To maintain the integrity and safety of our community, we expect all participants to adhere to these guidelines.
+                  iManipur thrives on collaboration from educators, researchers, artists, and
+                  technologists. To maintain the integrity and safety of our community, we expect
+                  all participants to adhere to these guidelines.
                 </p>
-                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">1. Respectful Conduct</h3>
+                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">
+                  1. Respectful Conduct
+                </h3>
                 <p>
-                  Engage with respect. Cultural preservation is sensitive work. Harassment, hate speech, or discriminatory remarks regarding any community, tradition, or individual will result in immediate removal from our collaborative spaces.
+                  Engage with respect. Cultural preservation is sensitive work. Harassment, hate
+                  speech, or discriminatory remarks regarding any community, tradition, or
+                  individual will result in immediate removal from our collaborative spaces.
                 </p>
-                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">2. Academic & Historical Integrity</h3>
+                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">
+                  2. Academic & Historical Integrity
+                </h3>
                 <p>
-                  Contributions to the archive must be rooted in verifiable historical data, credible oral traditions, or recognized artistic expressions. Plagiarism or intentional misrepresentation of cultural history is strictly prohibited.
+                  Contributions to the archive must be rooted in verifiable historical data,
+                  credible oral traditions, or recognized artistic expressions. Plagiarism or
+                  intentional misrepresentation of cultural history is strictly prohibited.
                 </p>
-                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">3. Open Access ethos</h3>
+                <h3 className="text-foreground text-xl font-medium mt-8 mb-4">
+                  3. Open Access ethos
+                </h3>
                 <p>
-                  While respecting copyright and proprietary original works, our community operates on an ethos of knowledge sharing. We encourage contributors to open-source their educational findings where appropriate, to accelerate the advancement of Manipur's digital footprint.
+                  While respecting copyright and proprietary original works, our community operates
+                  on an ethos of knowledge sharing. We encourage contributors to open-source their
+                  educational findings where appropriate, to accelerate the advancement of Manipur's
+                  digital footprint.
                 </p>
               </div>
             </motion.section>

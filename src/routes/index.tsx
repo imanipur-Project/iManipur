@@ -1,5 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useRef, useCallback, useId } from "react";
+import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
+import { EditableBlock } from "../components/EditableBlock";
 import { ContactSection } from "../components/ContactSection";
 import { Journey } from "../components/Journey";
 import { Navbar } from "../components/Navbar";
@@ -54,7 +56,8 @@ export const Route = createFileRoute("/")({
 /* ─── Data ──────────────────────────────────────────────── */
 
 const ABOUT_HERO_TITLE = "Knowledge is the fundamental framework of civilization.";
-const ABOUT_HERO_SUBTITLE = "While some is formally documented, much is encoded within the cultural matrix \u2014 the narratives, traditions, languages, and the consciousness of the people who sustain them.";
+const ABOUT_HERO_SUBTITLE =
+  "While some is formally documented, much is encoded within the cultural matrix \u2014 the narratives, traditions, languages, and the consciousness of the people who sustain them.";
 
 const ABOUT_CARDS = [
   {
@@ -74,7 +77,8 @@ const ABOUT_CARDS = [
   },
 ];
 
-const ABOUT_QUOTE = "Our work transcends conventional disciplinary boundaries, combining research, technology, design, and storytelling into a cohesive framework. Through this approach, we develop initiatives that are contextually informed, strategically designed, and capable of creating enduring value for present and future generations.";
+const ABOUT_QUOTE =
+  "Our work transcends conventional disciplinary boundaries, combining research, technology, design, and storytelling into a cohesive framework. Through this approach, we develop initiatives that are contextually informed, strategically designed, and capable of creating enduring value for present and future generations.";
 
 const pillars = [
   {
@@ -376,7 +380,7 @@ function Index() {
 
           <motion.h1
             variants={itemVariants}
-            className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+            className="mt-6 max-w-4xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
           >
             Preserving Knowledge.{" "}
             <span className="inline-block text-gradient-primary pb-1">Shaping Tomorrow.</span>
@@ -502,34 +506,19 @@ function Index() {
         >
           <div className="mx-auto max-w-[1200px] px-4 md:px-6">
             {/* Section Label */}
-            <motion.div
-              variants={itemVariants}
-              className="mb-8 flex items-center gap-2"
-            >
+            <motion.div variants={itemVariants} className="mb-8 flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-none bg-primary" />
               <AnimatedShinyText className="label-mono text-primary">
                 Built for Manipur
               </AnimatedShinyText>
             </motion.div>
-
-            {/* Hero Title */}
-            <motion.h2
-              variants={itemVariants}
-              className="max-w-3xl font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-foreground"
-            >
-              {ABOUT_HERO_TITLE}
-            </motion.h2>
-
-            {/* Gold underline accent */}
-            <motion.div variants={itemVariants} className="mt-6 h-0.5 w-16 bg-primary" />
-
-            {/* Subtitle */}
-            <motion.p
-              variants={itemVariants}
-              className="mt-6 max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
-            >
-              {ABOUT_HERO_SUBTITLE}
-            </motion.p>
+            {/* Hero Title & Editable Content */}
+            <motion.div variants={itemVariants} className="max-w-3xl">
+              <EditableBlock
+                slug="homepage-about"
+                defaultHtml={`<h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-foreground">${ABOUT_HERO_TITLE}</h2><div class="mt-6 h-0.5 w-16 bg-primary"></div><p class="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">${ABOUT_HERO_SUBTITLE}</p>`}
+              />
+            </motion.div>
 
             {/* Lottie Animation Card */}
             <motion.div
@@ -577,7 +566,10 @@ function Index() {
                   {/* Card body paragraphs */}
                   <div className="mt-4 space-y-4">
                     {card.body.map((para, paraIndex) => (
-                      <p key={paraIndex} className="text-base text-muted-foreground leading-relaxed">
+                      <p
+                        key={paraIndex}
+                        className="text-base text-muted-foreground leading-relaxed"
+                      >
                         {para}
                       </p>
                     ))}
@@ -595,7 +587,10 @@ function Index() {
               className="mt-6 rounded-none border border-border/50 bg-card/30 backdrop-blur-md p-8 lg:p-10 flex gap-6"
             >
               {/* Decorative quotation mark */}
-              <span className="hidden md:block shrink-0 font-serif text-6xl leading-none text-primary/25 select-none" aria-hidden>
+              <span
+                className="hidden md:block shrink-0 font-serif text-6xl leading-none text-primary/25 select-none"
+                aria-hidden
+              >
                 {"\u201C"}
               </span>
               <div className="border-l-2 border-primary/50 pl-6">
@@ -619,11 +614,7 @@ function Index() {
                   className="group flex flex-col items-center justify-center gap-3 rounded-none border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
                 >
                   <span className="font-display text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                    {!isNaN(Number(s.value)) ? (
-                      <NumberTicker value={Number(s.value)} />
-                    ) : (
-                      s.value
-                    )}
+                    {!isNaN(Number(s.value)) ? <NumberTicker value={Number(s.value)} /> : s.value}
                   </span>
                   <span className="font-semibold text-xs tracking-[0.2em] uppercase text-muted-foreground/70">
                     {s.label}
@@ -646,7 +637,9 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
-            <AnimatedShinyText className="label-mono text-primary/70">What we care about</AnimatedShinyText>
+            <AnimatedShinyText className="label-mono text-primary/70">
+              What we care about
+            </AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Three pillars, <span className="text-primary block sm:inline">one intention.</span>
             </h2>
@@ -721,7 +714,9 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
-            <AnimatedShinyText className="label-mono text-primary/70">What we're building</AnimatedShinyText>
+            <AnimatedShinyText className="label-mono text-primary/70">
+              What we're building
+            </AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Our <span className="text-primary">projects.</span>
             </h2>
@@ -750,10 +745,10 @@ function Index() {
 
                 <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-muted/20">
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
-                  
+
                   {/* Glitch/Scanline effect overlay */}
                   <div className="absolute inset-0 z-10 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.1)_2px,rgba(0,0,0,0.1)_4px)] opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100" />
-                  
+
                   <Lens zoomFactor={1.5} lensSize={180} duration={0.3}>
                     <img
                       src={proj.image}
@@ -779,7 +774,7 @@ function Index() {
                   <p className="mb-6 text-[14px] leading-relaxed text-muted-foreground flex-1">
                     {proj.description}
                   </p>
-                  
+
                   <div className="mt-auto flex items-center justify-between">
                     <span
                       className={[
@@ -813,7 +808,9 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
-            <AnimatedShinyText className="label-mono text-primary/70">Our Principles</AnimatedShinyText>
+            <AnimatedShinyText className="label-mono text-primary/70">
+              Our Principles
+            </AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Building for the <span className="text-primary block sm:inline">long term.</span>
             </h2>
@@ -862,7 +859,9 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
-            <AnimatedShinyText className="label-mono text-primary/70">The Initiative</AnimatedShinyText>
+            <AnimatedShinyText className="label-mono text-primary/70">
+              The Initiative
+            </AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               Our <span className="text-primary block sm:inline">contributors.</span>
             </h2>
@@ -943,7 +942,9 @@ function Index() {
             >
               "
             </div>
-            <AnimatedShinyText className="relative label-mono text-primary/70">Mission</AnimatedShinyText>
+            <AnimatedShinyText className="relative label-mono text-primary/70">
+              Mission
+            </AnimatedShinyText>
             <blockquote className="relative mt-8 max-w-2xl text-[1.2rem] leading-relaxed text-foreground/90 md:text-[1.4rem]">
               Our mission is to preserve knowledge, strengthen education, and encourage innovation
               through projects that remain useful across generations.
@@ -970,7 +971,9 @@ function Index() {
           className="scroll-mt-20 py-20"
         >
           <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
-            <AnimatedShinyText className="label-mono text-primary/70">Acknowledgement</AnimatedShinyText>
+            <AnimatedShinyText className="label-mono text-primary/70">
+              Acknowledgement
+            </AnimatedShinyText>
             <h2 className="mt-4 text-foreground">
               With deepest <span className="text-primary">gratitude.</span>
             </h2>
