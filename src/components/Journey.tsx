@@ -19,7 +19,7 @@ const timeline = [
   {
     year: "2025",
     label: "Animation Project Begins",
-    desc: "Work started on the Manipur Historical Animation — bringing history to life through visual storytelling.",
+    desc: "Initiated the Manipur Historical Animation - engineering high-fidelity visual storytelling to synthesize and revitalize historical data.",
   },
   {
     year: "2025",
@@ -115,7 +115,8 @@ export function Journey() {
           How we <span className="text-primary">got here.</span>
         </h2>
         <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-muted-foreground">
-          From an idea to a working initiative — each step grounded in purpose.
+          From conceptualization to operational initiative - every phase is rigorously calibrated
+          for purpose.
         </p>
       </div>
 

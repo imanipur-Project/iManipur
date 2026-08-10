@@ -129,7 +129,7 @@ export function EditableBlock({ slug, defaultHtml, className }: EditableBlockPro
     );
   }
 
-  // Only sanitize on the client — DOMPurify requires a browser DOM.
+  // Only sanitize on the client - DOMPurify requires a browser DOM.
   // Content from Supabase is trusted (sanitized at save time), so passing
   // the raw string through SSR is safe and avoids hydration mismatches.
   const cleanHtml = typeof window !== "undefined" ? DOMPurifyClient.sanitize(content) : content;
