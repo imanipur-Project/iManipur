@@ -39,7 +39,7 @@ function UplinkRoute() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md p-8 border border-border bg-[#121212] rounded-none shadow-[inset_0_0_20px_rgba(202,146,29,0.05)]">
+      <div className="w-full max-w-md p-8 border border-border bg-background rounded-none shadow-[inset_0_0_20px_rgba(202,146,29,0.05)]">
         <h1 className="text-2xl font-display text-primary mb-6">Secure Uplink</h1>
 
         {error && (
@@ -91,7 +91,7 @@ function UplinkRoute() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-muted-foreground/50 font-mono text-[10px] uppercase tracking-widest">
+        <p className="mt-6 text-left text-muted-foreground/50 font-mono text-[10px] uppercase tracking-widest">
           Authorised personnel only.
         </p>
       </div>

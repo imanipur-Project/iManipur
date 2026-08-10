@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Logo } from "./Logo";
@@ -96,9 +97,9 @@ export function Navbar() {
       ].join(" ")}
     >
       <div className="relative z-50 mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-8">
-        <motion.a href="#about" className="group flex items-center gap-2.5" whileHover="hover">
+        <Link to="/" hash="home" className="group flex items-center gap-2.5">
           <Logo size="sm" withText={true} />
-        </motion.a>
+        </Link>
 
         {/* Desktop nav */}
         <nav
@@ -106,9 +107,10 @@ export function Navbar() {
           onMouseLeave={() => setHoveredLink(null)}
         >
           {navLinks.map((n) => (
-            <a
+            <Link
               key={n.id}
-              href={`#${n.id}`}
+              to="/"
+              hash={n.id}
               onMouseEnter={() => setHoveredLink(n.id)}
               className="relative px-4 py-2 font-semibold text-[11px] tracking-[0.12em] uppercase text-muted-foreground transition-colors duration-200 hover:text-foreground z-10"
             >
@@ -120,18 +122,19 @@ export function Navbar() {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#contact"
+          <Link
+            to="/"
+            hash="contact"
             onClick={closeMobile}
             className="hidden md:flex items-center gap-1 group relative overflow-hidden rounded-none border border-primary/40 px-3 py-1.5 font-semibold text-[10px] tracking-[0.16em] uppercase text-primary transition-all duration-300 hover:border-primary/70 hover:bg-primary/10"
           >
             Contact <ArrowRight className="h-3 w-3" />
-          </a>
+          </Link>
 
           {/* Mobile hamburger */}
           <button
@@ -175,21 +178,25 @@ export function Navbar() {
           >
             <div className="flex flex-col items-center gap-8 px-5">
               {navLinks.map((n, i) => (
-                <motion.a
+                <motion.div
                   key={n.id}
-                  ref={i === 0 ? firstLinkRef : undefined}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ delay: i * 0.1, type: "spring", stiffness: 300, damping: 25 }}
-                  href={`#${n.id}`}
-                  onClick={closeMobile}
-                  className="font-display text-4xl font-bold tracking-tight text-foreground transition-all duration-200 hover:text-primary active:scale-95"
                 >
-                  {n.label}
-                </motion.a>
+                  <Link
+                    ref={i === 0 ? firstLinkRef : undefined}
+                    to="/"
+                    hash={n.id}
+                    onClick={closeMobile}
+                    className="font-display text-4xl font-bold tracking-tight text-foreground transition-all duration-200 hover:text-primary active:scale-95"
+                  >
+                    {n.label}
+                  </Link>
+                </motion.div>
               ))}
-              <motion.a
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -199,12 +206,16 @@ export function Navbar() {
                   stiffness: 300,
                   damping: 25,
                 }}
-                href="#contact"
-                onClick={closeMobile}
-                className="mt-4 flex items-center gap-2 rounded-none border border-primary/40 bg-primary/10 px-6 py-3 font-semibold text-[12px] tracking-[0.16em] uppercase text-primary transition-all hover:bg-primary/20"
               >
-                Contact <ArrowRight className="h-4 w-4" />
-              </motion.a>
+                <Link
+                  to="/"
+                  hash="contact"
+                  onClick={closeMobile}
+                  className="mt-4 flex items-center gap-2 rounded-none border border-primary/40 bg-primary/10 px-6 py-3 font-semibold text-[12px] tracking-[0.16em] uppercase text-primary transition-all hover:bg-primary/20"
+                >
+                  Contact <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
             </div>
 
             <motion.div

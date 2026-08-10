@@ -5,6 +5,8 @@ import { sendContactEmail } from "../lib/actions";
 import { contactSchema, type ContactFormValues } from "../lib/schema";
 import { Clock, Mail, MapPin, MessageCircle, Phone, Users, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import { ShineBorder } from "./ui/shine-border";
+import { AnimatedShinyText } from "./ui/animated-shiny-text";
 
 export function ContactSection() {
   const {
@@ -51,17 +53,17 @@ export function ContactSection() {
             WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <div className="relative z-10 mx-auto max-w-[1200px] text-left">
           <div className="border-border bg-card mb-8 inline-flex items-center gap-2 rounded-none border px-4 py-2">
             <MessageCircle className="text-primary h-4 w-4" />
-            <span className="text-foreground text-sm font-medium font-mono uppercase tracking-widest">
+            <AnimatedShinyText className="text-foreground/70 text-sm font-medium font-mono uppercase tracking-widest">
               Get in touch
-            </span>
+            </AnimatedShinyText>
           </div>
           <h2 className="text-foreground mb-6 text-4xl font-bold text-balance md:text-5xl lg:text-6xl">
             Let's work on <span className="text-primary">Manipur</span> together.
           </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-balance">
+          <p className="text-muted-foreground max-w-2xl text-lg text-balance">
             If you are architecting solutions for Manipur - within cultural preservation, advanced
             education, or innovative frameworks - we invite you to initiate dialogue.
           </p>
@@ -106,106 +108,115 @@ export function ContactSection() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid gap-5 sm:grid-cols-2">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="relative rounded-none border border-border bg-card/20 backdrop-blur-md p-6 sm:p-8 overflow-hidden group"
+            >
+              <ShineBorder duration={14} shineColor="var(--primary)" />
+
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+
+              <div className="relative z-10 space-y-6">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="firstName"
+                      className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      {...register("firstName")}
+                      id="firstName"
+                      aria-invalid={!!errors.firstName}
+                      aria-describedby={errors.firstName ? "firstName-error" : undefined}
+                      className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="Your first name"
+                    />
+                    {errors.firstName && (
+                      <span id="firstName-error" className="text-[11px] text-destructive">
+                        {errors.firstName.message}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="lastName"
+                      className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      {...register("lastName")}
+                      id="lastName"
+                      aria-invalid={!!errors.lastName}
+                      aria-describedby={errors.lastName ? "lastName-error" : undefined}
+                      className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="Your last name"
+                    />
+                    {errors.lastName && (
+                      <span id="lastName-error" className="text-[11px] text-destructive">
+                        {errors.lastName.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
                 <div className="flex flex-col gap-1.5">
                   <label
-                    htmlFor="firstName"
+                    htmlFor="email"
                     className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
                   >
-                    First Name
+                    Email Address
                   </label>
                   <input
-                    {...register("firstName")}
-                    id="firstName"
-                    aria-invalid={!!errors.firstName}
-                    aria-describedby={errors.firstName ? "firstName-error" : undefined}
+                    {...register("email")}
+                    id="email"
+                    type="email"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                     className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                    placeholder="Your first name"
+                    placeholder="john@example.com"
                   />
-                  {errors.firstName && (
-                    <span id="firstName-error" className="text-[11px] text-destructive">
-                      {errors.firstName.message}
+                  {errors.email && (
+                    <span id="email-error" className="text-[11px] text-destructive">
+                      {errors.email.message}
                     </span>
                   )}
                 </div>
+
                 <div className="flex flex-col gap-1.5">
                   <label
-                    htmlFor="lastName"
+                    htmlFor="message"
                     className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
                   >
-                    Last Name
+                    Message
                   </label>
-                  <input
-                    {...register("lastName")}
-                    id="lastName"
-                    aria-invalid={!!errors.lastName}
-                    aria-describedby={errors.lastName ? "lastName-error" : undefined}
-                    className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                    placeholder="Your last name"
+                  <textarea
+                    {...register("message")}
+                    id="message"
+                    rows={5}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                    className="resize-y rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    placeholder="How can we work together?"
                   />
-                  {errors.lastName && (
-                    <span id="lastName-error" className="text-[11px] text-destructive">
-                      {errors.lastName.message}
+                  {errors.message && (
+                    <span id="message-error" className="text-[11px] text-destructive">
+                      {errors.message.message}
                     </span>
                   )}
                 </div>
-              </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label
-                  htmlFor="email"
-                  className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex w-full min-h-[44px] items-center justify-center gap-2 rounded-none bg-primary px-4 py-4 font-mono text-[12px] tracking-wider uppercase text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-70"
                 >
-                  Email Address
-                </label>
-                <input
-                  {...register("email")}
-                  id="email"
-                  type="email"
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                  className="rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  placeholder="john@example.com"
-                />
-                {errors.email && (
-                  <span id="email-error" className="text-[11px] text-destructive">
-                    {errors.email.message}
-                  </span>
-                )}
+                  {isSubmitting ? "Sending..." : "Send"}
+                  {!isSubmitting && <ArrowRight className="h-4 w-4" />}
+                </button>
               </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label
-                  htmlFor="message"
-                  className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground"
-                >
-                  Message
-                </label>
-                <textarea
-                  {...register("message")}
-                  id="message"
-                  rows={5}
-                  aria-invalid={!!errors.message}
-                  aria-describedby={errors.message ? "message-error" : undefined}
-                  className="resize-y rounded-none border border-border bg-background px-4 py-3 text-[14px] text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  placeholder="How can we work together?"
-                />
-                {errors.message && (
-                  <span id="message-error" className="text-[11px] text-destructive">
-                    {errors.message.message}
-                  </span>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="flex w-full min-h-[44px] items-center justify-center gap-2 rounded-none bg-primary px-4 py-4 font-mono text-[12px] tracking-wider uppercase text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-70"
-              >
-                {isSubmitting ? "Sending..." : "Send"}
-                {!isSubmitting && <ArrowRight className="h-4 w-4" />}
-              </button>
             </form>
           </div>
 
