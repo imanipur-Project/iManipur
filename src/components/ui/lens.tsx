@@ -89,11 +89,12 @@ export function Lens({
         }}
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
             transform: `scale(${safeZoomFactor})`,
             transformOrigin: `${x}px ${y}px`,
           }}
+          aria-hidden="true"
         >
           {children}
         </div>

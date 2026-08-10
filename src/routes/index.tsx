@@ -316,7 +316,7 @@ function Index() {
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="home" className="min-h-screen bg-background">
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────── */}
