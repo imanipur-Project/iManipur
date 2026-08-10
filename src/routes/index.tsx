@@ -554,7 +554,7 @@ function Index() {
               viewport={{ once: true, margin: "-60px" }}
               className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6"
             >
-              {ABOUT_CARDS.map((card, i) => (
+              {ABOUT_CARDS.map((card) => (
                 <motion.div
                   key={card.heading}
                   variants={itemVariants}
@@ -576,8 +576,8 @@ function Index() {
 
                   {/* Card body paragraphs */}
                   <div className="mt-4 space-y-4">
-                    {card.body.map((para, i) => (
-                      <p key={i} className="text-base text-muted-foreground leading-relaxed">
+                    {card.body.map((para, paraIndex) => (
+                      <p key={paraIndex} className="text-base text-muted-foreground leading-relaxed">
                         {para}
                       </p>
                     ))}
@@ -743,10 +743,10 @@ function Index() {
               >
                 <ShineBorder duration={14} shineColor="var(--primary)" />
                 {/* Cartographic Crosshairs */}
-                <div className="absolute -left-1 -top-1 z-20 h-3 w-3 border-l border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-1 group-hover:-translate-y-1" />
-                <div className="absolute -right-1 -top-1 z-20 h-3 w-3 border-r border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                <div className="absolute -bottom-1 -left-1 z-20 h-3 w-3 border-b border-l border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-1 group-hover:translate-y-1" />
-                <div className="absolute -bottom-1 -right-1 z-20 h-3 w-3 border-b border-r border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:translate-y-1" />
+                <div className="absolute left-1 top-1 z-20 h-3 w-3 border-l border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:left-0 group-hover:top-0" />
+                <div className="absolute right-1 top-1 z-20 h-3 w-3 border-r border-t border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:right-0 group-hover:top-0" />
+                <div className="absolute bottom-1 left-1 z-20 h-3 w-3 border-b border-l border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:bottom-0 group-hover:left-0" />
+                <div className="absolute bottom-1 right-1 z-20 h-3 w-3 border-b border-r border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:bottom-0 group-hover:right-0" />
 
                 <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-muted/20">
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
@@ -891,7 +891,7 @@ function Index() {
                 {member.image ? (
                   // Real Photo Portrait
                   <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-none border border-border bg-primary/10 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-primary/50 group-active:border-primary group-hover:shadow-[0_0_20px_rgba(202,146,29,0.2),inset_0_0_15px_rgba(202,146,29,0.1)] group-active:shadow-[0_0_30px_rgba(202,146,29,0.6),inset_0_0_20px_rgba(202,146,29,0.3)]">
-                    <Lens zoomFactor={1.8} lensSize={120} duration={0.3}>
+                    <Lens zoomFactor={1.8} lensSize={56} duration={0.3}>
                       <img
                         src={member.image}
                         alt={member.name}

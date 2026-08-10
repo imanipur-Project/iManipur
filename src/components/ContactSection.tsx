@@ -56,7 +56,7 @@ export function ContactSection() {
         <div className="relative z-10 mx-auto max-w-[1200px] text-left">
           <div className="border-border bg-card mb-8 inline-flex items-center gap-2 rounded-none border px-4 py-2">
             <MessageCircle className="text-primary h-4 w-4" />
-            <AnimatedShinyText className="text-foreground text-sm font-medium font-mono uppercase tracking-widest">
+            <AnimatedShinyText className="text-foreground/70 text-sm font-medium font-mono uppercase tracking-widest">
               Get in touch
             </AnimatedShinyText>
           </div>
@@ -108,7 +108,7 @@ export function ContactSection() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 relative rounded-none border border-border bg-card/20 backdrop-blur-md p-6 sm:p-8 overflow-hidden group">
+            <form onSubmit={handleSubmit(onSubmit)} className="relative rounded-none border border-border bg-card/20 backdrop-blur-md p-6 sm:p-8 overflow-hidden group">
               <ShineBorder duration={14} shineColor="var(--primary)" />
               
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />

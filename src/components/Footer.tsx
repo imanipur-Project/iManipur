@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
+import { Link } from "@tanstack/react-router";
 import {
   Instagram,
   Facebook,
@@ -89,9 +90,9 @@ export function Footer() {
       className="mx-auto mt-20 flex h-full w-full flex-col items-center justify-center bg-background border-t border-border overflow-hidden relative"
     >
       <div className="relative mx-auto grid max-w-7xl items-center justify-center gap-6 p-10 pb-0 md:flex z-10 w-full">
-        <a href="/#home" className="flex items-center justify-center rounded-full">
+        <Link to="/" hash="home" className="flex items-center justify-center rounded-full">
           <img src="/imanipur_Web.svg" alt="iManipur" className="h-16 w-auto" />
-        </a>
+        </Link>
         <p className="text-muted-foreground text-center text-xs leading-5 md:text-left max-w-3xl ml-4">
           An autonomous initiative engineered in Manipur - systematically preserving historical
           data, amplifying cultural intelligence, and architecting robust resources for the future.
@@ -124,16 +125,20 @@ export function Footer() {
                     aria-labelledby={`${category.id}-${section.id}-heading`}
                     className="flex flex-col space-y-2"
                   >
-                    {section.items.map((item) => (
-                      <li key={item.name} className="flow-root">
-                        <a
-                          href={item.href}
-                          className="text-sm text-muted-foreground hover:text-foreground md:text-xs transition-colors"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
+                    {section.items.map((item) => {
+                      const [to, hash] = item.href.split("#");
+                      return (
+                        <li key={item.name} className="flow-root">
+                          <Link
+                            to={to || "/"}
+                            hash={hash || ""}
+                            className="text-sm text-muted-foreground hover:text-foreground md:text-xs transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               ))}
@@ -147,9 +152,6 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-6 gap-y-4 px-6">
           <a aria-label="Instagram" href={INSTAGRAM_URL} rel="noreferrer" target="_blank" className={socialLinkClass}>
             <Instagram strokeWidth={1.5} className="h-5 w-5" />
-          </a>
-          <a aria-label="Facebook" href="#" rel="noreferrer" target="_blank" className={socialLinkClass}>
-            <Facebook strokeWidth={1.5} className="h-5 w-5" />
           </a>
           <a aria-label="Twitter" href={TWITTER_URL} rel="noreferrer" target="_blank" className={socialLinkClass}>
             <Twitter strokeWidth={1.5} className="h-5 w-5" />

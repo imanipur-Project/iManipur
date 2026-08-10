@@ -21,7 +21,7 @@ function LegalPage() {
     const hash = window.location.hash;
     if (hash) {
       setTimeout(() => {
-        const element = document.querySelector(hash);
+        const element = document.getElementById(hash.slice(1));
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
@@ -57,7 +57,7 @@ function LegalPage() {
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Transparent, secure, and respectful guidelines for the iManipur community.
-              Last updated: {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+              Last updated: <time dateTime="2026-08-10">August 10, 2026</time>
             </p>
           </motion.div>
 

@@ -42,12 +42,8 @@ export function Lens({
   lensColor = "black",
   ariaLabel = "Zoom Area",
 }: LensProps) {
-  if (zoomFactor < 1) {
-    throw new Error("zoomFactor must be greater than 1")
-  }
-  if (lensSize < 0) {
-    throw new Error("lensSize must be greater than 0")
-  }
+  const safeZoomFactor = Math.max(1, zoomFactor)
+  const safeLensSize = Math.max(0, lensSize)
 
   const [isHovering, setIsHovering] = useState(false)
   const [mousePosition, setMousePosition] = useState<Position>(position)
@@ -72,7 +68,7 @@ export function Lens({
   }, [])
 
   const maskImage = useMotionTemplate`radial-gradient(circle ${
-    lensSize / 2
+    safeLensSize / 2
   }px at ${currentPosition.x}px ${
     currentPosition.y
   }px, ${lensColor} 100%, transparent 100%)`
@@ -97,7 +93,7 @@ export function Lens({
         <div
           className="absolute inset-0"
           style={{
-            transform: `scale(${zoomFactor})`,
+            transform: `scale(${safeZoomFactor})`,
             transformOrigin: `${x}px ${y}px`,
           }}
         >
@@ -105,7 +101,7 @@ export function Lens({
         </div>
       </motion.div>
     )
-  }, [currentPosition, maskImage, zoomFactor, children, duration])
+  }, [currentPosition, maskImage, safeZoomFactor, children, duration])
 
   return (
     <div
@@ -114,6 +110,8 @@ export function Lens({
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onMouseMove={handleMouseMove}
+      onFocus={() => setIsHovering(true)}
+      onBlur={() => setIsHovering(false)}
       onKeyDown={handleKeyDown}
       role="region"
       aria-label={ariaLabel}
