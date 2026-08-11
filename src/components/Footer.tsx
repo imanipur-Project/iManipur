@@ -84,11 +84,11 @@ export function Footer() {
       style={{ y, opacity }}
       className="mx-auto mt-20 flex h-full w-full flex-col items-center justify-center bg-background border-t border-border overflow-hidden relative"
     >
-      <div className="relative mx-auto grid max-w-7xl items-center justify-center gap-6 p-10 pb-0 md:flex z-10 w-full">
+      <div className="relative mx-auto flex flex-col max-w-7xl items-center justify-center gap-6 p-10 pb-0 z-10 w-full">
         <Link to="/" hash="home" className="flex items-center justify-center rounded-full">
           <img src="/imanipur_Web.svg" alt="iManipur" className="h-16 w-auto" />
         </Link>
-        <p className="text-muted-foreground text-center text-xs leading-5 md:text-left max-w-3xl ml-4">
+        <p className="text-muted-foreground text-center text-xs leading-5 max-w-4xl">
           An autonomous initiative engineered in Manipur - systematically preserving historical
           data, amplifying cultural intelligence, and architecting robust resources for the future.
           I am passionate about transforming ideas into compelling visual experiences. I specialize
@@ -105,10 +105,10 @@ export function Footer() {
           {navigation.categories.map((category) => (
             <div
               key={category.name}
-              className="grid grid-cols-2 md:grid-cols-6 flex-row justify-between gap-6 leading-6"
+              className="grid grid-cols-2 md:grid-cols-6 gap-6 leading-6"
             >
               {category.sections.map((section) => (
-                <div key={section.name} className="flex flex-col text-left">
+                <div key={section.name} className="flex flex-col text-center">
                   <h3
                     id={`${category.id}-${section.id}-heading`}
                     className="text-sm font-semibold text-foreground mb-4 uppercase tracking-widest"
@@ -118,7 +118,7 @@ export function Footer() {
                   <ul
                     role="list"
                     aria-labelledby={`${category.id}-${section.id}-heading`}
-                    className="flex flex-col space-y-2"
+                    className="flex flex-col space-y-2 items-center"
                   >
                     {section.items.map((item) => {
                       const [to, hash] = item.href.split("#");
@@ -166,7 +166,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 mb-10 flex flex-col justify-between text-center text-xs md:max-w-7xl z-10 w-full">
+      <div className="mx-auto mt-10 mb-28 md:mb-10 flex flex-col justify-between text-center text-xs md:max-w-7xl z-10 w-full">
         <div className="flex flex-row items-center justify-center gap-1 text-muted-foreground">
           <span>© {new Date().getFullYear()} iManipur. Built on Stories, Code, and Coffee.</span>
         </div>

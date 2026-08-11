@@ -132,7 +132,7 @@ const projects = [
     title: "Folk Stories of Manipur",
     status: "In Progress" as const,
     pillar: "Story",
-    image: "/assets/project-image.png",
+    image: "/assets/project-image-new.png",
     description:
       "Aggregating and reimagining traditional folklore - deploying modern digital media and advanced illustration techniques to immortalize oral histories for the future.",
     href: "#projects",
@@ -141,7 +141,7 @@ const projects = [
     title: "Historical Stories Collection",
     status: "Coming Soon" as const,
     pillar: "Culture",
-    image: "/assets/Stories-Collection.jpeg",
+    image: "/assets/Stories-Collection-new.png",
     description:
       "An expanding, high-resolution archive of undocumented historical narratives - synthesizing data on communities, geographical loci, and pivotal events engineered for perpetual preservation.",
     href: "#projects",
@@ -605,19 +605,23 @@ function Index() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
-              className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-6"
+              className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6"
             >
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="group flex flex-col items-center justify-center gap-3 rounded-none border border-border/50 bg-card/20 backdrop-blur-md px-4 py-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40"
+                  className="group relative flex flex-col justify-between rounded-none border border-border/50 bg-card/20 backdrop-blur-md p-6 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-card/40 min-h-[140px] md:min-h-[160px]"
                 >
-                  <span className="font-display text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <div className="absolute -right-8 -top-8 h-24 w-24 md:h-32 md:w-32 rounded-full bg-primary/10 blur-3xl transition-all duration-500 group-hover:bg-primary/20" />
+                  <span className="relative z-10 font-display text-5xl md:text-6xl font-medium text-foreground/90 group-hover:text-primary transition-colors duration-500">
                     {!isNaN(Number(s.value)) ? <NumberTicker value={Number(s.value)} /> : s.value}
                   </span>
-                  <span className="font-semibold text-xs tracking-[0.2em] uppercase text-muted-foreground/70">
-                    {s.label}
-                  </span>
+                  <div className="relative z-10 mt-8 flex items-center gap-3">
+                    <div className="h-px w-6 bg-primary/40 transition-all duration-500 group-hover:w-10 group-hover:bg-primary" />
+                    <span className="font-semibold text-[10px] md:text-[11px] tracking-[0.2em] md:tracking-[0.25em] uppercase text-muted-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                      {s.label}
+                    </span>
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -742,11 +746,9 @@ function Index() {
                 <div className="absolute bottom-1 left-1 z-20 h-3 w-3 border-b border-l border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:bottom-0 group-hover:left-0" />
                 <div className="absolute bottom-1 right-1 z-20 h-3 w-3 border-b border-r border-primary/70 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:bottom-0 group-hover:right-0" />
 
-                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-muted/20">
-                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
-
-                  {/* Glitch/Scanline effect overlay */}
-                  <div className="absolute inset-0 z-10 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.1)_2px,rgba(0,0,0,0.1)_4px)] opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-background">
+                  {/* Subtle primary color tint */}
+                  <div className="pointer-events-none absolute inset-0 z-[60] bg-primary/20 mix-blend-overlay" />
 
                   <Lens zoomFactor={1.5} lensSize={180} duration={0.3}>
                     <img
@@ -754,10 +756,17 @@ function Index() {
                       alt={proj.title}
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover mix-blend-luminosity opacity-80 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:mix-blend-normal group-hover:opacity-100"
+                      className="h-full w-full object-cover grayscale opacity-60 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:grayscale-[20%] group-hover:opacity-90 group-hover:scale-105"
                     />
                   </Lens>
-                  <div className="absolute inset-x-0 bottom-0 z-20 p-5 md:p-6 flex flex-col justify-end translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0">
+
+                  {/* Bottom gradient fade for text legibility */}
+                  <div className="absolute inset-0 z-[60] pointer-events-none bg-gradient-to-t from-background via-background/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-60" />
+
+                  {/* Glitch/Scanline effect overlay */}
+                  <div className="absolute inset-0 z-[60] pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.15)_2px,rgba(0,0,0,0.15)_4px)] opacity-50 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-80" />
+
+                  <div className="absolute inset-x-0 bottom-0 z-[70] p-5 md:p-6 flex flex-col justify-end translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0">
                     <span className="inline-flex w-fit items-center gap-2 border border-primary/30 bg-background/80 backdrop-blur-md px-3 py-1 font-mono text-[10px] tracking-[0.2em] uppercase text-primary shadow-[0_0_10px_rgba(202,146,29,0.2)]">
                       <span className="h-1.5 w-1.5 bg-primary/80 rounded-none animate-pulse" />
                       {proj.pillar}
