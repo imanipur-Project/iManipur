@@ -65,6 +65,7 @@
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono);
   --font-meetei: "Noto Sans Meetei Mayek", sans-serif;
+  --shadow-card: 0 2px 8px -2px oklch(0% 0 0deg / 0.6), 0 1px 2px -1px oklch(0% 0 0deg / 0.4);
   --animate-shine: shine var(--duration) infinite linear;
 
   @keyframes shine {
@@ -171,7 +172,6 @@
   --shadow-glow:
     0 0 20px -4px color-mix(in oklab, var(--primary) 25%, transparent),
     0 0 40px -8px color-mix(in oklab, var(--primary) 10%, transparent);
-  --shadow-card: 0 2px 8px -2px oklch(0% 0 0deg / 0.6), 0 1px 2px -1px oklch(0% 0 0deg / 0.4);
 }
 
 @layer base {

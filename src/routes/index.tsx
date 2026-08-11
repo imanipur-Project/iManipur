@@ -748,7 +748,7 @@ function Index() {
 
                 <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/50 bg-background">
                   {/* Subtle primary color tint */}
-                  <div className="absolute inset-0 z-0 bg-primary/20 mix-blend-overlay" />
+                  <div className="pointer-events-none absolute inset-0 z-[60] bg-primary/20 mix-blend-overlay" />
 
                   <Lens zoomFactor={1.5} lensSize={180} duration={0.3}>
                     <img
@@ -761,12 +761,12 @@ function Index() {
                   </Lens>
 
                   {/* Bottom gradient fade for text legibility */}
-                  <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-background via-background/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-60" />
+                  <div className="absolute inset-0 z-[60] pointer-events-none bg-gradient-to-t from-background via-background/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-60" />
 
                   {/* Glitch/Scanline effect overlay */}
-                  <div className="absolute inset-0 z-10 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.15)_2px,rgba(0,0,0,0.15)_4px)] opacity-50 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-80" />
+                  <div className="absolute inset-0 z-[60] pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.15)_2px,rgba(0,0,0,0.15)_4px)] opacity-50 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-80" />
 
-                  <div className="absolute inset-x-0 bottom-0 z-20 p-5 md:p-6 flex flex-col justify-end translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0">
+                  <div className="absolute inset-x-0 bottom-0 z-[70] p-5 md:p-6 flex flex-col justify-end translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0">
                     <span className="inline-flex w-fit items-center gap-2 border border-primary/30 bg-background/80 backdrop-blur-md px-3 py-1 font-mono text-[10px] tracking-[0.2em] uppercase text-primary shadow-[0_0_10px_rgba(202,146,29,0.2)]">
                       <span className="h-1.5 w-1.5 bg-primary/80 rounded-none animate-pulse" />
                       {proj.pillar}
